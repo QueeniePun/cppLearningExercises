@@ -1,18 +1,19 @@
 #include <iostream>
+/* Note:
+#include <iostream> is a preprocessor directive that tells the compiler to include iostream library
+*/ 
 #include "Chapter1Helper.h"
-#include "Chapter2Helper.h"
 
 using namespace std;
 
-// Programming Exercises
-int main()
-{
-    Chapter1Helper chapter1;
-    Chapter2Helper chapter2;
-    
-    chapter2.RunExercise2();
 
-    return 0;
+// Programming Exercises
+void main()
+{
+	Chapter1Helper chapter1;
+	
+	chapter1.RunExercise1();
+
 }
 
 
