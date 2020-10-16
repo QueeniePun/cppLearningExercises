@@ -13,10 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Chapter 1">
+      <UniqueIdentifier>{628e4d0f-2428-44f9-ae05-3a20922fc59d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chapter 1">
+      <UniqueIdentifier>{7b299898-aead-4cb3-8f84-ee410897b1a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cppLearningExercises.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Chapter1Helper.cpp">
+      <Filter>Source Files\Chapter 1</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Chapter1Helper.h">
+      <Filter>Header Files\Chapter 1</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
