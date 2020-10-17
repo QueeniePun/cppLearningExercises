@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Chapter1Helper.h"
 #include "Chapter2Helper.h"
+#include "Chapter3Helper.h"
 
 using namespace std;
 
@@ -9,8 +10,9 @@ int main()
 {
     Chapter1Helper chapter1;
     Chapter2Helper chapter2;
+    Chapter3Helper chapter3;
 
-    chapter2.RunExercise2();
+    chapter3.RunExercise24();
 
     return 0;
 }
