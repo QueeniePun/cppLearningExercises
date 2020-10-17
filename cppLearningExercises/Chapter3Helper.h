@@ -31,5 +31,11 @@ public:
     void RunExercise19();
     void RunExercise20();
     void RunExercise21();
+    void RunExercise22();
+    void RunExercise23();
+    void RunExercise24();
+    void RunExercise25();
 
+private: 
+    bool IsLeapYear(int year);
 };
