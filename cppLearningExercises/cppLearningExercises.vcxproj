@@ -141,11 +141,13 @@
   <ItemGroup>
     <ClCompile Include="Chapter1Helper.cpp" />
     <ClCompile Include="Chapter2Helper.cpp" />
+    <ClCompile Include="Chapter3Helper.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chapter1Helper.h" />
     <ClInclude Include="Chapter2Helper.h" />
+    <ClInclude Include="Chapter3Helper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
