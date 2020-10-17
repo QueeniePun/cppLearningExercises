@@ -27,9 +27,15 @@
     <ClCompile Include="Chapter1Helper.cpp">
       <Filter>Source Files\Chapter 1</Filter>
     </ClCompile>
+    <ClCompile Include="Chapter2Helper.cpp">
+      <Filter>Source Files\Chapter 1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chapter1Helper.h">
+      <Filter>Header Files\Chapter 1</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter2Helper.h">
       <Filter>Header Files\Chapter 1</Filter>
     </ClInclude>
   </ItemGroup>
