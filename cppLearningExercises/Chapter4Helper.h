@@ -6,12 +6,16 @@ class Chapter4Helper
 public:
     // Supporting data structures
     CHAPTER4::Exercise1Output_s Exercise1Output;
-    CHAPTER4::Exercise2Output_s Exercise2Output;
+    CHAPTER4::Exercise7Output_s Exercise7Output;
+    CHAPTER4::Exercise8Output_s Exercise8Output;
+    CHAPTER4::Exercise9Output_s Exercise9Output;
  
     // Constructor
     Chapter4Helper() : 
         Exercise1Output(),
-        Exercise2Output()
+        Exercise7Output(),
+        Exercise8Output(),
+        Exercise9Output()
     {};
 
     // Destructor 
@@ -24,9 +28,9 @@ public:
     void RunExercise4();
     void RunExercise5();
     void RunExercise6();
-    void RunExercise7();
-    void RunExercise8();
-    void RunExercise9();
+    void RunExercise7(double initialTuition, double years);
+    void RunExercise8(int numStudents, int* studentScores);
+    void RunExercise9(int numStudents, int* studentScores);
     void RunExercise10();
     void RunExercise11();
     void RunExercise12();
