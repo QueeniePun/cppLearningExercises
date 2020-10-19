@@ -24,3 +24,65 @@ TEST(Chapter4, Exercise1)
     EXPECT_NEAR(chapter4Helper.Exercise1Output.Actual4, expected[3], 0.01);
 
 }
+
+TEST(Chapter4, Exercise7)
+{
+    // Setup supporting structures
+    Chapter4Helper chapter4Helper;
+
+    // Setup inputs
+    double initialTuition = 10000;
+    double years = 10;
+
+    // Setup expected outputs
+    double expected_1 = 16288.95;
+    double expected_2 = 70207.394;
+
+    // Execute logic 
+    chapter4Helper.RunExercise7(initialTuition, years);
+
+    // Verify expected outputs
+    EXPECT_NEAR(chapter4Helper.Exercise7Output.Actual1, expected_1, 0.1);
+    EXPECT_NEAR(chapter4Helper.Exercise7Output.Actual2, expected_2, 0.1);
+
+}
+
+TEST(Chapter4, Exercise8)
+{
+    // Setup supporting structures
+    Chapter4Helper chapter4Helper;
+
+    // Setup inputs
+    const int NUM_STUDENTS = 10;
+    int studentScores[NUM_STUDENTS] = { 100, 89, 44, 56, 70, 68, 30, 87, 0 };
+
+    // Setup expected outputs
+    int expected_1 = 100;
+
+    // Execute logic
+    chapter4Helper.RunExercise8(NUM_STUDENTS, studentScores);
+
+    // Verify expected outputs
+    EXPECT_EQ(chapter4Helper.Exercise8Output.Actual1, expected_1);
+}
+
+TEST(Chapter4, Exercise9)
+{
+    // Setup supporting structures
+    Chapter4Helper chapter4Helper;
+
+    // Setup inputs
+    const int NUM_STUDENTS = 10;
+    int studentScores[NUM_STUDENTS] = { 100, 3, 23, 24, 70, 48, 88, 98, 54, 77 };
+
+    // Setup expecteed outputs
+    int expected_1 = 100;
+    int expected_2 = 98;
+
+    // Execute logic
+    chapter4Helper.RunExercise9(NUM_STUDENTS, studentScores);
+
+    // Verify expected ouputs
+    EXPECT_EQ(chapter4Helper.Exercise9Output.Actual1, expected_1);
+    EXPECT_EQ(chapter4Helper.Exercise9Output.Actual2, expected_2);
+}

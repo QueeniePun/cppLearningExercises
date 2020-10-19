@@ -15,15 +15,36 @@ struct Exercise1Output_s
         Actual4(0.0)
     {};
 };
-struct Exercise2Output_s
+struct Exercise7Output_s
+{
+    double Actual1;
+    double Actual2;
+
+    // Constructor
+    Exercise7Output_s() :
+        Actual1(0),
+        Actual2(1)
+    {};
+};
+struct Exercise8Output_s
+{
+    int Actual1;
+    
+    // Constructor
+    Exercise8Output_s() :
+        Actual1(0)
+    {};
+};
+
+struct Exercise9Output_s
 {
     int Actual1;
     int Actual2;
 
     // Constructor
-    Exercise2Output_s() :
+    Exercise9Output_s() :
         Actual1(0),
-        Actual2(1)
+        Actual2(0)
     {};
 };
 }

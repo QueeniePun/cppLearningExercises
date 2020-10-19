@@ -110,7 +110,7 @@ void Chapter4Helper::RunExercise4()
 void Chapter4Helper::RunExercise5()
 {
     // 4.5 Display 2 tables side by side 
-    const double KILOGRAMS_TO_POUND = 2.2;
+    const double KILOGRAM_TO_POUND = 2.2;
     cout << "Kilograms  Pounds   |   Pounds   Kilograms\n";
 
     for (int i = 0; i < 100; i++)
@@ -118,10 +118,185 @@ void Chapter4Helper::RunExercise5()
         int kilogramsInitial = 1 + (2 * i); 
         int poundsInitial = 20 + (5 * i);
         
-        double kgToPounds = static_cast<double>(kilogramsInitial) * KILOGRAMS_TO_POUND;
-        double poundsToKg = static_cast<double>(poundsInitial) / KILOGRAMS_TO_POUND;
+        double kgToPounds = static_cast<double>(kilogramsInitial) * KILOGRAM_TO_POUND;
+        double poundsToKg = static_cast<double>(poundsInitial) / KILOGRAM_TO_POUND;
 
         printf("%-10d %-8.1f %-3c %-8d %-.2f \n", kilogramsInitial, kgToPounds, '|', poundsInitial, poundsToKg);
 
     }
+}
+
+void Chapter4Helper::RunExercise6()
+{
+    // 4.6 Display two tables side by side 
+    const double MILE_TO_KILOMETER = 1.609;
+    cout << "Miles   Kilometers   |   Kilometers   Miles\n";
+
+    for (int i = 0; i < 10; i++)
+    {
+        int milesInitial = 1 + i;
+        int kilometersInitial = 20 + (5 * i);
+
+        double milesToKm = static_cast<double>(milesInitial) * MILE_TO_KILOMETER;
+        double kilometersToMiles = static_cast<double>(kilometersInitial) / MILE_TO_KILOMETER;
+
+        printf("%-7d %-12.3f %-3c %-12d %-.3f \n", milesInitial, milesToKm, '|', kilometersInitial, kilometersToMiles);
+    }
+
+}
+
+void Chapter4Helper::RunExercise7(double initialTuition, double years)
+{
+    // 4.7 Computing future tuition. Supposed 10k + 5% every year
+    // Compute tuition in 10 years and total cost of four years' worth of tuition starting 10 years from now 
+    
+    double futureTuition = initialTuition * pow(1.05, years);
+    double totalTuition = futureTuition;
+
+    // totalTuition + totalTuition(1.05) + totalTuition(
+
+    for (int i = 1; i < 4; i++)
+    {
+        totalTuition += (futureTuition * pow(1.05, i));
+    }
+
+    Exercise7Output.Actual1 = futureTuition;
+    Exercise7Output.Actual2 = totalTuition;
+}
+
+void Chapter4Helper::RunExercise8(int numStudents, int* studentScores)
+{
+    // 4.8 Prompt user to enter number of student, each student's score, and display highscore
+    int highScore = studentScores[0];
+
+    for (int i = 1; i < numStudents; i++)
+    {
+        if (studentScores[i] > highScore)
+        {
+            highScore = studentScores[i];
+        }
+    }
+    Exercise8Output.Actual1 = highScore;
+
+}
+
+void Chapter4Helper::RunExercise9(int numStudents, int* studentScores)
+{
+    // 4.9 Find two highest scores
+    int highestScore = studentScores[0];
+    int secondHighestScore = studentScores[1];
+
+    if (secondHighestScore > highestScore)
+    {
+        int temp = secondHighestScore;
+        secondHighestScore = highestScore;
+        highestScore = temp;
+    }
+
+    for (int i = 1; i < numStudents; i++)
+    {
+        if (studentScores[i] > highestScore)
+        {
+            highestScore = studentScores[i];
+        }
+        if (studentScores[i] < highestScore && studentScores[i] > secondHighestScore)
+        {
+            secondHighestScore = studentScores[i];
+        }
+    }
+
+    Exercise9Output.Actual1 = highestScore;
+    Exercise9Output.Actual2 = secondHighestScore;
+
+}
+
+void Chapter4Helper::RunExercise10()
+{
+    // 4.10 Display 10 numbers per line, all numbers from 100 to 1000 that are divisible 
+    //      by 5 and 6
+
+    int counter = 0;
+    for (int i = 100; i < 1000; i++)
+    {
+        if (i % 5 == 0 && i % 6 == 0)
+        {
+            cout << i << " ";
+            counter++;
+        }
+        if (counter == 10)
+        {
+            cout << "\n";
+            counter = 0;
+        }
+
+    }
+}
+
+void Chapter4Helper::RunExercise11()
+{
+    // 4.11 Finding numbers divisible by 5 or 6, but not both, from 100 to 200
+    int counter = 0;
+    for (int i = 100; i < 200; i++)
+    {
+        if ((i % 5 == 0 && !(i % 6 == 0)) || (!(i % 5 == 0) && i % 6 == 0))
+        {
+            cout << i << " ";
+            counter++;
+        }
+        if (counter == 10)
+        {
+            cout << "\n";
+            counter = 0;
+        }
+    }
+}
+
+void Chapter4Helper::RunExercise12()
+{
+    // 4.12 Use a while loop to find the smallest int such that n^2 is greater  than 12k
+
+    int n = 0;
+    while (pow(n, 2) < 12000)
+    {
+        n++;
+    }
+    cout << n;
+}
+
+void Chapter4Helper::RunExercise13()
+{
+    // 4.13 find largest n such that n^3 < 12k using while loop
+
+    int n = 0;
+
+    while (pow(n, 3) < 12000 && pow(n+1, 3) < 12000)
+    {
+        n++;
+    }
+    cout << n;
+}
+
+void Chapter4Helper::RunExercise14()
+{
+    // 4.14 Print ASCII table from '!' to '~'. 10 characters per line
+    int counter = 0;
+
+    for (int i = 33; i < 127; i++)
+    {
+        char a = i;
+        cout << a;
+        counter++;
+        if (counter == 10)
+        {
+            cout << "\n";
+            counter = 0;
+        }
+    }
+
+}
+
+void Chapter4Helper::RunExercise15()
+{
+    // 4.15 Compute greatest common divisor
+
 }
