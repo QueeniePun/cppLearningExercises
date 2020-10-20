@@ -86,3 +86,40 @@ TEST(Chapter4, Exercise9)
     EXPECT_EQ(chapter4Helper.Exercise9Output.Actual1, expected_1);
     EXPECT_EQ(chapter4Helper.Exercise9Output.Actual2, expected_2);
 }
+
+TEST(Chapter4, Exercise15)
+{
+    // Setup supporting structures
+    Chapter4Helper chapter4Helper;
+
+    // Setup inputs
+    int n1 = -680;
+    int n2 = 32;
+
+    // Setup expected outputs
+    int expected_1 = 8;
+
+    // Execute logic 
+    chapter4Helper.RunExercise15(n1, n2);
+
+    // Verify expected outputs
+    EXPECT_EQ(chapter4Helper.Exercise15Output.Actual1, expected_1);
+}
+
+//TEST(Chapter4, Exercise16)
+//{
+//    // Setup
+//    Chapter4Helper chapter4Helper;
+//
+//    // Inputs
+//    int num = 120;
+//
+//    // Expected Outputs
+//    string expected_1 = "2 2 2 3 5 ";
+//
+//    // Execute logic
+//    chapter4Helper.RunExercise16(num);
+//
+//    // Verify expected outputs 
+//    EXPECT_EQ(chapter4Helper.Exercise16Output.Actual1, expected_1);
+//}

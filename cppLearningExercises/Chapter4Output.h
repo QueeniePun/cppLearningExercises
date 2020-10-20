@@ -47,4 +47,22 @@ struct Exercise9Output_s
         Actual2(0)
     {};
 };
+struct Exercise15Output_s
+{
+    int Actual1;
+
+    // Constructor
+    Exercise15Output_s() :
+        Actual1(0)
+    {};
+};
+//struct Exercise16Output_s
+//{
+//    string Actual1;
+//
+//    // Constructor
+//    Exercise16Output_s() :
+//        Actual1("words")
+//    {};
+//};
 }

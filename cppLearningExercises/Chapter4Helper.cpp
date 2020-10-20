@@ -3,6 +3,7 @@
 #include <ctime>
 #include <cmath>
 #include <iomanip>
+#include <string>
 
 using namespace std;
 
@@ -295,8 +296,237 @@ void Chapter4Helper::RunExercise14()
 
 }
 
-void Chapter4Helper::RunExercise15()
+void Chapter4Helper::RunExercise15(int n1, int n2)
 {
-    // 4.15 Compute greatest common divisor
+    // 4.15 Compute greatest common divisor 
+    int gcd = 1;
+    int d = n1 - n2;
+    if (d < 0)
+    {
+        d = d * -1;
+    }
+    for (d; d >= 1; d--)
+    {
+        if (n1 % d == 0 && n2 % d == 0 && d > gcd) 
+        {
+            gcd = d;
+            break;
+        }
+    }
+    Exercise15Output.Actual1 = gcd;
+}
+
+void Chapter4Helper::RunExercise16(int num)
+{
+    // 4.16 Finding the factors of an integer 
+    // reads an integer and displays all its smallest factors 
+    int currentNum = num;
+    string primeFactors = "";
+    int divisor = 2;
+
+    while (divisor != currentNum)
+    {
+        if (currentNum % divisor == 0)
+        {
+            primeFactors += to_string(divisor) + " ";
+            currentNum = currentNum / divisor;
+            divisor = 2;
+        }
+        else
+        {
+            divisor++;
+        }
+        
+    }
+    primeFactors += to_string(divisor);
+    
+    cout << primeFactors;
+}
+
+void Chapter4Helper::RunExercise17(int numLines)
+{
+    // 4.17 Write a program the user will enter integer from 1 to 15 and display a pyramid
+    for (int i = 1; i < numLines + 1; i++)
+    {
+        // Print 4.18 Pattern III with these two loops  
+        for (int j = i; j <= numLines - 1; j++)
+        {
+            printf("%s", "  ");
+        }
+        for (int k = i; k >= 2; k--)
+        {
+            printf("%d ", k);
+        }
+        for (int j = 1; j <= i; j++)
+        {
+            printf("%d ", j);
+        }
+        printf("\n");
+        // Print 4.18 Pattern I 
+    
+     printf("\n");
+    }
+}
+
+void Chapter4Helper::RunExercise18(int numLines)
+{
+    // 4.18 Printing 3 different patterns 
+
+    // Pattern I 
+    for (int i = 1; i < numLines + 1; i++)
+    {
+        for (int j = 1; j <= i; j++)
+        {
+            printf("%d ", j);
+        }
+        printf("\n");
+    }
+    cout << endl;
+
+    // Pattern II
+    for (int i = 1; i < numLines + 1; i++)
+    {
+        for (int j = i; j <= numLines; j++)
+        {
+            printf("%d ", j);
+        }
+        printf("\n");
+    }
+    cout << endl;
+
+    // Pattern III
+    for (int i = 1; i < numLines + 1; i++)
+    {
+        // Print Pattern 2 but with spaces 
+        for (int j = i; j <= numLines - 1; j++)
+        {
+            printf("%s", "  ");
+        }
+        for (int k = i; k >= 1; k--) 
+        {
+            printf("%d ", k);
+        }
+        printf("\n");
+    }
+    cout << endl;
+
+    // Pattern IV
+    for (int i = 1; i < numLines + 1; i++)
+    {
+        // Print Pattern 1 but with spaces 
+        for (int j = 2; j <= i; j++)
+        {
+            printf("%s", "  ");
+        }
+        for (int k = 1; k <= numLines + 1 - i; k++)
+        {
+            printf("%d ", k);
+        }
+        printf("\n");
+    }
+}
+
+void Chapter4Helper::RunExercise19()
+{
+    // 4.19 Write a nested for loop that prints a pyramid
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = i; j < 8; j++)
+        {
+            printf("%s", "     ");
+        }
+        for (int k = 0; k < i; k++)
+        {
+            int num = pow(2, k);
+            int numLength = to_string(num).length();
+            if (numLength == 1) 
+            {
+                printf("    %d", num);
+            }
+            if (numLength == 2) 
+            {
+                printf("   %d", num);
+            }
+            if (numLength == 3) 
+            {
+                printf("  %d", num);
+            }
+        }
+        for (int l = i; l >= 0; l--)
+        {
+            int num = pow(2, l);
+            int numLength = to_string(num).length();
+            if (numLength == 1)
+            {
+                printf("    %d", num);
+            }
+            if (numLength == 2)
+            {
+                printf("   %d", num);
+            }
+            if (numLength == 3)
+            {
+                printf("  %d", num);
+            }
+        }
+        printf("\n");
+    }
+}
+
+void Chapter4Helper::RunExercise20()
+{
+    // 4.20 Modiy Listing 14 to print all prime numbers between 2 and 1000
+    //      Display 8 prime numbers per line
+    const int NUMBER_OF_PRIMES_PER_LINE = 8;
+    int counter = 0;
+
+    for (int i = 2; i <= 1000; i++)
+    {
+        // assume i is true
+        bool isPrime = true;
+
+        // Test is current is prime
+        for (int divisor = 2; divisor <= i / 2 && isPrime; divisor++)
+        {
+            // if the if statement below is true, then i is not Prime
+            if (i % divisor == 0)
+            {
+                isPrime = false;
+            }
+        }
+
+        if (isPrime)
+        {
+            counter++; 
+            if (counter % NUMBER_OF_PRIMES_PER_LINE == 0)
+            {
+                printf("%4d \n", i);
+            }
+            else
+            {
+                printf("%4d ", i);
+            }
+        }
+    }
+}
+
+void Chapter4Helper::RunExercise21(double loan, double years)
+{
+    // 4.21 Input loan amount and loan period in years and display monthly and 
+    //      total payments for each interest rate starting from 5% to 8%, at 1/8 
+    //      increments.
+
+    cout << "Interest Rate      Monthly Payment       Total Payment" << endl;
+    for (double i = 5; i <= 8; i = i + 0.125)
+    {
+        double monthlyInterestRate = i / 1200;
+        double monthlyPayment = loan * monthlyInterestRate /
+            (1 - 1 / pow(1 + monthlyInterestRate, years * 12));
+        double totalPayment = monthlyPayment * years * 12;
+        printf("%-5.3f%-13c %-21.2f %.2f \n", i, '%', monthlyPayment, totalPayment);
+    }
+}
+void Chapter4Helper::RunExercise22(double loan, double years, double annualInterest)
+{
 
 }
