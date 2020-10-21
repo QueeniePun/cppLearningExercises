@@ -4,7 +4,7 @@
 #include <cmath>
 #include <iomanip>
 #include <string>
-
+#include <Windows.h>
 
 using namespace std;
 
@@ -916,8 +916,303 @@ void Chapter4Helper::RunExercise32()
     }
 }
 
-void Chapter4Helper::RunExercise33()
+void Chapter4Helper::RunExercise33(int guess)
 {
     // 4.33 Revise Listing 3.8 Lottery to generate lottery of 2 digit num
     //      The two digits in the number are distinct
+    srand(time(0));
+    int lotteryDigit1 = rand() % 10; // ones
+    int lotteryDigit2 = rand() % 10; // tens
+
+    string lotteryString = to_string(lotteryDigit1) + to_string(lotteryDigit2);
+    int lottery = stoi(lotteryString);
+
+    while (lotteryDigit1 == lotteryDigit2)
+    {
+        lotteryDigit2 = rand() % 10;
+    }
+
+    int guessDigit1 = guess / 10;
+    int guessDigit2 = guess % 10;
+
+
+    cout << "The lottery number is " << lotteryDigit1 << lotteryDigit2 << endl;
+
+    if (guess == lottery)
+    {
+        cout << "Exact match: you win $10,000" << endl;
+    }
+    else if (guessDigit2 == lotteryDigit1 && guessDigit1 == lotteryDigit2)
+    {
+        cout << "Match all digits, you win $3000" << endl;
+    }
+    else if (guessDigit1 == lotteryDigit1
+        || guessDigit1 == lotteryDigit2
+        || guessDigit2 == lotteryDigit1
+        || guessDigit2 == lotteryDigit2)
+    {
+        cout << "Match one digit, you win $1000" << endl;
+    }
+    else
+    {
+        cout << "You lose." << endl;
+    }
+}
+
+void Chapter4Helper::RunExercise34()
+{
+    // 4.34 Revise exercise 3.15 to let the user play until either player or AI 
+    //      wins more than two times 
+
+    srand(time(0));
+
+    int playerScore = 0;
+    int computerScore = 0;
+
+    while (playerScore <= 2 && computerScore <= 2) {
+
+        int computerHand = rand() % 3;
+
+        cout << "Enter Scissor (0), Rock (1), or Paper (2): ";
+        int playerHand;
+        cin >> playerHand;
+
+        if (computerHand == 0)
+        {
+            if (playerHand == 0) {
+                cout << "Computer and player both play scissors. Draw." << endl;
+            }
+            if (playerHand == 1) {
+                cout << "Computer plays scissor. Player plays rock. Player wins." << endl;
+                playerScore++;
+            }
+            if (playerHand == 2) {
+                cout << "Computer plays scissor. Player plays paper. Computer wins" << endl;
+                computerScore++;
+            }
+        }
+        else if (computerHand == 1)
+        {
+            if (playerHand == 0) {
+                cout << "Computer plays rock. Player plays scissor. Computer wins." << endl;
+                computerScore++;
+            }
+            if (playerHand == 1) {
+                cout << "Computer and player both play rock. Draw." << endl;
+            }
+            if (playerHand == 2) {
+                cout << "Computer plays rock. Player plays paper. Player wins." << endl;
+                playerScore++;
+            }
+        }
+        else
+        {
+            if (playerHand == 0) {
+                cout << "Computer plays paper. Player plays scissor. Player wins." << endl;
+                playerScore++;
+            }
+            if (playerHand == 1) {
+                cout << "Computer players paper. Player plays rock. Computer wins." << endl;
+                computerScore++;
+            }
+            if (playerHand == 2) {
+                cout << "Computer and player both play paper. Draw." << endl;
+            }
+        }
+    }
+    if (playerScore > computerScore)
+    {
+        cout << "Player wins." << endl;
+    }
+    else {
+        cout << "Computer wins." << endl;
+    }
+}
+
+void Chapter4Helper::RunExercise35()
+{
+    // 4.35 Prove that the summation is 24 
+    double sum = 0;
+    
+    double numerator = 1;
+    double denominator = 1;
+    for (int i = 1; i < 625; i++)
+    {
+        denominator = pow(i, 0.5) + pow(i + 1, 0.5);
+        sum += 1 / denominator;
+    }
+    cout << sum;
+}
+
+void Chapter4Helper::RunExercise36(int arr[9])
+{
+    // 4.36 Use loops to simplify Exercise 3.17
+    // 3.17 Check ISBN
+
+    // Calculate d10
+    int d10 = 0;
+    for (int i = 0; i < 9; i++)
+    {
+        d10 += arr[i] * (1 + i);
+    }
+    d10 = d10 % 11;
+
+    // Display the ISBN
+    for (int i = 0; i < 9; i++) {
+        cout << arr[i];
+    }
+    if (d10 == 10)
+    {
+        cout << "X";
+    }
+    else
+    {
+        cout << d10;
+    }
+}
+
+void Chapter4Helper::RunExercise37(double goalAmount)
+{
+    // 4.37 Find the minimum sales needed in order to make goal amount
+
+    double totalPay = 0;
+    double sales = 0.0;
+    do {
+        sales += 0.01;
+        if (sales > 0.01 && sales <= 5000)
+        {
+            totalPay = 5000 + sales * 0.08;
+        }
+        else if (sales > 5000 && sales <= 10000)
+        {
+            totalPay = 5000 + sales * 0.10;
+        }
+        else
+        {
+            totalPay = 5000 + sales * 0.12;
+        }
+
+    } while (totalPay < goalAmount);
+
+    Exercise37Output.Actual1 = sales;
+}
+
+void Chapter4Helper::RunExercise38()
+{
+    // 4.38 Simulate flipping a coin one million times and displays num heads and tails
+    srand(time(0));
+
+    int numHeads = 0;
+    int numTails = 0;
+
+    for (int i = 0; i < 1000000; i++) {
+        int coinFlip = rand() % 2;
+        if (coinFlip == 0)
+        {
+            numHeads++;
+        }
+        if (coinFlip == 1)
+        {
+            numTails++;
+        }
+    }
+
+    cout << "Number of heads: " << numHeads << "\n" << "Number of tails: " << numTails;
+}
+
+void Chapter4Helper::RunExercise39(int *arr)
+{
+    // 4.39 Input an array of integers, find the max, and count max's occurences
+    int max = arr[0];
+    int count = 1;
+    
+    for (int i = 1; i < sizeof(arr); i++)
+    {
+        if (arr[i] > max) 
+        {
+            max = arr[i];
+            count = 1;
+        }
+        else if (arr[i] == max)
+        {
+            count++;
+        }
+    }
+    Exercise39Output.Actual1 = max;
+    Exercise39Output.Actual2 = count;
+}
+
+void Chapter4Helper::RunExercise40(double goalAmount)
+{
+    // 4.40 Write 4.37 as follows: use a for loop instead of do-while
+    //      let user enter COMMISSION_SOUGHT instead of fixing as constant
+    // *note: goalAmount = COMMISSION_SOUGHT
+
+    double totalPay = 0;
+    double sales = 0.0;
+    
+    for (double i = 0; i >= 0; i = i + 0.01)
+    {
+        sales = i;
+        if (sales <= 5000)
+        {
+            totalPay = 5000 + sales * 0.08;
+        }
+        else if (sales > 5000 && sales <= 10000)
+        {
+            totalPay = 5000 + sales * 0.10;
+        }
+        else
+        {
+            totalPay = 5000 + sales * 0.12;
+        }
+        if (totalPay >= goalAmount) 
+        {
+            break;
+        }
+    }
+    Exercise40Output.Actual1 = sales;
+}
+
+void Chapter4Helper::RunExercise41(int numSeconds)
+{
+    // 4.41 Clock countdown, prompt user to enter num seconds, then display
+    //      every second and terminates when time expires
+    
+    // Reference: https://stackoverflow.com/questions/36879367/how-to-print-a-word-every-second
+    
+    for (int i = numSeconds; i > 0; i--)
+    {
+        cout << i << " seconds remaining" << endl;
+        Sleep(1000);
+    }
+    cout << "Stopped" << endl;
+
+}
+
+void Chapter4Helper::RunExercise42()
+{
+    // 4.42 Monte Carlo Simulation 
+
+    const int NUMBER_OF_TRIALS = 1000000;
+    double numberOfHits = 0.0;
+    srand(time(0));
+    
+    for (int i = 0; i < NUMBER_OF_TRIALS; i++)
+    {
+        double x = rand() * 2.0 / RAND_MAX - 1; 
+        double y = rand() * 2.0 / RAND_MAX - 1; 
+
+        if (x < 0)
+        {
+            numberOfHits++;
+        }
+        else if (y > 0 && x + y < 1)
+        {
+            numberOfHits++;
+        }
+    }
+    double probability = numberOfHits / NUMBER_OF_TRIALS;
+
+    cout << "The probability for a stone to fall in this region is: " << probability << endl;
 }

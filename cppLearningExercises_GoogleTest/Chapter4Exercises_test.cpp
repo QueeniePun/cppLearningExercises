@@ -144,3 +144,58 @@ TEST(Chapter4, Exercise30)
     EXPECT_NEAR(chapter4Helper.Exercise30Output.Actual1, expected, 0.01);
 }
 
+TEST(Chapter4, Exercise37)
+{
+    // Setup
+    Chapter4Helper chapter4Helper;
+
+    // Inputs
+    double goalAmount = 30000.00;
+
+    // Expected Outputs 
+    double expected = 208333.33;
+
+    // Execute logic
+    chapter4Helper.RunExercise37(goalAmount);
+
+    //Verify
+    EXPECT_NEAR(chapter4Helper.Exercise37Output.Actual1, expected, 0.1);
+}
+
+TEST(Chapter4, Exercise39)
+{
+    // Setup 
+    Chapter4Helper chapter4Helper;
+
+    // Inputs
+    int arr[6] = { 3, 5, 2, 5, 5, 5,};
+
+    // Expected Outputs
+    int expected_1 = 5; 
+    int expected_2 = 4;
+
+    // Execute logic
+    chapter4Helper.RunExercise39(arr);
+
+    // Verify
+    EXPECT_EQ(chapter4Helper.Exercise39Output.Actual1, expected_1);
+    EXPECT_EQ(chapter4Helper.Exercise39Output.Actual2, expected_2);
+}
+
+TEST(Chapter4, Exercise40)
+{
+    // Setup 
+    Chapter4Helper chapter4Helper;
+
+    // Inputs
+    const double COMMISSION_SOUGHT = 30000.00;
+
+    // Expected outputs 
+    double expected = 208333.33;
+
+    // Execute Logic
+    chapter4Helper.RunExercise40(COMMISSION_SOUGHT);
+
+    // Verify 
+    EXPECT_NEAR(chapter4Helper.Exercise40Output.Actual1, expected, 0.1);
+}

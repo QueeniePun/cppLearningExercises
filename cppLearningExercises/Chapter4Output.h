@@ -74,4 +74,33 @@ struct Exercise30Output_s
         Actual1(0)
     {};
 };
+struct Exercise37Output_s
+{
+    double Actual1;
+
+    // Constructor
+    Exercise37Output_s() :
+        Actual1(0)
+    {};
+};
+struct Exercise39Output_s
+{
+    int Actual1;
+    int Actual2;
+
+    // Constructor
+    Exercise39Output_s() :
+        Actual1(0),
+        Actual2(0)
+    {};
+};
+struct Exercise40Output_s
+{
+    double Actual1;
+    
+    // Constructor
+    Exercise40Output_s() :
+        Actual1(0.0)        
+    {};
+};
 }
