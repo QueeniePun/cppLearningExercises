@@ -11,14 +11,16 @@ public:
     CHAPTER4::Exercise9Output_s Exercise9Output;
     CHAPTER4::Exercise15Output_s Exercise15Output;
     // CHAPTER4::Exercise16Output_s Exercise16Output;
- 
+    CHAPTER4::Exercise30Output_s Exercise30Output;
+
     // Constructor
     Chapter4Helper() : 
         Exercise1Output(),
         Exercise7Output(),
         Exercise8Output(),
         Exercise9Output(),
-        Exercise15Output()
+        Exercise15Output(),
+        Exercise30Output()
     {};
 
     // Destructor 
@@ -49,7 +51,24 @@ public:
     void RunExercise22(double loan, double years, double annualInterest);
     void RunExercise23();
     void RunExercise24();
-    void RunExercise25();
+    void RunExercise25(int n);
+    void RunExercise26(int n);
+    void RunExercise27();
+    void RunExercise28(int year);
+    void RunExercise29(int year, int dayIndex);
+    void RunExercise30(double amount, double interestRate, int numMonths);
+    void RunExercise31(double amount, double percentYield, int numMonths);
+    void RunExercise32();
+    void RunExercise33();
+    void RunExercise34();
+    void RunExercise35();
+    void RunExercise36();
+    void RunExercise37();
+    void RunExercise38();
+    void RunExercise39();
+    void RunExercise40();
+    void RunExercise41();
+    void RunExercise42();
 
     // Getters
 

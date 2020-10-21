@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <string>
 
+
 using namespace std;
 
 void Chapter4Helper::RunExercise1(int* values, int size)
@@ -528,5 +529,395 @@ void Chapter4Helper::RunExercise21(double loan, double years)
 }
 void Chapter4Helper::RunExercise22(double loan, double years, double annualInterest)
 {
+    // 4.22 Loan amortization schedule
 
+    double monthlyInterestRate = annualInterest / 1200; 
+    double monthlyPayment = loan * monthlyInterestRate /
+        (1 - 1 / pow(1 + monthlyInterestRate, years * 12));
+    double totalPayment = monthlyPayment * years * 12;
+
+    cout << "Monthly payment: " << monthlyPayment << endl;
+    cout << "Total payment: " << totalPayment << endl << endl;
+
+    cout << "Payment#     Interest     Principal     Balance" << endl;
+
+    double balance = loan;
+
+    for (int i = 1; i <= totalPayment / monthlyPayment; i++)
+    {
+        double monthlyInterest = monthlyInterestRate * balance;
+        double principal = monthlyPayment - monthlyInterest;
+        balance = balance - principal;
+        
+        printf("%-12d %-12.2f %-13.2f %.2f \n", i, monthlyInterest, principal, balance);
+    }
+
+}
+
+void Chapter4Helper::RunExercise23()
+{
+    //4.23 Demonstrate cancellation errors. Write a prgram that compares the results
+    //     of the summation of the preceding series, computing from left to right then 
+    //     right to left with n = 50000
+    double sumLeftToRight = 0.0;
+    for (double i = 1.0; i <= 50000.0; i++)
+    {
+        sumLeftToRight += 1.0 / i;
+    }
+
+
+    double sumRightToLeft = 0.0;
+    for (double i = 50000.0; i > 0.0; i--)
+    {
+        sumRightToLeft += 1.0 / i;
+    }
+
+    printf("Sum from left to right is %f. Sum from right to left is %f. \n", sumLeftToRight, sumRightToLeft);
+    double difference = sumLeftToRight - sumRightToLeft;
+    printf("The difference is %f.", difference);
+}
+
+void Chapter4Helper::RunExercise24()
+{
+    // 4.24 Write a program to sum the series 1/3 + 3/5 + 5/7 + 9/11
+
+    double numerator = 0;
+    double denominator = 0;
+    double sum = 0;
+
+    for (int i = 0; i < 49; i++)
+    {
+        numerator = 1.0 + (2.0 * i);
+        denominator = 3.0 + (2.0 * i);
+        sum += numerator / denominator;
+    }
+    cout << sum;
+}
+
+void Chapter4Helper::RunExercise25(int n)
+{
+    // 4.25 Write a program that displays the pi value for i = 10k, 20k .. 100k
+    double sum = 0;
+    int denominator = 0;
+    for (int i = 0; i < n; i++)
+    {
+        denominator = (1.0 + (2.0 * i));
+        if (i != 0 && !(i%2 ==0))
+        {
+            denominator *= -1;
+        }
+        sum += 1.0 / denominator;
+    }
+    double approximation = 4 * sum;
+    cout << approximation;
+}
+
+void Chapter4Helper::RunExercise26(int n)
+{
+    // 4.26 computing e, write a program that displays e value for i = 10k, .. 100k
+    double e = 1;
+    double numLoops = n;
+    
+    for (double i = 1; i <= numLoops; i++) 
+    {
+        double denominator = i;
+        for (double j = i - 1; j >= 1; j--)
+        {
+            denominator *= j;
+        }
+        e += 1 / denominator;
+    }
+
+    cout << setprecision(15) << e;
+}
+
+void Chapter4Helper::RunExercise27()
+{
+    // 4.27 Write a program, 10 per line, the leap years from 2001 to 2100
+
+    // from Chapter 3;
+    // bool isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    
+    int counter = 0;
+
+    for (int i = 2001; i < 2101; i++)
+    {
+        if ((i % 4 == 0 && i % 100 != 0) || (i % 400 == 0))
+        {
+            printf("%d ", i);
+            counter++;
+        }
+        if (counter == 10)
+        {
+            printf("\n");
+            counter = 0;
+        }
+    }
+}
+
+void Chapter4Helper::RunExercise28(int year)
+{
+    // 4.28 Display first day of each month when given Year and First day of the year
+    int month = 0;
+    string day = "";
+    string monthString = "";
+    
+    // loop through the months 
+    for (int i = 1; i < 13; i++)
+    {
+        int y = year;
+        month = i;
+        if (month == 1)
+        {
+            monthString = "January 1, ";
+            month = 13; 
+            y = year - 1;
+        }
+        if (month == 2)
+        {
+            monthString = "February 1, ";
+            month = 14;
+            y = year - 1;
+        }
+        if (month == 3)
+        {
+            monthString = "March 1, ";
+        }
+        if (month == 4)
+        {
+            monthString = "April 1, ";
+        }
+        if (month == 5)
+        {
+            monthString = "May 1, ";
+        }
+        if (month == 6)
+        {
+            monthString = "June 1, ";
+        }
+        if (month == 7)
+        {
+            monthString = "July 1, ";
+        }
+        if (month == 8)
+        {
+            monthString = "August 1, ";
+        }
+        if (month == 9)
+        {
+            monthString = "September 1, ";
+        }
+        if (month == 10)
+        {
+            monthString = "October 1, ";
+        }
+        if (month == 11)
+        {
+            monthString = "November 1, ";
+        }
+        if (month == 12)
+        {
+            monthString = "December 1, ";
+        }
+        int q = 1;
+        int m = month;
+        int j = y / 100;
+        int k = y % 100;
+
+        int a = static_cast<int>((26 * (m + 1) / 10));
+        int b = static_cast<int>((k / 4));
+        int c = static_cast<int>((j / 4));
+
+
+        int h = (q + a + k + b + c + (5 * j)) % 7;
+        if (h == 0)
+        {
+            day = "Saturday";
+        }
+        if (h == 1)
+        {
+            day = "Sunday";
+        }if (h == 2)
+        {
+            day = "Monday";
+        }if (h == 3)
+        {
+            day = "Tuesday";
+        }if (h == 4)
+        {
+            day = "Wednesday";
+        }if (h == 5)
+        {
+            day = "Thursday";
+        }if (h == 6)
+        {
+            day = "Friday";
+        }
+        cout << monthString << year << " is " << day << endl;
+    }
+}
+
+void Chapter4Helper::RunExercise29(int year, int dayIndex)
+{
+    // 4.29 Display calendar 
+    string title = "";
+    int daysInMonth = 0;
+
+    for (int i = 1; i < 13; i++)
+    {
+        switch (i)
+        {
+        case 1: title = "January "; break;
+        case 2: title = "February "; break;
+        case 3: title = "March "; break;
+        case 4: title = "April "; break;
+        case 5: title = "May "; break;
+        case 6: title = "June "; break;
+        case 7: title = "July "; break;
+        case 8: title = "August "; break;
+        case 9: title = "September "; break;
+        case 10: title = "October "; break;
+        case 11: title = "November "; break;
+        case 12: title = "December "; break;
+        }
+
+        title += to_string(year);
+
+        cout << title << "\n" << "-----------------------------------" << endl; 
+        cout << "  Sun  Mon  Tue  Wed  Thu  Fri  Sat  " << endl;
+
+
+        // print spaces 
+        for (int i = 0; i < dayIndex; i++)
+        {
+            cout << "     ";
+        }
+        // loop days of the month (find how many days to print)
+        if (i == 1)
+        {
+            daysInMonth = 31;
+        }
+        if (i == 2)
+        {
+            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+            {
+                daysInMonth = 29;
+            }
+            else
+            {
+                daysInMonth = 28;
+            }
+        }
+        if (i == 3)
+        {
+            daysInMonth = 31;
+        }
+        if (i == 4)
+        {
+            daysInMonth = 30;
+        }
+        if (i == 5)
+        {
+            daysInMonth = 31;
+        }
+        if (i == 6)
+        {
+            daysInMonth = 30;
+        }
+        if (i == 7)
+        {
+            daysInMonth = 31;
+        }
+        if (i == 8)
+        {
+            daysInMonth = 31;
+        }
+        if (i == 9)
+        {
+            daysInMonth = 30;
+        }
+        if (i == 10)
+        {
+            daysInMonth = 31;
+        }
+        if (i == 11)
+        {
+            daysInMonth = 30;
+        }
+        if (i == 12)
+        {
+            daysInMonth = 31;
+        }
+        for (int i = 1; i <= daysInMonth; i++)
+        {
+            printf("%5d", i);
+            if (++dayIndex >6)
+            {
+                dayIndex = 0;
+                printf("\n");
+            }
+            if (i == daysInMonth)
+            {
+                printf("\n \n");
+            }
+        }
+
+    }
+}
+
+void Chapter4Helper::RunExercise30(double amount, double annualInterestRate, int numMonths)
+{
+    // 4.30 Enter amount, annual interest rate, and number months 
+    //      Display the amount in savings account after the given month
+    double monthlyInterest = annualInterestRate / 1200;
+
+    double currentValue = 0;
+    for (int i = 1; i <= numMonths; i++)
+    {
+        currentValue = (currentValue + amount) * (1.0 + monthlyInterest);
+    }
+
+    Exercise30Output.Actual1 = currentValue;
+}
+
+void Chapter4Helper::RunExercise31(double amount, double annualPercentYield, int numMonths)
+{
+    double monthlyPercentYield = annualPercentYield / 1200;
+    double value = amount;
+    for (int i = 1; i <= numMonths; i++)
+    {
+        value = value + (value * monthlyPercentYield);
+        printf("%d %.2f \n", i, value);
+    }
+
+}
+
+void Chapter4Helper::RunExercise32()
+{
+    // 4.32 Find 4 perfect numbers less than 10000
+    //      A perfect number if it is equal to the sum of all its positive divisors
+    //       excluding itself
+    
+    for (int i = 1; i <= 10000; i++)
+    {
+        int sum = 0;
+        // find factors of each num
+        for (int j = 1; j < i; j++)
+        {
+            if (i % j == 0)
+            {
+                sum += j;
+            }
+        }
+        if (sum == i)
+        {
+            printf("%d \n", i);
+        }
+    }
+}
+
+void Chapter4Helper::RunExercise33()
+{
+    // 4.33 Revise Listing 3.8 Lottery to generate lottery of 2 digit num
+    //      The two digits in the number are distinct
 }
