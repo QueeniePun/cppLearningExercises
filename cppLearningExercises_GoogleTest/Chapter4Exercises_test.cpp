@@ -123,3 +123,24 @@ TEST(Chapter4, Exercise15)
 //    // Verify expected outputs 
 //    EXPECT_EQ(chapter4Helper.Exercise16Output.Actual1, expected_1);
 //}
+
+TEST(Chapter4, Exercise30)
+{
+    // Setup
+    Chapter4Helper chapter4Helper;
+    
+    // Inputs
+    double amount = 100;
+    double interestRate = 5;
+    int numMonths = 6;
+
+    // Expected Outputs
+    double expected = 608.8110;
+
+    // Execute logic
+    chapter4Helper.RunExercise30(amount, interestRate, numMonths);
+
+    // Verify 
+    EXPECT_NEAR(chapter4Helper.Exercise30Output.Actual1, expected, 0.01);
+}
+

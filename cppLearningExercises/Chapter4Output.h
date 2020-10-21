@@ -65,4 +65,13 @@ struct Exercise15Output_s
 //        Actual1("words")
 //    {};
 //};
+struct Exercise30Output_s
+{
+    double Actual1;
+
+    // Constructor
+    Exercise30Output_s() :
+        Actual1(0)
+    {};
+};
 }
