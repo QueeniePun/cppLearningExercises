@@ -486,7 +486,7 @@ void Chapter4Helper::RunExercise20()
         // assume i is true
         bool isPrime = true;
 
-        // Test is current is prime
+        // Test if current is prime
         for (int divisor = 2; divisor <= i / 2 && isPrime; divisor++)
         {
             // if the if statement below is true, then i is not Prime
