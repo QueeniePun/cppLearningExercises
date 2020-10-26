@@ -10,6 +10,9 @@
     <ClCompile Include="pch.cpp">
       <Filter>Google Test Headers</Filter>
     </ClCompile>
+    <ClCompile Include="Chapter6Exercises_test.cpp">
+      <Filter>Unit Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
