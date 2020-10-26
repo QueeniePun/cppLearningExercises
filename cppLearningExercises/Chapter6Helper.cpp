@@ -1,5 +1,6 @@
 #include "Chapter6Helper.h"
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <stdlib.h>
 #include <ctime>
@@ -273,13 +274,14 @@ bool Chapter6Helper::IsPalindrome(int n)
     return n == ReverseInteger(n);
 }
 
-void Chapter6Helper::RunExercise7()
+int Chapter6Helper::RunExercise7()
 {
     // 6.7 Write a program to play a version of the game Craps
     srand(time(0));
     int point = RollTwoDice();
 
-    CheckSumCraps(point);
+    bool gameResult = CheckSumCraps(point);
+    return gameResult;
 }
 
 int Chapter6Helper::RollDice()
@@ -297,15 +299,17 @@ int Chapter6Helper::RollTwoDice()
     return sum;
 }
 
-void Chapter6Helper::CheckSumCraps(int point)
+bool Chapter6Helper::CheckSumCraps(int point)
 {
     if (point == 2 || point == 3 || point == 12)
     {
         printf("%s", "You lose \n");
+        return 0;
     }
     else if (point == 7 || point == 11)
     {
         printf("%s", "You win \n");
+        return 1;
     }
     else
     {
@@ -314,17 +318,20 @@ void Chapter6Helper::CheckSumCraps(int point)
     }
 }
 
-void Chapter6Helper::ContinueRollDice(int point)
+bool Chapter6Helper::ContinueRollDice(int point)
 {
     int newPoint = RollTwoDice();
     
     if (newPoint == 7)
     {
         printf("%s", "You lose\n");
+        return 0;
+
     }
     else if (newPoint == point)
     {
         printf("%s",  "You win \n");
+        return 1;
     }
     else
     {
@@ -358,8 +365,200 @@ void Chapter6Helper::RunExercise9()
 {
     // 6.9 Revise 6.7 to run 10000 times and display number of winning games
     // keep a reference variable to keep track of wins 
+    // gameResult function 
+    int winCounter = 0;
+
     for (int i = 0; i < 10000; i++)
     {
+        int gameResult = RunExercise7();
+        winCounter += gameResult;
+    }
+    printf("%s %d", "Number of winning games: ", winCounter);
+}
+
+void Chapter6Helper::RunExercise10()
+{
+    // 6.10 Write a program to find all twin primes less than 1000
+
+    for (int i = 2; i < 1000; i++)
+    {
+        int twin = i + 2;
+        if (IsPrime(i) && IsPrime(twin))
+        {
+            printf("%s%d%s%d%s \n", "(", i, ", ", twin, ")");
+        }
+    }
+}
+
+void Chapter6Helper::RunExercise11(int year, int month)
+{
+    // 6.11 Simplify Listing 6.11 using Zeller's algorithm to get the start of the day of the month 
+    PrintMonth(year, month);
+ 
+}
+
+void Chapter6Helper::PrintMonth(int year, int month)
+{
+    PrintMonthTitle(year, month);
+    PrintMonthBody(year, month);
+}
+
+void Chapter6Helper::PrintMonthTitle(int year, int month)
+{
+    PrintMonthName(month);
+    cout << " " << year << endl;
+    cout << "-----------------------------" << endl;
+    cout << " Sun Mon Tue Wed Thu Fri Sat" << endl;
+}
+
+void Chapter6Helper::PrintMonthName(int month)
+{
+    switch (month)
+    {
+    case 1: cout << "January"; break;
+    case 2: cout << "February"; break;
+    case 3: cout << "March"; break;
+    case 4: cout << "April"; break;
+    case 5: cout << "May"; break;
+    case 6: cout << "June"; break;
+    case 7: cout << "July"; break;
+    case 8: cout << "August"; break;
+    case 9: cout << "September"; break;
+    case 10: cout << "October"; break;
+    case 11: cout << "November"; break;
+    case 12: cout << setw(16) << "December"; break;
+    }
+}
+void Chapter6Helper::PrintMonthBody(int year, int month)
+{
+    int startDay = ZellersAlgorithm(year, month, 1);
+
+    int numberOfDaysInMonth = GetNumberDaysInMonth(year, month);
+
+    int i = 0; 
+    for (i = 0; i < startDay - 1; i++)
+    {
+        cout << "    ";
+    }
+
+    for (i = 1; i <= numberOfDaysInMonth; i++)
+    {
+        cout << setw(4) << i;
+        if ((i + startDay - 1) % 7 == 0)
+        {
+            cout << endl;
+        }
+    }
+}
+
+int Chapter6Helper::GetNumberDaysInMonth(int year, int month)
+{
+    if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+    {
+        return 31;
+    }
+    if (month == 4 || month == 6 || month == 9 || month == 11)
+    {
+        return 11;
+    }
+    if (month == 2) return IsLeapYear(year) ? 29 : 28;
+}
+int Chapter6Helper::ZellersAlgorithm(int year, int month, int day)
+{
+    // Calculates the day of the week 
+    if (month == 1) {
+        month = 13;
+        year = year - 1;
+    }
+    if (month == 2) {
+        month = 14;
+        year = year - 1;
+    }
+    int q = day;
+    int m = month;
+    int j = year / 100;
+    int k = year % 100;
+
+    int a = static_cast<int>((26 * (m + 1) / 10));
+    int b = static_cast<int>((k / 4));
+    int c = static_cast<int>((j / 4));
+
+    int h = (q + a + k + b + c + (5 * j)) % 7;
+
+    return h;
+}
+
+bool Chapter6Helper::IsLeapYear(int year)
+{
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+void Chapter6Helper::RunExercise12(double side)
+{
+    const double PI = 3.14159;
+    double pentagonArea = (5 * pow(side, 2)) / (4 * tan(PI / 5));
+    printf("%s %f", "The area of the pentagon is: ", pentagonArea);
+}
+
+void Chapter6Helper::RunExercise13()
+{
+    // 6.13 Write a function that returns area of regular polygon, then a main function that 
+    //      prompts the user to enter the number of sides and the side of regular polygon and 
+    //      displays area 
+
+    int n;
+    double side; 
+    cout << "Enter number of sides of the regular polygon: \n";
+    cin >> n; 
+    cout << "Enter the side of the regular polygon: \n";
+    cin >> side;
+
+    double areaPolygon = AreaRegularPolygon(n, side);
+    cout << areaPolygon;
+}
+
+double Chapter6Helper::AreaRegularPolygon(int n, double side) 
+{
+    const double PI = 3.14159;
+    double area = (n * pow(side, 2)) / (4 * tan(PI / n));
+    return area; 
+}
+
+double Chapter6Helper::RunExercise14(double num)
+{
+    // 6.14 Implement the sqrt function by repeatedly performing a calculation with some formula
+    //      initial guess can be any positive value. This value will be starting value for Last guess
+    //      If the difference between nextGuess and lastGuess is < 0.0001, then nextGuess is sqrt
+
+    double lastGuess = 1; 
+    double nextGuess = (lastGuess + (num / lastGuess)) / 2;
+
+    while (nextGuess - lastGuess > 0.0001)
+    {
+        lastGuess = nextGuess;
+        nextGuess = (lastGuess + (num / lastGuess)) / 2;
 
     }
+    lastGuess = nextGuess;
+    nextGuess = (lastGuess + (num / lastGuess)) / 2;
+
+    Exercise14Output.Actual1 = nextGuess;
+    return nextGuess;
+}
+
+void Chapter6Helper::RunExercise15(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+{
+    // 6.15 Write a program that prompts the user to enter four endpoints and displays the intersecting point
+    //      Hint: use the function for solving 2x2 linear equations
+
+    // Calculate a, b, c, d, e, f to use Cramer's rule to find the intersecting point 
+    double a = y1 - y2;
+    double b = -x1 + x2;
+    double c = y3 - y4;
+    double d = -x3 + x4;
+    double e = -y1 * (x1 - x2) + (y1 - y2) * x1;
+    double f = -y3 * (x3 - x4) + (y3 - y4) * x3;
+
+    RunExercise3(a, b, c, d, e, f);
+
 }

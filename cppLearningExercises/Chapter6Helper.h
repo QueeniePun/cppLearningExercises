@@ -5,12 +5,12 @@ class Chapter6Helper
 {
 public:
     // Supporting data structures
-    CHAPTER6::Exercise1Output_s Exercise1Output;
+    CHAPTER6::Exercise14Output_s Exercise14Output;
 
 
     // Constructor
     Chapter6Helper() :
-        Exercise1Output()
+        Exercise14Output()
     {};
 
     // Destructor 
@@ -23,15 +23,15 @@ public:
     void RunExercise4(int day, int month, int year);
     void RunExercise5();
     void RunExercise6();
-    void RunExercise7();
+    int RunExercise7();
     void RunExercise8();
     void RunExercise9();
     void RunExercise10();
-    void RunExercise11();
-    void RunExercise12();
+    void RunExercise11(int year, int month);
+    void RunExercise12(double side);
     void RunExercise13();
-    void RunExercise14();
-    void RunExercise15();
+    double RunExercise14(double num);
+    void RunExercise15(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
 
     // Getters
 
@@ -48,7 +48,15 @@ private:
     bool IsPalindrome(int n);
     int RollDice();
     int RollTwoDice();
-    void CheckSumCraps(int point);
-    void ContinueRollDice(int point);
+    bool CheckSumCraps(int point);
+    bool ContinueRollDice(int point);
     int CalculateMersennePrime(int n);
+    double AreaRegularPolygon(int n, double side);
+    int ZellersAlgorithm(int year, int month, int day);
+    void PrintMonth(int year, int month);
+    void PrintMonthTitle(int year, int month);
+    void PrintMonthBody(int year, int month);
+    void PrintMonthName(int month);
+    int GetNumberDaysInMonth(int year, int month);
+    bool IsLeapYear(int year);
 };

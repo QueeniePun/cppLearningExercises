@@ -1,12 +1,12 @@
 #pragma once
 namespace CHAPTER6
 {
-    struct Exercise1Output_s
+    struct Exercise14Output_s
     {
-        int Actual1;
+        double Actual1;
 
         // Constructor
-        Exercise1Output_s() :
+        Exercise14Output_s() :
             Actual1(0)
         {};
     };
