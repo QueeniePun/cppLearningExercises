@@ -20,10 +20,10 @@ public:
     void RunExercise1(double &num1, double &num2, double &num3);
     void RunExercise2(double a, double b, double c);
     void RunExercise3(double a, double b, double c, double d, double e, double f);
-    void RunExercise4(int day, int month, int year);
+    void RunExercise4();
     void RunExercise5();
     void RunExercise6();
-    int RunExercise7();
+    int RunExercise7(bool needNewSeed);
     void RunExercise8();
     void RunExercise9();
     void RunExercise10();

@@ -6,11 +6,13 @@ class Chapter7Helper
 public:
     // Supporting data structures
     CHAPTER7::Exercise1Output_s Exercise1Output;
+    CHAPTER7::Exercise13Output_s Exercise13Output;
 
 
     // Constructor
     Chapter7Helper() :
-        Exercise1Output()
+        Exercise1Output(),
+        Exercise13Output()
     {};
 
     // Destructor 
@@ -29,8 +31,8 @@ public:
     void RunExercise10();
     void RunExercise11();
     void RunExercise12();
-    void RunExercise13();
-    double RunExercise14();
+    void RunExercise13(double COMMISSION_SOUGHT);
+    void RunExercise14();
     void RunExercise15();
     void RunExercise16();
     void RunExercise17();
@@ -49,5 +51,14 @@ public:
 
 private:
     bool IsPrime(int number);
-
+    int Average(const int array[], int size);
+    double Average(const double array[], int size);
+    double Min(double array[], int size);
+    int IndexOfSmallestElement(double array[], int size);
+    double Mean(const double x[], int size);
+    double Deviation(const double x[], int size);
+    void AssignGrades(double arr[], int size);
+    int LinearSearch(const int list[], int key, int arraySize);
+    int BinarySearch(const int list[], int key, int arraySize);
+    void BubbleSort(double list[], int listSize);
 };
