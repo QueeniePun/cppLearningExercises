@@ -95,14 +95,13 @@ bool Chapter6Helper::LinearEquationIsSolvable(double a, double b, double c, doub
     
 }
 
-void Chapter6Helper::RunExercise4(int day, int month, int year)
+void Chapter6Helper::RunExercise4()
 {
     // 6.4 Improve listing 2.11 to display current date and time. 
     // getTime function
     // getYear, getMonth, get Day
     // DisplayCurrentDateAndTime
     CurrentTime(); 
-    CurrentDate(day, month, year);
 }
 
 void Chapter6Helper::CurrentTime()
@@ -113,63 +112,154 @@ void Chapter6Helper::CurrentTime()
     int currentMinute = totalMinutes % 60;
     int totalHours = totalMinutes / 60;
     int currentHour = totalHours % 24; 
+    int totalDays = totalHours / 24; 
+    int currentYear = (totalDays / 365) + 1970;
+    int remainingDays = totalDays % 365;
+    int numLeapYears = 13;
+   
+    // Check if currentYear is a leap year
+    if (IsLeapYear(currentYear))
+    {
+        if (remainingDays > 60)
+        {
+           // Leap Year month has already occured
+           // Calculate numLeapYears
+            numLeapYears = ((currentYear - 1972) / 4) + 1;
+        }
+        else
+        {
+            // Leap Year month has not occured 
+            // Calculate numLeapYears
+            numLeapYears = (currentYear - 1972 / 4);
+        }
+    }
+    remainingDays -= numLeapYears;
 
+    // find the month and date 
+    int month = 0;
+    bool foundMonth = false; 
+    if (remainingDays <= 31)
+    {
+        month = 1;
+        foundMonth = true; 
+    }
+    while (foundMonth == false) {
+        if (remainingDays > 31)
+        {
+            remainingDays -= 31;
+        }
+        if (remainingDays <= 28)
+        {
+            month = 2;
+            foundMonth = true;
+            continue;
+        }
+        else if (remainingDays > 28)
+        {
+            remainingDays -= 28;
+        }
+        if (remainingDays <= 31)
+        {
+            month = 3;
+            foundMonth = true;
+            continue;
+        }
+        else if (remainingDays > 31)
+        {
+            remainingDays -= 31;
+        }
+        if (remainingDays <= 30)
+        {
+            month = 4;
+            foundMonth = true;
+            continue;
+        }
+        else if (remainingDays > 30)
+        {
+            remainingDays -= 30;
+        }
+        if (remainingDays <= 31)
+        {
+            month = 5;
+            foundMonth = true;
+            continue;
+        }
+        else if (remainingDays > 31)
+        {
+            remainingDays -= 31;
+        }
+        if (remainingDays <= 30)
+        {
+            month = 6;
+            foundMonth = true;
+            continue;
+        }
+        else if (remainingDays > 30)
+        {
+            remainingDays -= 30;
+        }
+        if (remainingDays <= 31)
+        {
+            month = 7;
+            foundMonth = true;
+            continue;
+        }
+        else if (remainingDays > 31)
+        {
+            remainingDays -= 31;
+        }
+        if (remainingDays <= 31)
+        {
+            month = 8;
+            foundMonth = true;
+            continue;
+        }
+        else if (remainingDays > 31)
+        {
+            remainingDays -= 31;
+        }
+        if (remainingDays <= 30)
+        {
+            month = 9;
+            foundMonth = true;
+            continue;
+        }
+        else if (remainingDays > 30)
+        {
+            remainingDays -= 30;
+        }
+        if (remainingDays <= 31)
+        {
+            month = 10;
+            foundMonth = true;
+            continue;
+        }
+        else if (remainingDays > 31)
+        {
+            remainingDays -= 31;
+        }
+        if (remainingDays <= 30)
+        {
+            month = 11;
+            foundMonth = true;
+            continue;
+
+        }
+        else if (remainingDays > 30)
+        {
+            remainingDays -= 30;
+        }
+        if (remainingDays <= 31)
+        {
+            month = 12;
+            foundMonth = true;
+            continue;
+        }
+    }
+    cout << "The date is: " << month << "-" << remainingDays << "-" << currentYear << endl;
     cout << "The current time is: " << currentHour << ":" << currentMinute << ":" << currentSecond << " GMT \n";
 }
 
-void Chapter6Helper::CurrentDate(int &day, int &month, int &year)
-{
-    string monthString = "";
-    if (month == 1)
-    {
-        monthString = "January";
-    } 
-    if (month == 2)
-    {
-        monthString = "February";
-    } 
-    if (month == 3)
-    {
-        monthString = "March";
-    } 
-    if (month == 4)
-    {
-        monthString = "April";
-    } 
-    if (month == 5)
-    {
-        monthString = "May";
-    }
-    if (month == 6)
-    {
-        monthString = "June";
-    } 
-    if (month == 7)
-    {
-        monthString = "July";
-    }
-    if (month == 8)
-    {
-        monthString = "August";
-    } 
-    if (month == 9)
-    {
-        monthString = "September";
-    }
-    if (month == 10)
-    {
-        monthString = "October";
-    }
-    if (month == 11)
-    {
-        monthString = "November";
-    }
-    if (month == 12)
-    {
-        monthString = "December";
-    }
-    cout << "The date is: " << monthString << " " << day << ", " << year << endl;
-}
 
 void Chapter6Helper::RunExercise5()
 {
@@ -274,10 +364,14 @@ bool Chapter6Helper::IsPalindrome(int n)
     return n == ReverseInteger(n);
 }
 
-int Chapter6Helper::RunExercise7()
+int Chapter6Helper::RunExercise7(bool needNewSeed = true)
 {
     // 6.7 Write a program to play a version of the game Craps
-    srand(time(0));
+    if (needNewSeed)
+    {
+        srand(time(0));
+    }
+
     int point = RollTwoDice();
 
     bool gameResult = CheckSumCraps(point);
@@ -367,10 +461,10 @@ void Chapter6Helper::RunExercise9()
     // keep a reference variable to keep track of wins 
     // gameResult function 
     int winCounter = 0;
-
+    srand(time(0));
     for (int i = 0; i < 10000; i++)
     {
-        int gameResult = RunExercise7();
+        int gameResult = RunExercise7(false);
         winCounter += gameResult;
     }
     printf("%s %d", "Number of winning games: ", winCounter);
