@@ -1,5 +1,6 @@
 #pragma once
 #include "Chapter7Output.h"
+#include <string>
 
 class Chapter7Helper
 {
@@ -61,4 +62,8 @@ private:
     int LinearSearch(const int list[], int key, int arraySize);
     int BinarySearch(const int list[], int key, int arraySize);
     void BubbleSort(double list[], int listSize);
+    std::string DropBall(int slots[], int numOfSlots);
+    int GetBallPosition(std::string ballPath);
+    void PrintHistogram(int array[], int arraySize);
+    void SelectionSortDescending(double list[], int listSize);
 };
