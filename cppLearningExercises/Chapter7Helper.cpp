@@ -1,11 +1,11 @@
 #include "Chapter7Helper.h"
 #include <iostream>
 #include <iomanip>
-#include <string>
 #include <stdlib.h>
 #include <ctime>
 #include <array>
 #include <Windows.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -590,5 +590,152 @@ void Chapter7Helper::BubbleSort(double list[], int listSize)
 
 void Chapter7Helper::RunExercise17()
 {
-    // 7.17 Write a program that simulates the bean machine. 
+    // 7.17 Write a program that simulates the bean machine. The number of R's is the position of the slot of the ball
+    int numOfBalls = 5;
+    int numOfSlots = 7; // max of 50 in the machine 
+
+    string ballPaths[5];
+    int slots[7]; // each element in slots stores the number of balls in a slot 
+     
+    for (int i = 0; i < 7; i++)
+    {
+        slots[i] = 0;
+    }
+    
+    srand(time(0));
+
+    // display the path of the balls
+    for (int i = 0; i < numOfBalls; i++)
+    {
+        // find the path of ball by dropping the ball numOfSlots times
+        ballPaths[i] = DropBall(slots, numOfSlots);
+        printf("%s \n", ballPaths[i].c_str());
+    } 
+
+    for (int i = 0; i < numOfSlots; i++)
+    {
+        cout << slots[i] ;
+    }
+
+    cout << endl;
+    // display the final buildup of the balls in the slots in a histogram 
+    PrintHistogram(slots, numOfSlots);
+
+}
+
+string Chapter7Helper::DropBall(int slots[], int numOfSlots)
+{
+    string ballPath = "";
+    
+    // loop through numOfSlots
+    for (int i = 0; i < numOfSlots; i++)
+    {
+        int randomPath = rand() % 2;
+        if (randomPath == 0)
+        {
+            ballPath.append("R");
+        }
+        else
+        {
+            ballPath.append("L");
+        }
+    }
+
+    // find final position of ball
+    int position = GetBallPosition(ballPath);
+    slots[position]++;
+    return ballPath;
+}
+
+int Chapter7Helper::GetBallPosition(string ballPath)
+{
+    char r = 'R';
+    int numOfR = 0;
+    for (int i = 0; i < ballPath.length(); i++)
+    {
+        if (ballPath.at(i) == r)
+        {
+            numOfR++;
+        }
+    }
+    return numOfR;
+}
+
+bool comp(int a, int b)
+{
+    return (a < b);
+}
+
+void Chapter7Helper::PrintHistogram(int slots[], int slotsSize)
+{
+    // find the max of the array 
+
+    // max_element returns an iterator (pointer), use * to dereference pointer
+    // Reference: http://www.cplusplus.com/reference/algorithm/max_element/
+    // Reference: https://www.w3schools.com/cpp/cpp_pointers_dereference.asp
+    
+    int maxHeight = *(std::max_element(slots, slots + slotsSize));
+    int currentHeight = maxHeight;
+
+    for (int h = maxHeight; h > 0; h--) {
+        for (int i = 0; i < slotsSize; i++)
+        {
+            if (slots[i] == h)
+            {
+                printf("%c", 'O');
+                slots[i]--;
+            }
+            else
+            {
+                printf("%c", ' ');
+            }
+        }
+        cout << endl;
+    }
+}
+
+void Chapter7Helper::RunExercise18()
+{
+    // 7.18 Rewrite 7.9.1 selection sort by finding the largest num
+    //      and swapping with it the last number in array. Write a 
+    //      test program that reads in an array of 10 double nums, invokes fn,
+    //      and displays the sorted 
+
+    double nums[] = { 2.0, 6.0, 3, 7.8, 3.4, 7.0, 9, 8, 4, 8.7 };
+    SelectionSortDescending(nums, 10);
+
+    for (int i = 0; i < 10; i++)
+    {
+        printf("%.2f ", nums[i]);
+    }
+}
+
+void Chapter7Helper::SelectionSortDescending(double list[], int listSize)
+{
+    for (int i = 0; i < listSize; i++)
+    {
+        double currentMax = list[i];
+        int currentMaxIndex = i;
+
+        for (int j = i + 1; j < listSize; j++)
+        {
+            if (currentMax < list[j])
+            {
+                currentMax = list[j];
+                currentMaxIndex = j;
+            }
+        }
+
+
+        if (currentMaxIndex != i)
+        {
+            list[currentMaxIndex] = list[i];
+            list[i] = currentMax;
+        }
+    }
+}
+
+void Chapter7Helper::RunExercise19()
+{
+    // 7.19 The classic Eight Queens puzzle 
 }
