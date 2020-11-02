@@ -22,7 +22,7 @@ int main()
 
     int list[] = {1, 2, 3, 2, 1, 6, 3, 4, 5, 2};
 
-    chapter7.RunExercise18();
+    chapter7.RunExercise27();
 
 
     return 0;
