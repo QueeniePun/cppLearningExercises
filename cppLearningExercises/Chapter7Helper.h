@@ -66,4 +66,23 @@ private:
     int GetBallPosition(std::string ballPath);
     void PrintHistogram(int array[], int arraySize);
     void SelectionSortDescending(double list[], int listSize);
+    void PrintQueensBoard(char queens[], int NUMBER_OF_QUEENS);
+    void PlaceQueens(char queens[], int numQueens);
+    int PlaceQueensLocation();
+    bool IsOccupied(char x);
+    bool IsAttacking(char board[]);
+    bool IsSameColumn(char board[]);
+    bool IsSameRow(char board[]);
+    bool IsSameDiagonal(char board[]);
+    int GetColumn(int index);
+    int GetRow(int index);
+    int GetCard();
+    std::string ShowCard(int card);
+    int IndexOf(const char s1[], const char s2[]);
+    int CountCharacters(const char s[], char a);
+    int CountLetters(const char s[]);
+    void FindPrefix(const char s1[], const char s2[], char commonPrefix[]);
+    int GetNumber(char letter);
+    void PrintPhoneNumber(const char s[]);
+
 };

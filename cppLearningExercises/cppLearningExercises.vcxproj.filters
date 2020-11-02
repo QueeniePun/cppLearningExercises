@@ -98,9 +98,6 @@
     <ClInclude Include="Chapter4Output.h">
       <Filter>Header Files\Chapter 4</Filter>
     </ClInclude>
-    <ClInclude Include="Chapter5Helper.h">
-      <Filter>Header Files\Chapter 5</Filter>
-    </ClInclude>
     <ClInclude Include="Chapter5Output.h">
       <Filter>Header Files\Chapter 5</Filter>
     </ClInclude>
@@ -115,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="Chapter7Output.h">
       <Filter>Header Files\Chapter 7</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter5Helper.h">
+      <Filter>Header Files\Chapter 5</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
