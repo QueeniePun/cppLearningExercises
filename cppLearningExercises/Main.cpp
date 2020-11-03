@@ -6,6 +6,7 @@
 #include "Chapter5Helper.h"
 #include "Chapter6Helper.h"
 #include "Chapter7Helper.h"
+#include "Chapter8Helper.h"
 
 using namespace std;
 
@@ -19,10 +20,11 @@ int main()
     Chapter5Helper chapter5;
     Chapter6Helper chapter6;
     Chapter7Helper chapter7;
+    Chapter8Helper chapter8;
 
     int list[] = {1, 2, 3, 2, 1, 6, 3, 4, 5, 2};
 
-    chapter7.RunExercise27();
+    chapter8.RunExercise3();
 
 
     return 0;
