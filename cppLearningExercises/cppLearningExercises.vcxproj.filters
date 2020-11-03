@@ -52,8 +52,14 @@
     <Filter Include="Header Files\Chapter 7">
       <UniqueIdentifier>{2fb8ee47-3e68-489d-83e8-fe7361c0c7d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Chapter7">
+    <Filter Include="Header Files\Chapter 8">
+      <UniqueIdentifier>{1c88f0a5-67c7-4999-b26b-f9a96edd6e51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chapter 7">
       <UniqueIdentifier>{640307a0-154d-4508-82bf-35ea6bfb816a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chapter8">
+      <UniqueIdentifier>{6632c78a-c915-4028-9380-9ff6be5de6c1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -79,7 +85,10 @@
       <Filter>Source Files\Chapter 6</Filter>
     </ClCompile>
     <ClCompile Include="Chapter7Helper.cpp">
-      <Filter>Source Files\Chapter7</Filter>
+      <Filter>Source Files\Chapter 7</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter8Helper.cpp">
+      <Filter>Source Files\Chapter8</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +124,12 @@
     </ClInclude>
     <ClInclude Include="Chapter5Helper.h">
       <Filter>Header Files\Chapter 5</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter8Helper.h">
+      <Filter>Header Files\Chapter 8</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter8Output.h">
+      <Filter>Header Files\Chapter 8</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
