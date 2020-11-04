@@ -22,10 +22,7 @@ int main()
     Chapter7Helper chapter7;
     Chapter8Helper chapter8;
 
-    int list[] = {1, 2, 3, 2, 1, 6, 3, 4, 5, 2};
-
-    chapter8.RunExercise3();
-
+    chapter8.RunExercise9();
 
     return 0;
 }

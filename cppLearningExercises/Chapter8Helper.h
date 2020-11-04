@@ -42,4 +42,22 @@ public:
 private:
     double SumMatrix(const double m[][4], int RowSize, int columnSize);
     double SumMajorDiagonal(const double m[][4]);
+    void TotalWorkHours(int workHours[8][7], int NUMBER_OF_EMPLOYEES, int NUMBER_OF_DAYS);
+    void AddMatrix(const double a[][3], const double b[][3], double c[][3]);
+    void ComputeTax(int status, double income, double rates[], int brackets[4][5]);
+    void CheckCheckerboardRows(int checkerboard[8][8]);
+    void CheckCheckerboardColumns(int checkerboard[8][8]);
+    void CheckCheckerboardMajorDiagonal(int checkerboard[8][8]);
+    void CheckCheckerboardSubDiagonal(int checkerboard[8][8]);
+    void PlaceTicTacToken(char board[3][3], char token, int row, int col);
+    int CheckTicTacBoardStatus(char board[3][3], char token);
+    bool CheckTicTacDraw(char board[3][3], char token);
+    bool CheckTicTacWin(char board[3][3], char token);
+    bool CheckTicTacBoardFilled(char board[3][3]);
+    bool CheckTicTacRows(char board[3][3], char token);
+    bool CheckTicTacCols(char board[3][3], char token);
+    bool CheckTicTacMajorDiagonal(char board[3][3], char token);
+    bool CheckTicTacSubDiagonal(char board[3][3], char token);
+    void DisplayTicTacBoard(char board[3][3]);
+    void MultiplyMatrix(const double a[][3], const double b[][3], double c[][3]);
 };
