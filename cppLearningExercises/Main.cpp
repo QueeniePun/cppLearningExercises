@@ -22,7 +22,7 @@ int main()
     Chapter7Helper chapter7;
     Chapter8Helper chapter8;
 
-    chapter8.RunExercise9();
+    chapter8.RunExercise18();
 
     return 0;
 }
