@@ -1501,7 +1501,7 @@ void Chapter8Helper::PrintGrid(const int grid[][9])
 }
 bool Chapter8Helper::IsValidPuzzle(int i, int j, const int grid[][9])
 {
-    //  Checks wither grid[i][j] is valid in the grid 
+    //  Checks whether grid[i][j] is valid in the grid 
 
     // check the i's row
     for (int column = 0; column < 9; column++)
@@ -1623,4 +1623,64 @@ void Chapter8Helper::InverseMatrix(const double A[][3], double inverseOfA[][3])
             }
         }
     }
+}
+
+void Chapter8Helper::RunExercise19()
+{
+    // 8.19 Implement bank balances and loans tracker
+
+    const int NUMBER_OF_BANKS = 5;
+    const int LIMIT = 201;
+
+    double balance[5] = {25, 125, 175, 75, 81};
+    double borrowers[5][5];
+    boolean unsafe[5];
+
+    for (int i = 0; i < NUMBER_OF_BANKS; i++) {
+        // current bank's balance
+        
+        // number of banks that borrow money from current bank
+        
+        for (int j = 0; j < 5; j++) {
+            // input the borrowers array
+        }
+    }
+
+    // Check for unsafe banks
+    boolean unsafeFound = false;
+    do {
+        unsafeFound = false;
+        for (int i = 0; i < NUMBER_OF_BANKS; i++) {
+            // calculate bank i's asset
+            double asset = balance[i];
+            for (int j = 0; j < 5; j++) {
+                asset += borrowers[i][j];
+            }
+
+            if (asset < LIMIT) {
+                unsafe[i] = true;
+                // reset debt of the unsafe bank to zero
+                for (int j = 0; j < 5; j++) {
+                    if (borrowers[j][i] != 0) {
+                        borrowers[j][i] = 0;
+                        // go trough all the banks again if some debt go
+                        // default
+                        unsafeFound = true;
+                    }
+                }
+            }
+
+        }
+
+    } while (unsafeFound);
+
+    // Print the result out
+
+    cout << "The unsafe banks are:" << endl;
+    for (int i = 0; i < 5; i++) {
+        if (unsafe[i] == true) {
+            cout << i <<  " ";
+        }
+
+
 }
