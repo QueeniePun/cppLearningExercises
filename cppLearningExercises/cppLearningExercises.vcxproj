@@ -147,6 +147,7 @@
     <ClCompile Include="Chapter6Helper.cpp" />
     <ClCompile Include="Chapter7Helper.cpp" />
     <ClCompile Include="Chapter8Helper.cpp" />
+    <ClCompile Include="Chapter9Helper.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +164,8 @@
     <ClInclude Include="Chapter7Output.h" />
     <ClInclude Include="Chapter8Helper.h" />
     <ClInclude Include="Chapter8Output.h" />
+    <ClInclude Include="Chapter9Helper.h" />
+    <ClInclude Include="Chapter9Output.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

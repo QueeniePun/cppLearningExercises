@@ -1632,15 +1632,15 @@ void Chapter8Helper::RunExercise19()
     const int NUMBER_OF_BANKS = 5;
     const int LIMIT = 201;
 
-    double balance[5] = {25, 125, 175, 75, 81};
+    double balance[5] = { 25, 125, 175, 75, 81 };
     double borrowers[5][5];
     boolean unsafe[5];
 
     for (int i = 0; i < NUMBER_OF_BANKS; i++) {
         // current bank's balance
-        
+
         // number of banks that borrow money from current bank
-        
+
         for (int j = 0; j < 5; j++) {
             // input the borrowers array
         }
@@ -1679,8 +1679,9 @@ void Chapter8Helper::RunExercise19()
     cout << "The unsafe banks are:" << endl;
     for (int i = 0; i < 5; i++) {
         if (unsafe[i] == true) {
-            cout << i <<  " ";
+            cout << i << " ";
         }
 
 
+    }
 }
