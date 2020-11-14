@@ -1,13 +1,9 @@
 #pragma once
+
 namespace CHAPTER10
 {
-    struct Exercise1Output_s
+    struct Exercise2Output_s
     {
-        double Actual1;
-
-        // Constructor
-        Exercise1Output_s() :
-            Actual1(0)
-        {};
+         char Actual1[255];
     };
 }
