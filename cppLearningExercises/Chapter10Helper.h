@@ -6,15 +6,16 @@ class Chapter10Helper
 {
 public:
     // Supporting data structures
-    CHAPTER10::Exercise1Output_s Exercise1Output;
+    CHAPTER10::Exercise2Output_s Exercise2Output;
 
     // Exercise 2
     class MyString1
     {
     public:
+        char str[255];
         MyString1();
         MyString1(char chars[], int size);
-        void append(MyString1 s2);
+        void append(MyString1 s);
         void append(MyString1 s, int index, int n);
         void assign(char chars[]);
         void assign(MyString1 s, int index, int n);
@@ -29,13 +30,30 @@ public:
         int find(char ch);
 
     private:
-        std::string s1; 
+        
     };
 
+    // Exercise 3
+    class MyString2
+    {
+    public:
+        char str[255];
+        MyString2(char chars[], int size);
+        void append(int n, char ch);
+        void assign(MyString2 s, int n);
+        void assign(int n, char ch);
+        int compare(int index, int n, MyString2 s);
+        void copy(char s[], int index, int n);
+        void substr(int index);
+        int find(char ch, int index);
+        void clear();
+    private:
+
+    };
 
     // Constructor
     Chapter10Helper() :
-        Exercise1Output()
+        Exercise2Output()
     {};
 
     // Destructor 
@@ -71,5 +89,11 @@ public:
 
 private:
     bool IsAnagram(std::string s1, std::string s2);
-
+    std::string Sort(std::string& s);
+    bool IsPalindrome(const std::string& s);
+    int IndexOf(const std::string& s1, const std::string& s2);
+    int CountCharacters(const std::string& s, char a);
+    int CountLetters(const std::string& s);
+    int ParseHex(const std::string& hexString);
 }; 
+
