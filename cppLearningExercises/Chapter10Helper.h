@@ -51,6 +51,106 @@ public:
 
     };
 
+    // Exercise 18
+    class MyInteger
+    {
+    public:
+        int value;
+        MyInteger(int num);
+        int getInt();
+        bool isEven();
+        bool isOdd();
+        bool isPrime();
+        static bool isEven(int num);
+        static bool isOdd(int num);
+        static bool isPrime(int num);
+        static bool isEven(MyInteger myInt);
+        static bool isOdd(MyInteger myInt);
+        static bool isPrime(MyInteger myInt);
+        bool equals(int num);
+        bool equals(MyInteger myInt);
+        static int ParseInt(std::string stringInt);
+    private:
+    };
+
+
+    // Exercise 19 
+    class Loan
+    {
+    public:
+        Loan();
+        static double getMonthlyPayment(double annualInterestRate, int numberOfYears, double loanAmount);
+        static double getTotalPayment(double annualInterestRate, int numberOfYears, double loanAmount);
+    private:
+        double annualInterestRate; 
+        int numberOfYears;
+        double loanAmount;
+    };
+
+    // Exercise 20
+    class Stock
+    {
+    public: 
+        Stock(std::string stockSymbol, std::string stockName);
+        std::string getSymbol();
+        std::string getName();
+        double getPreviousClosingPrice(); 
+        double getCurrentPrice();
+        void setPreviousClosingPrice(double newPreviousClosingPrice);
+        void setCurrentPrice(double newCurrentPrice);
+        double changePercent();
+
+    private:
+        std::string symbol; 
+        std::string name; 
+        double previousClosingPrice; 
+        double currentPrice; 
+
+    };
+
+
+    // Exercise 21
+    class RegularPolygon
+    {
+    public:
+        RegularPolygon();
+        RegularPolygon(int numSides, double sideLength);
+        RegularPolygon(int numSides, double sideLength, double xCoord, double yCoord);
+        int getNumSides();
+        double getSideLength();
+        double getX();
+        double getY();
+        void setNumSides(int numSides);
+        void setSideLength(double sideLength);
+        void setX(double xCoord);
+        void setY(double yCoord);
+        double getPerimeter();
+        double getArea();
+
+    private:
+        int n; 
+        double side; 
+        double x; 
+        double y; 
+
+    };
+
+    // Exercise 22
+    class StackOfIntegers
+    {
+    public: 
+        StackOfIntegers();
+        bool isEmpty() const;
+        int peek() const;
+        void push(int value);
+        int pop();
+        int getSize() const;
+        
+    private:
+        int elements[100];
+        int size; 
+    };
+
     // Constructor
     Chapter10Helper() :
         Exercise2Output()
@@ -95,5 +195,18 @@ private:
     int CountCharacters(const std::string& s, char a);
     int CountLetters(const std::string& s);
     int ParseHex(const std::string& hexString);
+    int ParseBinary(const std::string& binaryString);
+    void CountLetterOccurences(const std::string& s, int counts[], int size);
+    std::string ConvertDecimalToHex(int value);
+    std::string ConvertDecimalToBinary(int value);
+    std::string FindPrefix(const std::string& s1, const std::string& s2);
+    void CapitalQuiz();
+    bool CheckCapital(const std::string& s, std::string capital);
+    bool IsCardValid(const std::string& cardNumber);
+    int SumOfEvenPlace(const std::string& cardNumber);
+    int GetDigit(int num);
+    int SumOfOddPlace(const std::string& cardNumber);
+    void CheckISBN(const std::string& s);
+    bool IsPrime(int num);
 }; 
 

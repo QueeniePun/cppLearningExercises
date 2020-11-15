@@ -17,13 +17,12 @@ TEST(Chapter10, Exercise2)
 
     // Verify expected outputs
 
-    //cout << "hello" << endl;
-    //for (int i = 0; i < strlen(Expected); i++)
-    //{
-    //    
-    //    EXPECT_EQ(chapter10Helper.Exercise2Output.Actual1[i], Expected[i]);
-    //    
-    //}
+    cout << "hello" << endl;
+    for (int i = 0; i < strlen(Expected); i++)
+    {
+        
+        EXPECT_EQ(chapter10Helper.Exercise2Output.Actual1[i], Expected[i]);
+        
+    }
 
-    EXPECT_EQ(true, true);
 }
