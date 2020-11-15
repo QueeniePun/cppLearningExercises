@@ -151,6 +151,28 @@ public:
         int size; 
     };
 
+
+    // Exercise 23
+    class Hangman
+    {
+    public:
+        Hangman();
+        std::string getGuess();
+        int getWrongGuessCount();
+        std::string updateGuess(char ch);
+        bool isLetterValid(char ch);
+        bool isGuessFinished();
+
+    private:
+        std::string words[4] =
+        {
+            "write", "that", "program", "queenie"
+        };
+        std::string word;
+        std::string guess; 
+        int wrongGuessCount; 
+
+    };
     // Constructor
     Chapter10Helper() :
         Exercise2Output()
@@ -208,5 +230,6 @@ private:
     int SumOfOddPlace(const std::string& cardNumber);
     void CheckISBN(const std::string& s);
     bool IsPrime(int num);
+    void StartHangmanGame(Hangman game);
 }; 
 

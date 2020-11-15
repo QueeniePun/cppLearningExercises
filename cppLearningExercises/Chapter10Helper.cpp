@@ -1178,8 +1178,108 @@ int Chapter10Helper::StackOfIntegers::getSize() const
 void Chapter10Helper::RunExercise23()
 {
     // 10.23 Write a hangman game 
+
+    Hangman game;
+
+    StartHangmanGame(game);
+
 }
 
+void Chapter10Helper::StartHangmanGame(Hangman game)
+{
+    while (!game.isGuessFinished())
+    {
+        char ch;
+        cout << "(Guess) Enter a letter in word " << game.getGuess() << endl;
+        cin >> ch;
+        game.updateGuess(ch);
+    }
+
+    cout << "The word is " << game.getGuess() << ". You missed "
+         << game.getWrongGuessCount() << " time(s)" << endl;
+
+    char response;
+    cout << "Do you want to guess for another word? Enter y or n";
+    cin >> response;
+
+    if (response == 'y')
+    {
+        Hangman newGame;
+        StartHangmanGame(newGame);
+    }
+    else
+    {
+        return;
+    }
+}
+
+Chapter10Helper::Hangman::Hangman()
+{
+    srand(time(0));
+    int getGuess = rand() % 4; 
+    word = words[getGuess];
+    wrongGuessCount = 0;
+    for (int i = 0; i < word.length(); i++)
+    {
+        guess += "*";
+    }
+
+}
+
+string Chapter10Helper::Hangman::getGuess()
+{
+    return guess; 
+}
+
+int Chapter10Helper::Hangman::getWrongGuessCount()
+{
+    return wrongGuessCount;
+}
+
+string Chapter10Helper::Hangman::updateGuess(char ch)
+{
+    if (!isLetterValid(ch))
+    {
+        cout << ch << " is not in the word " << getGuess() << endl;
+        wrongGuessCount++;
+        return guess; 
+    }
+    else if (isLetterValid(ch) && guess.find(ch) != string::npos)
+    {
+        cout << ch << " is already in the word" << endl;
+        return guess;
+    }
+    else
+    {
+        for (int i = 0; i < word.length(); i++)
+        {
+            if (word[i] == ch)
+            {
+                guess[i] = ch;
+            }
+        }
+        return guess; 
+    }
+
+
+}
+
+bool Chapter10Helper::Hangman::isLetterValid(char ch)
+{
+    if (word.find(ch) == string::npos)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool Chapter10Helper::Hangman::isGuessFinished()
+{
+    return (guess == word);
+}
 
 void Chapter10Helper::RunExercise24()
 {
