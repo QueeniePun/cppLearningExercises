@@ -95,19 +95,27 @@ Chapter10Helper::MyString1::MyString1(char chars[], int size)
     {
         str[i] = chars[i];
     }
+    str[size] = '\0';
 }
 
 void Chapter10Helper::MyString1::append(MyString1 s)
 {
     
+    int strLength = strlen(str);
     for (int i = 0; i < strlen(s.str); i++)
     {
-        if (i + strlen(str) > 255)
+        // Check if there is space to add the '\0'
+        if (i + strlen(str) + 1 > 255)
         {
             break;
         }
 
-        str[i + strlen(str)] = s.str[i];
+        // Update the null terminator (so that the strlen(str) is not 255)
+        str[i + strLength + 1] = '\0';
+
+        // Append the next char
+        str[i + strLength] = s.str[i];
+        
     }
 }
 
@@ -529,4 +537,680 @@ int Chapter10Helper::ParseHex(const string& hexString)
     }
 
     return decimal;
+}
+
+void Chapter10Helper::RunExercise10()
+{
+    // 10.10 Write a function that parses a binary string to decimal int
+    string s1 = "10001";
+    cout << ParseBinary(s1) << endl;
+}
+
+int Chapter10Helper::ParseBinary(const string& binaryString)
+{
+    int decimal = 0; 
+
+    for (int i = 0; i < binaryString.length(); i++)
+    {
+        decimal += ((binaryString[i] - 48) * pow(2, binaryString.length() - i - 1));
+    }
+
+    return decimal;
+}
+
+void Chapter10Helper::RunExercise11()
+{
+    // 10.11 Rewrite the count function in exercise 7.25 using string class
+    string s1 = "Welcome to New York!";
+    int counts[26] = { 0 };
+    CountLetterOccurences(s1, counts, 26);
+}
+
+void Chapter10Helper::CountLetterOccurences(const string& s, int counts[], int size)
+{
+
+    // find the frequencies of each char 
+    for (int i = 0; i < s.length(); i++)
+    {
+
+        int countsIndex = s[i] - 97;
+        // if s[i] is an uppercase letter
+        if (s[i] < 97 && s[i] > 64 && s[i] < 91)
+        {
+            countsIndex = s[i] - 65;
+        }
+        counts[countsIndex]++;
+    }
+
+    // print all the non zero counts  
+    for (int i = 0; i < 26; i++)
+    {
+        if (counts[i] != 0)
+        {
+            int temp = i + 97;
+            char c = temp;
+            cout << c << ": " << counts[i] << " times" << endl;
+        }
+    }
+}
+
+void Chapter10Helper::RunExercise12()
+{
+    // 10.12 Write a function that parses a decimal num to hex 
+    int value = 165; 
+    cout << ConvertDecimalToHex(value);
+}
+
+string Chapter10Helper::ConvertDecimalToHex(int value)
+{
+    int remainder = 0; 
+    int quotient = value; 
+    string hexString;
+
+    while (quotient != 0)
+    {
+        remainder = quotient % 16; 
+        if (remainder == 10)
+        {
+            hexString += "A";
+        }
+        else if (remainder == 11)
+        {
+            hexString += "B";
+        }
+        else if (remainder == 12)
+        {
+            hexString += "C";
+        }
+        else if (remainder == 13)
+        {
+            hexString += "D";
+        }
+        else if (remainder == 14)
+        {
+            hexString += "E";
+        }
+        else if (remainder == 15)
+        {
+            hexString += "F";
+        }
+        else
+        {
+            hexString += to_string(remainder);
+        }
+
+        quotient = quotient / 16; 
+        
+    }
+    reverse(hexString.begin(), hexString.end());
+    return hexString; 
+}
+
+void Chapter10Helper::RunExercise13()
+{
+    // 10.13 Write a function that parses a decimal num to binary string
+    int value = 123; 
+    cout << ConvertDecimalToBinary(value);
+}
+
+string Chapter10Helper::ConvertDecimalToBinary(int value)
+{
+    int remainder = 0; 
+    int quotient = value;
+    string binaryString;
+
+    while (quotient != 0)
+    {
+        remainder = quotient % 2;
+        binaryString += to_string(remainder); 
+        quotient = quotient / 2; 
+    }
+    reverse(binaryString.begin(), binaryString.end());
+    return binaryString; 
+}
+
+void Chapter10Helper::RunExercise14()
+{
+    // 10.14 Rewrite the prefix function in 7.26
+    string s1 = "disgusted";
+    string s2 = "disguised";
+    cout << FindPrefix(s1, s2);
+}
+
+string Chapter10Helper::FindPrefix(const string& s1, const string& s2)
+{
+    string prefix;
+    for (int i = 0; i < s1.length(); i++)
+    {
+        if (s1[i] == s2[i])
+        {
+            prefix += s1[i];
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    return prefix; 
+}
+
+void Chapter10Helper::RunExercise15()
+{
+    // 10.15 Write a program that repeatedly prompts the user to enter a
+    //       capital of a state. 
+    srand(time(0));
+    CapitalQuiz();
+}
+
+void Chapter10Helper::CapitalQuiz()
+{
+    string states[10][2] =
+    {
+        {"Alabama", "Montgomery"},
+        {"Alaska", "Juneau"},
+        {"Arizona", "Phoenix"},
+        {"Arkansas", "Little Rock"},
+        {"California", "Sacramento"},
+        {"Colorado", "Denver"},
+        {"Connecticut", "Hartford"},
+        {"Delaware", "Dover"},
+        {"Florida", "Tallahassee"},
+        {"Georgia", "Atlanta"}
+    };
+
+    for (int i = 0; i < 10; i++)
+    {
+        string answer;
+        cout << "What is the capital of " << states[i][0] << "?" << endl;
+        cin >> answer; 
+
+        if (CheckCapital(answer, states[i][1]))
+        {
+            cout << "Your answer is correct." << endl;
+        }
+        else
+        {
+            cout << "The capital of " << states[i][0] << " is " << states[i][1] << endl;
+        }
+    }
+
+}
+
+bool Chapter10Helper::CheckCapital(const string& s, string capital)
+{
+    return (s == capital);
+}
+
+void Chapter10Helper::RunExercise16()
+{
+    // 10.16 Validate Credit Card number 
+    string cardNumber = "4388576018410707";
+
+    if (IsCardValid(cardNumber))
+    {
+        cout << "Card is valid.";
+    }
+    else
+    {
+        cout << "Card is not valid.";
+    }
+
+}
+
+bool Chapter10Helper::IsCardValid(const std::string& cardNumber)
+{
+    int finalSum = SumOfEvenPlace(cardNumber) + SumOfOddPlace(cardNumber);
+    finalSum = finalSum % 10; 
+    if (finalSum == 0)
+    {
+        return true; 
+    }
+    else
+    {
+        return false; 
+    }
+
+}
+int Chapter10Helper::SumOfEvenPlace(const std::string& cardNumber)
+{
+    
+    int sum = 0; 
+    for (int i = cardNumber.length() - 1; i >= 0; i--)
+    {
+        if (i % 2 == 0)
+        {
+            string digitString;
+            digitString += cardNumber[i];
+            int digit = stoi(digitString);
+            digit *= 2;
+            digit = GetDigit(digit);
+            sum += digit;
+        }
+    }
+    return sum; 
+}
+int Chapter10Helper::GetDigit(int num)
+{
+    int digit; 
+    if (num >= 10)
+    {
+        int digit1 = num % 10; 
+        int digit2 = num / 10;
+        digit = digit1 + digit2;
+        return digit; 
+    }
+    else
+    {
+        return num; 
+    }
+}
+int Chapter10Helper::SumOfOddPlace(const std::string& cardNumber)
+{
+    string digitString; 
+    int sum = 0;  
+    for (int i = cardNumber.length() - 1; i > 0; i--)
+    {
+        if (i % 2 == 1)
+        {
+            string digitString;
+            digitString += cardNumber[i];
+            int digit = stoi(digitString);
+            sum += digit; 
+        }
+    }
+    return sum; 
+}
+
+void Chapter10Helper::RunExercise17()
+{
+    // 10.17 use string operations to simplify Exercise 3.17 Check ISBN
+    string ISBN = "982677324";
+
+    CheckISBN(ISBN);
+}
+
+void Chapter10Helper::CheckISBN(const string& s)
+{
+    string ISBN = s;
+    int checksum = 0;
+    for (int i = 0; i < s.length();i++)
+    {
+        string digitString;
+        digitString += s[i];
+        int digit = stoi(digitString);
+        checksum += digit * i; 
+    }
+    checksum = checksum % 11; 
+    if (checksum == 10)
+    {
+        ISBN += "X";
+    }
+    else
+    {
+        ISBN += to_string(checksum);
+    }
+
+    cout << ISBN;
+}
+
+void Chapter10Helper::RunExercise18()
+{
+    // 10.18 Design a class named MyInteger 
+}
+
+Chapter10Helper::MyInteger::MyInteger(int num)
+{
+    value = num;
+}
+
+int Chapter10Helper::MyInteger::getInt()
+{
+    return value; 
+}
+
+bool Chapter10Helper::MyInteger::isEven()
+{
+    return (value % 2 == 0);
+}
+
+bool Chapter10Helper::MyInteger::isOdd()
+{
+    return (value % 2 == 1);
+}
+
+bool Chapter10Helper::MyInteger::isPrime()
+{
+    for (int divisor = 2; divisor <= value / 2; divisor++)
+    {
+        if (value % divisor == 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool Chapter10Helper::MyInteger::isEven(int num)
+{
+    return (num % 2 == 0);
+}
+
+bool Chapter10Helper::MyInteger::isOdd(int num)
+{
+    return (num % 2 == 1);
+}
+
+bool Chapter10Helper::MyInteger::isPrime(int num)
+{
+    for (int divisor = 2; divisor <= num / 2; divisor++)
+    {
+        if (num % divisor == 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool Chapter10Helper::MyInteger::isEven(MyInteger myInt)
+{
+    return (myInt.value % 2 == 0);
+}
+
+bool Chapter10Helper::MyInteger::isOdd(MyInteger myInt)
+{
+    return (myInt.value % 2 == 1);
+}
+
+bool Chapter10Helper::MyInteger::isPrime(MyInteger myInt)
+{
+    for (int divisor = 2; divisor <= myInt.value / 2; divisor++)
+    {
+        if (myInt.value % divisor == 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool Chapter10Helper::MyInteger::equals(int num)
+{
+    return (value == num);
+}
+
+bool Chapter10Helper::MyInteger::equals(MyInteger myInt)
+{
+    return (value == myInt.value);
+}
+
+int Chapter10Helper::MyInteger::ParseInt(string stringInt)
+{
+    int newInt = stoi(stringInt);
+    return newInt;
+}
+
+void Chapter10Helper::RunExercise19()
+{
+    // 10.19 Rewrite the Loan class to add two static functions for computing
+    //       monthly payment and total payment 
+}
+
+Chapter10Helper::Loan::Loan()
+{
+    annualInterestRate = 9.5;
+    numberOfYears = 30; 
+    loanAmount = 100000;
+}
+
+double Chapter10Helper::Loan::getMonthlyPayment(double annualInterestRate, int numberOfYears, double loanAmount)
+{
+    double monthlyInterestRate = annualInterestRate / 1200; 
+    return loanAmount * monthlyInterestRate / (1 - (pow(1 / (1 + monthlyInterestRate), numberOfYears * 12)));
+}
+
+double Chapter10Helper::Loan::getTotalPayment(double annualInterestRate, int numberOfYears, double loanAmount)
+{
+    return getMonthlyPayment(annualInterestRate, numberOfYears, loanAmount) * numberOfYears * 12;
+}
+
+void Chapter10Helper::RunExercise20()
+{
+    // 10.20 Design a class named stock 
+    Stock myStock("MSFT", "Microsoft Corporation");
+    myStock.setCurrentPrice(17.6);
+    myStock.setPreviousClosingPrice(17.5);
+    cout << myStock.changePercent() << endl;
+}
+
+Chapter10Helper::Stock::Stock(string stockSymbol, string stockName)
+{
+    symbol = stockSymbol;
+    name = stockName; 
+}
+
+string Chapter10Helper::Stock::getSymbol()
+{
+    return symbol; 
+}
+
+string Chapter10Helper::Stock::getName()
+{
+    return name; 
+}
+
+double Chapter10Helper::Stock::getPreviousClosingPrice()
+{
+    return previousClosingPrice;
+}
+
+double Chapter10Helper::Stock::getCurrentPrice()
+{
+    return currentPrice;
+}
+
+void Chapter10Helper::Stock::setPreviousClosingPrice(double newPreviousClosingPrice)
+{
+    previousClosingPrice = newPreviousClosingPrice;
+}
+
+void Chapter10Helper::Stock::setCurrentPrice(double newCurrentPrice)
+{
+    currentPrice = newCurrentPrice;
+}
+
+double Chapter10Helper::Stock::changePercent()
+{
+    double percentChange = ((currentPrice - previousClosingPrice) / previousClosingPrice) * 100;
+    return percentChange; 
+}
+
+void Chapter10Helper::RunExercise21()
+{
+    // 10.21 Design a class named RegularPolygon
+
+    RegularPolygon test1;
+    RegularPolygon test2(6, 4);
+    RegularPolygon test3(10, 4, 5.6, 7.8);
+
+    cout << "Perimeter: " << test1.getPerimeter() << endl;
+    cout << "Area: " << test1.getArea() << endl;
+    cout << "Perimeter: " << test2.getPerimeter() << endl;
+    cout << "Area: " << test2.getArea() << endl;
+    cout << "Perimeter: " << test3.getPerimeter() << endl;
+    cout << "Area: " << test3.getArea() << endl;
+}
+
+Chapter10Helper::RegularPolygon::RegularPolygon()
+{
+    n = 3;
+    side = 1; 
+    x = 0; 
+    y = 0;
+}
+
+Chapter10Helper::RegularPolygon::RegularPolygon(int numSides, double sideLength)
+{
+    n = numSides;
+    side = sideLength;
+    x = 0;
+    y = 0; 
+}
+
+Chapter10Helper::RegularPolygon::RegularPolygon(int numSides, double sideLength, double xCoord, double yCoord)
+{
+    n = numSides; 
+    side = sideLength;
+    x = xCoord;
+    y = yCoord;
+}
+
+int Chapter10Helper::RegularPolygon::getNumSides()
+{
+    return n;
+}
+
+double Chapter10Helper::RegularPolygon::getSideLength()
+{
+    return side;
+}
+
+double Chapter10Helper::RegularPolygon::getX()
+{
+    return x; 
+}
+
+double Chapter10Helper::RegularPolygon::getY()
+{
+    return y; 
+}
+
+void Chapter10Helper::RegularPolygon::setNumSides(int numSides)
+{
+    n = numSides;
+}
+
+void Chapter10Helper::RegularPolygon::setSideLength(double sideLength)
+{
+    side = sideLength;
+}
+
+void Chapter10Helper::RegularPolygon::setX(double xCoord)
+{
+    x = xCoord;
+}
+
+void Chapter10Helper::RegularPolygon::setY(double yCoord)
+{
+    y = yCoord; 
+}
+
+double Chapter10Helper::RegularPolygon::getPerimeter()
+{
+    return (n * side);
+}
+
+double Chapter10Helper::RegularPolygon::getArea()
+{
+    const double PI = 3.14159;
+    double area = (n * pow(side, 2)) / (4 * tan(PI / n));
+    return area; 
+}
+
+void Chapter10Helper::RunExercise22()
+{
+    // 10.22 Write a program that receives a positive integer and 
+    //       displays all of its smallest factors in decreasing order
+
+    StackOfIntegers stack;
+    int num = 120; 
+    int factor = 2;
+    while (num / factor != 1)
+    {
+        if (num % factor == 0)
+        {
+            stack.push(factor);
+            num /= factor; 
+        }
+        else
+        {
+            factor++;
+        }
+    }
+    stack.push(num);
+
+    while (!stack.isEmpty())
+    {
+        cout << stack.pop() << " ";
+    }
+}
+
+Chapter10Helper::StackOfIntegers::StackOfIntegers()
+{
+    size = 0; 
+}
+
+bool Chapter10Helper::StackOfIntegers::isEmpty() const
+{
+    return (size == 0);
+}
+
+int Chapter10Helper::StackOfIntegers::peek() const
+{
+    return elements[size - 1];
+}
+
+void Chapter10Helper::StackOfIntegers::push(int value)
+{
+    elements[size++] = value;
+}
+
+int Chapter10Helper::StackOfIntegers::pop()
+{
+    return elements[--size];
+}
+int Chapter10Helper::StackOfIntegers::getSize() const
+{
+    return size; 
+}
+
+void Chapter10Helper::RunExercise23()
+{
+    // 10.23 Write a hangman game 
+}
+
+
+void Chapter10Helper::RunExercise24()
+{
+    // 10.24 Write a program that displays all the prime numbers less
+    //       120 in decreasing order. Use the StackOfIntegers class to
+    //       store the prime numbers, display in reverse
+
+    StackOfIntegers stack;
+
+    for (int i = 2; i < 120; i++)
+    {
+        if (IsPrime(i))
+        {
+            stack.push(i);
+        }
+    }
+
+    while (!stack.isEmpty())
+    {
+        cout << stack.pop() << " ";
+    }
+}
+
+bool Chapter10Helper::IsPrime(int num)
+{
+    for (int divisor = 2; divisor <= num / 2; divisor++)
+    {
+        if (num % divisor == 0)
+        {
+            return false;
+        }
+    }
+    return true;
 }
