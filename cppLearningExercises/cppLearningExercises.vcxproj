@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Chapter10Helper.cpp" />
+    <ClCompile Include="Chapter11Helper.cpp" />
     <ClCompile Include="Chapter1Helper.cpp" />
     <ClCompile Include="Chapter2Helper.cpp" />
     <ClCompile Include="Chapter3Helper.cpp" />
@@ -154,6 +155,8 @@
   <ItemGroup>
     <ClInclude Include="Chapter10Helper.h" />
     <ClInclude Include="Chapter10Output.h" />
+    <ClInclude Include="Chapter11Helper.h" />
+    <ClInclude Include="Chapter11Output.h" />
     <ClInclude Include="Chapter1Helper.h" />
     <ClInclude Include="Chapter2Helper.h" />
     <ClInclude Include="Chapter3Helper.h" />
