@@ -4,6 +4,11 @@ namespace CHAPTER11
 {
     struct Exercise1Output_s
     {
-        char Actual1[255];
+        int Actual;
+
+        // Constructor
+        Exercise1Output_s() :
+            Actual(0)
+        {};
     };
 }
