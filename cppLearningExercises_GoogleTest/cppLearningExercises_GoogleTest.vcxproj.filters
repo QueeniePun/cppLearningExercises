@@ -19,6 +19,9 @@
     <ClCompile Include="Chapter10Exercises_test.cpp">
       <Filter>Unit Tests</Filter>
     </ClCompile>
+    <ClCompile Include="Chapter11Exercises_test.cpp">
+      <Filter>Unit Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

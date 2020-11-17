@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Chapter10Exercises_test.cpp" />
+    <ClCompile Include="Chapter11Exercises_test.cpp" />
     <ClCompile Include="Chapter4Exercises_test.cpp" />
     <ClCompile Include="Chapter5Exercises_test.cpp" />
     <ClCompile Include="Chapter6Exercises_test.cpp" />
