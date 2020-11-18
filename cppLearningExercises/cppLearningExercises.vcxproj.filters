@@ -79,6 +79,12 @@
     <Filter Include="Source Files\Chapter 11">
       <UniqueIdentifier>{98ac2fcb-9206-43c5-9991-05b9ca55bea3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Chapter 12">
+      <UniqueIdentifier>{9218ee1a-a006-4a3d-9483-1690e5ab305e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chapter 12">
+      <UniqueIdentifier>{28044d52-6270-4386-8971-a4e884706eb0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -117,6 +123,9 @@
     <ClCompile Include="Chapter11Helper.cpp">
       <Filter>Source Files\Chapter 11</Filter>
     </ClCompile>
+    <ClCompile Include="Chapter12Helper.cpp">
+      <Filter>Source Files\Chapter 12</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chapter1Helper.h">
@@ -136,9 +145,6 @@
     </ClInclude>
     <ClInclude Include="Chapter5Output.h">
       <Filter>Header Files\Chapter 5</Filter>
-    </ClInclude>
-    <ClInclude Include="Chapter6Helper.h">
-      <Filter>Header Files\Chapter 6</Filter>
     </ClInclude>
     <ClInclude Include="Chapter6Output.h">
       <Filter>Header Files\Chapter 6</Filter>
@@ -175,6 +181,15 @@
     </ClInclude>
     <ClInclude Include="Chapter11Output.h">
       <Filter>Header Files\Chapter 11</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter12Helper.h">
+      <Filter>Header Files\Chapter 12</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter12Output.h">
+      <Filter>Header Files\Chapter 12</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter6Helper.h">
+      <Filter>Header Files\Chapter 7</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
