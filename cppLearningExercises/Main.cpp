@@ -30,7 +30,7 @@ int main()
     Chapter11Helper chapter11;
     Chapter12Helper chapter12;
 
-    chapter12.RunExercise10();
+    chapter12.RunExercise17();
 
     return 0;
 }

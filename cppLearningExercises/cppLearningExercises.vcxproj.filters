@@ -189,7 +189,12 @@
       <Filter>Header Files\Chapter 12</Filter>
     </ClInclude>
     <ClInclude Include="Chapter6Helper.h">
-      <Filter>Header Files\Chapter 7</Filter>
+      <Filter>Header Files\Chapter 6</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="test.txt">
+      <Filter>Source Files\Chapter 12</Filter>
+    </Text>
   </ItemGroup>
 </Project>
