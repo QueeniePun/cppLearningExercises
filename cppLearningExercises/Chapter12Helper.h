@@ -128,5 +128,18 @@ private:
     template<typename T>
     void swap(T &value1, T &value2);
 
+    int GetCard();
+    std::string ShowCard(int card);
+    bool CheckSameLine(std::vector< std::vector<double> > set);
+    std::vector<std::string> split(const std::string& expression);
+    double getDistance(double x1, double y1, double x2, double y2);
+    bool hasMatchingSymbols(std::string str, std::vector<char>& symbols);
+    int evaluatePostfix(std::string &postfixString);
+    std::string infixToPostfix(const std::string& expression);
+    bool hasHigherPrecedence(char value1, char value2);
+    int getOperatorWeight(char value);
+    std::string showCardSuit(int card);
+    int showCardRank(int card);
+    bool equalsTwentyFour(std::string& expression);
 };
 

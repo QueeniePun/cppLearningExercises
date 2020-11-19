@@ -4,6 +4,8 @@
 #include <string>
 #include <ctime>
 #include <cmath>
+#include <fstream>
+
 
 using namespace std;
 
@@ -468,5 +470,486 @@ int Chapter12Helper::Course::getNumberOfStudents() const
 
 void Chapter12Helper::RunExercise11()
 {
-    // 12.11 
+    // 12.11 Rewrite exercise 7.21 using vectors to represent arrays 
+    srand(time(0));
+    bool spades = false;
+    bool hearts = false;
+    bool diamond = false;
+    bool clubs = false;
+    
+    vector<string> picks(4);
+
+    int index = 0;
+    int pickCount = 0;
+
+    while (!spades || !hearts || !diamond || !clubs)
+    {
+        string card = ShowCard(GetCard());
+        pickCount++;
+        if (card.find("Spades") != string::npos && !spades) {
+            picks[index++] = card;
+            spades = true;
+        }
+        else if (card.find("Hearts") != string::npos && !hearts) {
+            picks[index++] = card;
+            hearts = true;
+        }
+        else if (card.find("Diamond") != string::npos && !diamond) {
+            picks[index++] = card;
+            diamond = true;
+        }
+        else if (card.find("Clubs") != string::npos && !clubs) {
+            picks[index++] = card;
+            clubs = true;
+        }
+
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        printf("%s \n", picks[i].c_str());
+    }
+    printf("%s %d", "Pick count = ", pickCount);
+}
+
+
+int Chapter12Helper::GetCard()
+{
+    int card = rand() % 52 + 1;
+    return card;
+}
+
+string Chapter12Helper::ShowCard(int card)
+{
+    vector<string> suit = { "Spades", "Hearts", "Diamonds", "Clubs", };
+    vector<string> ranks = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
+
+    int suitNum = card / 13;
+    int rankNum = card % 13;
+
+    return ranks[rankNum] + " of " + suit[suitNum];
+}
+
+void Chapter12Helper::RunExercise12()
+{
+    // 12.12 Rewrite exercise 8.16 using vectors to represent strings
+    
+    // sets to test with 
+    vector< vector<double> > set1 = { {1, 1}, {2, 2}, {3, 3}, {4, 4} };
+    vector< vector<double> > set2 = { {0, 1}, {1, 2}, {4, 5}, {5, 6} };
+    vector< vector<double> > set3 = { {0, 1}, {1, 2}, {4, 5}, {4.5, 4} };
+ 
+    CheckSameLine(set3);
+}
+
+bool Chapter12Helper::CheckSameLine(vector< vector<double> > set)
+{
+    // find the slope between first two points 
+    double slope = (set[1][1] - set[0][1]) / (set[1][0] - set[0][0]);
+
+    // compare each point and check if slopes are same
+    for (int i = 2; i < set.size(); i++)
+    {
+        double currSlope = (set[i][1] - set[0][1]) / (set[i][0] - set[0][0]);
+        if (currSlope != slope)
+        {
+            cout << "Point " << "(" << set[i][0] << ", " << set[i][1] <<
+                ") is not on the same line" << endl;
+            return false;
+        }
+    }
+    cout << "All points are on the same line." << endl;
+    return true; 
+}
+
+void Chapter12Helper::RunExercise13()
+{
+    // 12.13 Write a function that splits the expression into numbers, operators,
+    //       and parentheses, and displays split items in reverse order
+    string s = "4 + 50";
+    vector<string> v = split(s);
+    for (int i = v.size() - 1; i >= 0; i--)
+    {
+        cout << v[i] << endl;
+    }
+}
+
+vector<string> Chapter12Helper::split(const string& expression)
+{
+    vector<string> v; 
+    string numberString; 
+
+    for (int i = 0; i < expression.length(); i++)
+    {
+        if (isdigit(expression[i]))
+        {
+            numberString.append(1, expression[i]);
+        }
+        else
+        {
+            if (numberString.size() > 0)
+            {
+                v.push_back(numberString); // store the numeric string 
+                numberString.erase(); // empty the numeric string 
+            }
+
+            if (!isspace(expression[i]))
+            {
+                string s;
+                s.append(1, expression[i]);
+                v.push_back(s); // store operator or parenthese
+            }
+        }
+    }
+
+    if (numberString.size() > 0)
+    {
+        v.push_back(numberString);
+    }
+
+    return v; 
+}
+
+void Chapter12Helper::RunExercise14()
+{
+    // 12.14 Rewrite listing 8.3. First prompt the user to enter the num points
+    //       then prompt the user to enter all the points
+
+    int numPoints;
+    cout << "Enter the number of points: " << endl;
+    cin >> numPoints;
+
+    vector< vector<double> > points(numPoints);
+    for (int i = 0; i < numPoints; i++)
+    {
+        points[i] = vector<double>(3);
+    }
+
+    cout << "Enter the points: ";
+    for (int i = 0; i < numPoints; i++)
+    {
+        cin >> points[i][0] >> points[i][1];
+    }
+
+    int p1 = 0, p2 = 1;
+    double shortestDistance = getDistance(points[p1][0], points[p1][1],
+        points[p2][0], points[p2][1]);
+
+    for (int i = 0; i < numPoints; i++)
+    {
+        for (int j = i + 1; j < numPoints; j++)
+        {
+            double distance = getDistance(points[i][0], points[i][1],
+                points[j][0], points[j][1]);
+
+            if (shortestDistance > distance)
+            {
+                p1 = i; 
+                p2 = j;
+                shortestDistance = distance; 
+            }
+        }
+    }
+
+    cout << "The closest two points are " <<
+        "(" << points[p1][0] << ", " << points[p1][1] << ") and (" <<
+        points[p2][0] << ", " << points[p2][1] << ")";
+}
+
+double Chapter12Helper::getDistance(double x1, double y1, double x2, double y2)
+{
+    return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+}
+
+void Chapter12Helper::RunExercise15()
+{
+    // 12.5 Write a program that prompts the user to enter a c++ source-code
+    //      filename and check whether the file has correct pairs of grouping
+    //      symbols () [] and {}
+
+    // read a file line by line and check 
+    ifstream file("test.txt");
+    string str;
+    vector<char> symbols;
+    bool isMatching = true;
+
+    while (getline(file, str))
+    {
+        isMatching = hasMatchingSymbols(str, symbols);
+        if (!isMatching)
+        {
+            cout << "no matching symbols" << endl;
+            break;
+        }
+    }
+
+    if (isMatching)
+    {
+       // check if there are dangling symbols
+        if (symbols.empty())
+        {
+            cout << "Grouping symbols match";
+        }
+        else
+        {
+            cout << "No matching symbols";
+        }
+    }
+    
+}
+
+bool Chapter12Helper::hasMatchingSymbols(string str, vector<char> &symbols)
+{
+    for (int i = 0; i < str.size(); i++)
+    {
+        char current = str[i];
+        if (current == '{' || current == '[' || current == '(')
+        {
+            symbols.push_back(current);
+            continue; 
+        }
+        if (current == '}' || current == ']' || current == ')')
+        {
+            if (symbols.empty())
+            {
+                return false; // there is no matching opening symbol
+            }
+            else
+            {
+                // compare the pair
+                char last = symbols[symbols.size() - 1];
+                bool matching = false; 
+
+                switch (last)
+                {
+                case '{': 
+                    if (current == '}')
+                    {
+                        matching = true; 
+                        break;
+                    }
+                case '[': 
+                    if (current == ']')
+                    {
+                        matching = true; 
+                        break;
+                    }
+                case '(': 
+                    if (current == ')')
+                    {
+                        matching = true; 
+                        break;
+                    }
+                default: // if no case match is found
+                    break;
+                }
+                if (matching)
+                {
+                    symbols.pop_back();
+                }
+                else
+                {
+                    return false; 
+                }
+            }
+        }
+    }
+}
+
+void Chapter12Helper::RunExercise16()
+{
+    // 12.16 Write a program that prompts the user to enter a post fix expression
+    //       and evaluates it 
+
+    string postfixString; 
+    cout << "Enter a postfix expression: ";
+    getline(cin, postfixString);
+
+    cout << evaluatePostfix(postfixString);
+}
+
+int Chapter12Helper::evaluatePostfix(string& postfixString)
+{
+    vector<int> stack;
+
+    // scan all the characters in the string 
+    for (int i = 0; i < postfixString.length(); i++)
+    {
+        if (postfixString[i] == ' ')
+        {
+            continue; 
+        }
+        // if it is a digit, push to stack
+        if (isdigit(postfixString[i]))
+        {
+            int num = 0; 
+            while (isdigit(postfixString[i]))
+            {
+                num = num * 10 + (postfixString[i] - 48);
+                i++;
+            }
+            i--; 
+            stack.push_back(num);
+        }
+        // check if it is an operator 
+        if (postfixString[i] == '+' || postfixString[i] == '-' ||
+            postfixString[i] == '*' || postfixString[i] == '/')
+        {
+            int val1 = stack.back();
+            stack.pop_back();
+            int val2 = stack.back();
+            stack.pop_back();
+            switch (postfixString[i])
+            {
+            case '+': stack.push_back(val2 + val1); break;
+            case '-': stack.push_back(val2 - val1); break;
+            case '*': stack.push_back(val2 * val1); break;
+            case '/': stack.push_back(val2 / val1); break;
+            }
+        }
+    }
+    return stack.back();
+}
+
+void Chapter12Helper::RunExercise17()
+{
+    // 12.17 Write a program for the 24 point card game. 
+
+    srand(time(0));
+
+    vector<string> ranks = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
+    vector<int> cards(4);
+    for (int i = 0; i < 4; i++)
+    {
+        int card = GetCard();
+        cards[i] = showCardRank(card);
+
+        // Display the card
+        string suitString = showCardSuit(card);
+        string rankString = ranks[showCardRank(card)];
+        cout << rankString << " of " << suitString << endl;
+    }
+
+    string infixString; 
+    cout << "Enter an infix expression: ";
+    getline(cin, infixString);
+    string postfixString = infixToPostfix(infixString);
+    cout << evaluatePostfix(postfixString);
+}
+
+string Chapter12Helper::showCardSuit(int card)
+{
+    vector<string> suit = { "Spades", "Hearts", "Diamonds", "Clubs", };
+
+    int suitNum = card / 13;
+
+    return suit[suitNum];
+}
+
+int Chapter12Helper::showCardRank(int card)
+{
+    int rankNum = card % 13;
+    return rankNum;
+}
+
+bool Chapter12Helper::equalsTwentyFour(string& expression)
+{
+    return true;
+}
+
+void Chapter12Helper::RunExercise18()
+{
+    // 12.18 Write a function that converts an infix expression into a postfix
+
+     string s = "(1 + 2) * 3";
+     cout << infixToPostfix(s) << endl;
+
+    string s2 = "2 * (1 + 3)";
+    cout << infixToPostfix(s2) << endl;
+}
+
+string Chapter12Helper::infixToPostfix(const string& expression)
+{
+   string postfixString; 
+   vector<char> charStack;
+
+    for (int i = 0; i < expression.length(); i++)
+    {
+        if (expression[i] == ' ')
+        {
+            continue; 
+        }
+        else if (expression[i] == '+' || expression[i] == '-' ||
+            expression[i] == '*' || expression[i] == '/')
+        {
+            while (!charStack.empty() && charStack.back() != '('
+                && hasHigherPrecedence(charStack.back(), expression[i]))
+            {
+                postfixString += charStack.back();
+                postfixString += " ";
+                charStack.pop_back();
+            }
+            charStack.push_back(expression[i]);
+        }
+        else if (isdigit(expression[i]))
+        {
+            int num = 0; 
+            while (isdigit(expression[i]))
+            {
+                num = num * 10 + (expression[i] - 48);
+                i++;
+            }
+            i--;
+            postfixString += to_string(num);
+            postfixString += " ";
+        }
+        else if (expression[i] == '(')
+        {
+            charStack.push_back(expression[i]);
+        }
+        else if (expression[i] == ')')
+        {
+            while (!charStack.empty() && charStack.back() != '(')
+            {
+                postfixString += charStack.back();
+                postfixString += " ";
+                charStack.pop_back();
+            }
+            charStack.pop_back();
+        }
+    }
+
+    while (!charStack.empty())
+    {
+        postfixString += charStack.back();
+        postfixString += " ";
+        charStack.pop_back();
+    }
+
+    return postfixString; 
+}
+
+bool Chapter12Helper::hasHigherPrecedence(char value1, char value2)
+{
+    int value1Weight = getOperatorWeight(value1);
+    int value2Weight = getOperatorWeight(value1);
+     
+    if (value1Weight == value2Weight)
+    {
+        return true; 
+    }
+    return value1Weight > value2Weight ? true : false; 
+}
+
+int Chapter12Helper::getOperatorWeight(char value)
+{
+    int weight = -1; 
+    switch (value)
+    {
+    case '+': weight = 1; break;
+    case '-': weight = 1; break;
+    case '*': weight = 2; break;
+    case '/': weight = 2; break;
+    }
+    return weight; 
 }

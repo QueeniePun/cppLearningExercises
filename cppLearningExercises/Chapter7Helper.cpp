@@ -886,7 +886,6 @@ void Chapter7Helper::RunExercise21()
     boolean diamond = false;
     boolean clubs = false;
 
-    string deck[52];
     string picks[4];
 
     int index = 0;
@@ -912,7 +911,6 @@ void Chapter7Helper::RunExercise21()
             picks[index++] = card;
             clubs = true;
         }
-
     }
 
     for (int i = 0; i < 4; i++)
