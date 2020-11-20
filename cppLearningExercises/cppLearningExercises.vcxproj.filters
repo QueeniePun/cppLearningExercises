@@ -85,6 +85,12 @@
     <Filter Include="Header Files\Chapter 12">
       <UniqueIdentifier>{28044d52-6270-4386-8971-a4e884706eb0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Chapter 13">
+      <UniqueIdentifier>{592f6eba-c988-4e76-8322-a3cf83a0c4ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chapter 13">
+      <UniqueIdentifier>{2874faff-36d9-4e3b-9ed4-7f63d4c3fc2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -125,6 +131,9 @@
     </ClCompile>
     <ClCompile Include="Chapter12Helper.cpp">
       <Filter>Source Files\Chapter 12</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter13Helper.cpp">
+      <Filter>Source Files\Chapter 13</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -191,10 +200,27 @@
     <ClInclude Include="Chapter6Helper.h">
       <Filter>Header Files\Chapter 6</Filter>
     </ClInclude>
+    <ClInclude Include="Chapter13Helper.h">
+      <Filter>Header Files\Chapter 13</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter13Output.h">
+      <Filter>Header Files\Chapter 13</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="test.txt">
       <Filter>Source Files\Chapter 12</Filter>
     </Text>
+    <Text Include="Chapter13_1.txt">
+      <Filter>Source Files\Chapter 13</Filter>
+    </Text>
+    <Text Include="Chapter13_4.txt">
+      <Filter>Source Files\Chapter 13</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Chapter13_5.dat">
+      <Filter>Source Files\Chapter 13</Filter>
+    </None>
   </ItemGroup>
 </Project>
