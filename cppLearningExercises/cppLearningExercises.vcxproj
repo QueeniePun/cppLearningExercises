@@ -142,6 +142,7 @@
     <ClCompile Include="Chapter10Helper.cpp" />
     <ClCompile Include="Chapter11Helper.cpp" />
     <ClCompile Include="Chapter12Helper.cpp" />
+    <ClCompile Include="Chapter13Helper.cpp" />
     <ClCompile Include="Chapter1Helper.cpp" />
     <ClCompile Include="Chapter2Helper.cpp" />
     <ClCompile Include="Chapter3Helper.cpp" />
@@ -160,6 +161,8 @@
     <ClInclude Include="Chapter11Output.h" />
     <ClInclude Include="Chapter12Helper.h" />
     <ClInclude Include="Chapter12Output.h" />
+    <ClInclude Include="Chapter13Helper.h" />
+    <ClInclude Include="Chapter13Output.h" />
     <ClInclude Include="Chapter1Helper.h" />
     <ClInclude Include="Chapter2Helper.h" />
     <ClInclude Include="Chapter3Helper.h" />
@@ -177,7 +180,12 @@
     <ClInclude Include="Chapter9Output.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Chapter13_1.txt" />
+    <Text Include="Chapter13_4.txt" />
     <Text Include="test.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Chapter13_5.dat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
