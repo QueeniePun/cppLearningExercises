@@ -79,6 +79,7 @@ public:
     {
     public:
         Loan();
+        double getLoan();
         static double getMonthlyPayment(double annualInterestRate, int numberOfYears, double loanAmount);
         static double getTotalPayment(double annualInterestRate, int numberOfYears, double loanAmount);
     private:

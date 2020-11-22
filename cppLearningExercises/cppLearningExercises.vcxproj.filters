@@ -217,9 +217,24 @@
     <Text Include="Chapter13_4.txt">
       <Filter>Source Files\Chapter 13</Filter>
     </Text>
+    <Text Include="test1.txt">
+      <Filter>Source Files\Chapter 13</Filter>
+    </Text>
+    <Text Include="test2.txt">
+      <Filter>Source Files\Chapter 13</Filter>
+    </Text>
+    <Text Include="Chapter13_13.txt">
+      <Filter>Source Files\Chapter 13</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="Chapter13_5.dat">
+      <Filter>Source Files\Chapter 13</Filter>
+    </None>
+    <None Include="Chapter13_6.dat">
+      <Filter>Source Files\Chapter 13</Filter>
+    </None>
+    <None Include="Chapter13_14.dat">
       <Filter>Source Files\Chapter 13</Filter>
     </None>
   </ItemGroup>

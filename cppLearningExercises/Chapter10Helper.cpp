@@ -964,6 +964,11 @@ Chapter10Helper::Loan::Loan()
     loanAmount = 100000;
 }
 
+double Chapter10Helper::Loan::getLoan()
+{
+    return loanAmount;
+}
+
 double Chapter10Helper::Loan::getMonthlyPayment(double annualInterestRate, int numberOfYears, double loanAmount)
 {
     double monthlyInterestRate = annualInterestRate / 1200; 
