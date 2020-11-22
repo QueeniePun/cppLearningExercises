@@ -387,6 +387,8 @@ void Chapter13Helper::RunExercise13()
     {
         cout << words[i] << endl;
     }
+
+    input.close();
 }
 
 void Chapter13Helper::RunExercise14()
