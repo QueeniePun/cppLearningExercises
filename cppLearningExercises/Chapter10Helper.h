@@ -1,6 +1,7 @@
 #pragma once
 #include "Chapter10Output.h"
 #include <string>
+#include <iostream>
 
 class Chapter10Helper
 {
@@ -28,6 +29,13 @@ public:
         void copy(char s[], int index, int n);
         void substr(int index, int n);
         int find(char ch);
+
+        char operator[](int index);
+
+        friend std::ostream& operator<<(std::ostream&, MyString1&);
+        friend std::istream& operator>>(std::istream&, MyString1&);
+
+        MyString1& operator+=(MyString1& s2);
 
     private:
         
@@ -234,3 +242,10 @@ private:
     void StartHangmanGame(Hangman game);
 }; 
 
+Chapter10Helper::MyString1 operator+(Chapter10Helper::MyString1 s1, Chapter10Helper::MyString1 s2);
+bool operator<(Chapter10Helper::MyString1& s1, Chapter10Helper::MyString1& s2);
+bool operator<=(Chapter10Helper::MyString1& s1, Chapter10Helper::MyString1& s2);
+bool operator>(Chapter10Helper::MyString1& s1, Chapter10Helper::MyString1& s2);
+bool operator>=(Chapter10Helper::MyString1& s1, Chapter10Helper::MyString1& s2);
+bool operator==(Chapter10Helper::MyString1& s1, Chapter10Helper::MyString1& s2);
+bool operator!=(Chapter10Helper::MyString1& s1, Chapter10Helper::MyString1& s2);

@@ -7,6 +7,7 @@
 #include <ctime>
 #include <array>
 #include <Windows.h>
+#include <sstream>
 
 using namespace std;
 
@@ -232,6 +233,80 @@ int Chapter10Helper::MyString1::find(char ch)
 
     return -1;
 }
+
+char Chapter10Helper::MyString1::operator[](int index)
+{
+    if (index < 0 || index >= this->length())
+    {
+        throw runtime_error("subscript out of range");
+    }
+    else
+    {
+        return str[index];
+    }
+}
+
+Chapter10Helper::MyString1 operator+(Chapter10Helper::MyString1 s1, Chapter10Helper::MyString1 s2)
+{
+    s1.append(s2);
+    return s1;
+}
+
+Chapter10Helper::MyString1& Chapter10Helper::MyString1::operator+=(Chapter10Helper::MyString1& s2)
+{
+    this->append(s2);
+    return *this;
+}
+
+ostream& operator<<(ostream& out, Chapter10Helper::MyString1& s1)
+{
+    string outString = "";
+    for (int i = 0; i < s1.length(); i++)
+    {
+        outString += s1[i];
+    }
+
+    out << outString;
+    return out;
+}
+
+istream& operator>>(istream& in, Chapter10Helper::MyString1& s1)
+{
+    cout << "Enter char: ";
+    in >> s1.str[s1.length()];
+    return in; 
+}
+
+bool operator<(Chapter10Helper::MyString1& s1, Chapter10Helper::MyString1& s2)
+{
+    return (s1.compare(s2) < 0);
+}
+
+bool operator<=(Chapter10Helper::MyString1& s1, Chapter10Helper::MyString1& s2)
+{
+    return s1.compare(s2) <= 0;
+}
+
+bool operator>(Chapter10Helper::MyString1& s1, Chapter10Helper::MyString1& s2)
+{
+    return s1.compare(s2) > 0;
+}
+
+bool operator>=(Chapter10Helper::MyString1& s1, Chapter10Helper::MyString1& s2)
+{
+    return s1.compare(s2) >= 0;
+}
+
+bool operator==(Chapter10Helper::MyString1& s1, Chapter10Helper::MyString1& s2)
+{
+    return s1.compare(s2) == 0;
+}
+
+bool operator!=(Chapter10Helper::MyString1& s1, Chapter10Helper::MyString1& s2)
+{
+    return s1.compare(s2) != 0;
+}
+
 
 void Chapter10Helper::RunExercise3()
 {
