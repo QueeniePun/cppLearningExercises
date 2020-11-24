@@ -143,6 +143,7 @@
     <ClCompile Include="Chapter11Helper.cpp" />
     <ClCompile Include="Chapter12Helper.cpp" />
     <ClCompile Include="Chapter13Helper.cpp" />
+    <ClCompile Include="Chapter14Helper.cpp" />
     <ClCompile Include="Chapter1Helper.cpp" />
     <ClCompile Include="Chapter2Helper.cpp" />
     <ClCompile Include="Chapter3Helper.cpp" />
@@ -152,7 +153,11 @@
     <ClCompile Include="Chapter7Helper.cpp" />
     <ClCompile Include="Chapter8Helper.cpp" />
     <ClCompile Include="Chapter9Helper.cpp" />
+    <ClCompile Include="Circle2.cpp" />
+    <ClCompile Include="ComplexClass.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="RationalClass.cpp" />
+    <ClCompile Include="StackOfIntegers.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chapter10Helper.h" />
@@ -163,6 +168,8 @@
     <ClInclude Include="Chapter12Output.h" />
     <ClInclude Include="Chapter13Helper.h" />
     <ClInclude Include="Chapter13Output.h" />
+    <ClInclude Include="Chapter14Helper.h" />
+    <ClInclude Include="Chapter14Output.h" />
     <ClInclude Include="Chapter1Helper.h" />
     <ClInclude Include="Chapter2Helper.h" />
     <ClInclude Include="Chapter3Helper.h" />
@@ -178,6 +185,10 @@
     <ClInclude Include="Chapter8Output.h" />
     <ClInclude Include="Chapter9Helper.h" />
     <ClInclude Include="Chapter9Output.h" />
+    <ClInclude Include="Circle2.h" />
+    <ClInclude Include="ComplexClass.h" />
+    <ClInclude Include="RationalClass.h" />
+    <ClInclude Include="StackOfIntegers.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Chapter13_1.txt" />

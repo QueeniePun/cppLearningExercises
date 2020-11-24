@@ -12,6 +12,7 @@
 #include "Chapter11Helper.h"
 #include "Chapter12Helper.h"
 #include "Chapter13Helper.h"
+#include "Chapter14Helper.h"
 
 using namespace std;
 
@@ -31,9 +32,9 @@ int main()
     Chapter11Helper chapter11;
     Chapter12Helper chapter12;
     Chapter13Helper chapter13;
+    Chapter14Helper chapter14;
 
-    chapter13.RunExercise13();
+    chapter14.RunExercise7();
 
-    return 0;
 }
 
