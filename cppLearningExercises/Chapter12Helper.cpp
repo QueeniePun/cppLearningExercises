@@ -1,5 +1,7 @@
 #include "Chapter12Helper.h"
+#include <algorithm>
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <string>
 #include <ctime>
@@ -768,10 +770,9 @@ void Chapter12Helper::RunExercise16()
     cout << evaluatePostfix(postfixString);
 }
 
-int Chapter12Helper::evaluatePostfix(string& postfixString)
+double Chapter12Helper::evaluatePostfix(string& postfixString)
 {
-    vector<int> stack;
-
+    vector<double> stack;
     // scan all the characters in the string 
     for (int i = 0; i < postfixString.length(); i++)
     {
@@ -795,9 +796,9 @@ int Chapter12Helper::evaluatePostfix(string& postfixString)
         if (postfixString[i] == '+' || postfixString[i] == '-' ||
             postfixString[i] == '*' || postfixString[i] == '/')
         {
-            int val1 = stack.back();
+            double val1 = stack.back();
             stack.pop_back();
-            int val2 = stack.back();
+            double val2 = stack.back();
             stack.pop_back();
             switch (postfixString[i])
             {
@@ -818,11 +819,17 @@ void Chapter12Helper::RunExercise17()
     srand(time(0));
 
     vector<string> ranks = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
+
+    // Generate 4 Random Cards
     vector<int> cards(4);
+
     for (int i = 0; i < 4; i++)
     {
         int card = GetCard();
-        cards[i] = showCardRank(card);
+        cards[i] = showCardRank(card) + 1;
+
+        cout << "Card: " << card << endl;
+        cout << "Rank: " << showCardRank(card) << endl;
 
         // Display the card
         string suitString = showCardSuit(card);
@@ -830,11 +837,185 @@ void Chapter12Helper::RunExercise17()
         cout << rankString << " of " << suitString << endl;
     }
 
-    string infixString; 
+
+    vector< vector<char> > operatorList = operatorCombos(); 
+    vector< vector<int> > digitList = digitCombos(cards); 
+
+    /*string infixString; 
     cout << "Enter an infix expression: ";
     getline(cin, infixString);
     string postfixString = infixToPostfix(infixString);
-    cout << evaluatePostfix(postfixString);
+    cout << evaluatePostfix(postfixString);*/
+
+    vector<string> expList = generateExpressions(operatorList, digitList);
+    testExpression(expList);
+    /*Exercise17Output.Actual = expList;*/
+}
+
+vector< vector<int> > Chapter12Helper::digitCombos(vector<int> cards)
+{
+    int intList[4];
+    for (int i = 0; i < 4; i++)
+    {
+        intList[i] = cards[i];
+    }
+
+    sort(intList, intList + 4);
+    
+    // create a vector matrix that holds all digit combinations 
+    vector< vector<int> > digitCombos(24);
+    for (int i = 0; i < 24; i++)
+    { 
+        digitCombos[i] = vector<int>(4);
+    }
+
+    // generate combinations 
+    int count = 0;
+    do {
+        digitCombos[count][0] = intList[0];
+        digitCombos[count][1] = intList[1];
+        digitCombos[count][2] = intList[2];
+        digitCombos[count][3] = intList[3];
+        count++;
+
+        cout << intList[0] << ' ' << intList[1] << ' ' << intList[2] << ' '
+            << intList[3] << endl;
+    } while (next_permutation(intList, intList + 4));
+
+    cout << count << endl;
+
+    while (digitCombos.size() != count)
+    {
+        digitCombos.pop_back();
+    }
+
+    return digitCombos; 
+}
+
+vector< vector<char> > Chapter12Helper::operatorCombos()
+{
+    vector< vector<char> > operatorList(64); // There are 4x4x4 = 64 operator combos
+    for (int i = 0; i < 64; i++)
+    {
+        operatorList[i] = vector<char>(3); // Each combo has 3 operators
+    }
+
+    char ops[4] = { '+', '-', '*', '/' };
+
+    int index = 0; 
+    for (int a = 0; a < 4; a++)
+    {
+        for (int b = 0; b < 4; b++)
+        {
+            for (int c = 0; c < 4; c++)
+            {
+                operatorList[index][0] = ops[a];
+                operatorList[index][1] = ops[b];
+                operatorList[index][2] = ops[c];
+                index++;
+            }
+        }
+    }
+    return operatorList; 
+}
+
+vector<string> Chapter12Helper::generateExpressions(vector< vector<char> >& operatorList, vector< vector<int> > &digitList)
+{
+    vector<string> expressions;
+
+    for (int i = 0; i < digitList.size(); i++)
+    {
+        for (int j = 0; j < operatorList.size(); j++)
+        {
+            // generate temp digits
+            vector<int> digitTemp; 
+            for (int k = 0; k < 4; k++)
+            {
+                digitTemp.push_back(digitList[i][k]);
+            }
+
+            // generate operator
+            vector<char> operatorTemp;
+            for (int l = 0; l < 3; l++)
+            {
+                operatorTemp.push_back(operatorList[j][l]);
+            }
+
+            // find the expression
+            int expPositions[] = { 0, 1, 2, 3, 4, 5, 6 };
+            do
+            {
+                string temp = "";
+                int digitCount = 0; 
+                int operatorCount = 0; 
+                bool isDigit = false;
+                bool isValid = true;
+                for (int i = 0; i < 7; i++)
+                {
+                    temp += parsePosition(expPositions[i], operatorTemp, digitTemp, isDigit);
+                    temp += " ";
+                    isDigit ? digitCount++ : operatorCount++;
+                    if (operatorCount >= digitCount)
+                    {
+                        isValid = false;
+                        break;
+                    }
+                }
+                if (isValid)
+                {
+                    expressions.push_back(temp);
+                }
+            } while (next_permutation(expPositions + 2, expPositions + 6));
+
+        }
+    }
+    return expressions;
+}
+
+string Chapter12Helper::parsePosition(int position, vector<char> operatorList, vector<int> digitList, bool &isDigit)
+{
+    // if position is 0, 1, 2, 3, get digit
+    if (position <= 3)
+    {
+        isDigit = true;
+        return to_string(digitList[position]);
+    }
+    else
+    {
+        isDigit = false;
+        string temp = "";
+        int posTemp = position - 4; 
+        temp += operatorList[posTemp];
+        return temp;
+    }
+}
+
+
+string Chapter12Helper::testExpression(vector<string> expressions)
+{
+    bool solutionFound = false; 
+    string solution = "No solution"; 
+    for (int i = 0; i < expressions.size(); i++)
+    {
+        // test expression
+        if (compare_float(evaluatePostfix(expressions[i]), 24, 0.1))
+        {
+            solution = expressions[i];
+            double temp = evaluatePostfix(expressions[i]);
+            cout << setw(5) << setprecision(4) << expressions[i] << "=" <<  temp << endl;
+            solutionFound = true;
+        }
+        
+    }
+
+    cout << solution << endl;
+    return solution;
+}
+
+bool Chapter12Helper::compare_float(double x, double y, double epsilon)
+{
+    return (abs(x - y) < epsilon);
+   
 }
 
 string Chapter12Helper::showCardSuit(int card)
@@ -842,6 +1023,12 @@ string Chapter12Helper::showCardSuit(int card)
     vector<string> suit = { "Spades", "Hearts", "Diamonds", "Clubs", };
 
     int suitNum = card / 13;
+
+    // Check for the multiples of 13
+    if (card % 13 == 0)
+    {
+        suitNum--;
+    }
 
     return suit[suitNum];
 }

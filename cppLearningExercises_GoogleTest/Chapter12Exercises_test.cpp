@@ -1,10 +1,10 @@
 #include "pch.h"
-#include "../cppLearningExercises/Chapter11Helper.cpp"
+#include "../cppLearningExercises/Chapter12Helper.cpp"
 
-TEST(Chapter11, Exercise1)
+TEST(Chapter12, Exercise17)
 {
     // Setup supporting structures
-    Chapter11Helper chapter11Helper;
+    Chapter12Helper chapter12Helper;
 
     // Setup inputs
 
@@ -12,8 +12,7 @@ TEST(Chapter11, Exercise1)
 
 
     // Execute logic
-    chapter11Helper.RunExercise1();
-
+    chapter12Helper.RunExercise17();
     // Verify expected outputs
 
 }

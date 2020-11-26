@@ -87,6 +87,10 @@ void Chapter14Helper::RunExercise5()
     s1.assign(chars);
     s2.assign(chars2);
     cout << s1[0] << endl;
+    // Note: Save the result of the overloaded + operator to a MyString1 (s1) instance
+    //       because the overloaded output operator expects a reference to a MyString1
+    //       instance. Therefore you cannot pass the expression (s1 + s2) as a 
+    //       MyString1 instance because it does not persist in memory. 
     s1 = s1 + s2;
     cout << s1 << endl;
     // cout << (s1 + s2) << endl;
