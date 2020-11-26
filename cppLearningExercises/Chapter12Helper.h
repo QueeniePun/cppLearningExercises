@@ -8,7 +8,7 @@ class Chapter12Helper
 {
 public:
     // Supporting data structures
-    CHAPTER12::Exercise1Output_s Exercise1Output;
+    CHAPTER12::Exercise17Output_s Exercise17Output;
 
     // Exercise 6 and 7
     template<typename T>
@@ -84,7 +84,7 @@ public:
 
     // Constructor
     Chapter12Helper() :
-        Exercise1Output()
+        Exercise17Output()
     {};
 
     // Destructor 
@@ -134,12 +134,19 @@ private:
     std::vector<std::string> split(const std::string& expression);
     double getDistance(double x1, double y1, double x2, double y2);
     bool hasMatchingSymbols(std::string str, std::vector<char>& symbols);
-    int evaluatePostfix(std::string &postfixString);
+    double evaluatePostfix(std::string &postfixString);
     std::string infixToPostfix(const std::string& expression);
     bool hasHigherPrecedence(char value1, char value2);
     int getOperatorWeight(char value);
     std::string showCardSuit(int card);
+    std::vector<std::string> generateExpressions(std::vector< std::vector<char> > &operatorList, std::vector< std::vector<int> >& digitList);
+    std::vector< std::vector<char> > operatorCombos();
+    std::vector< std::vector<int> > digitCombos(std::vector<int> cards);
+    std::string parsePosition(int position, std::vector<char> operatorList, std::vector<int> digitList, bool& isDigit);
+    std::string testExpression(std::vector<std::string> expressions);
+    bool sanitizeExpression(std::string expression);
     int showCardRank(int card);
     bool equalsTwentyFour(std::string& expression);
+    bool compare_float(double x, double y, double epsilon = 0.01);
 };
 

@@ -1,22 +1,21 @@
 #pragma once
-#include "Chapter14Output.h"
+#include "Chapter15Output.h"
 #include <string>
 #include <vector>
 
-
-class Chapter14Helper
+class Chapter15Helper
 {
 public:
     // Supporting data structures
-    CHAPTER14::Exercise1Output_s Exercise1Output;
+    CHAPTER15::Exercise1Output_s Exercise1Output;
 
     // Constructor
-    Chapter14Helper() :
+    Chapter15Helper() :
         Exercise1Output()
     {};
 
     // Destructor 
-    ~Chapter14Helper() {};
+    ~Chapter15Helper() {};
 
     // Method
     void RunExercise1();
@@ -24,9 +23,7 @@ public:
     void RunExercise3();
     void RunExercise4();
     void RunExercise5();
-    void RunExercise6();
-    void RunExercise7();
-
+    
     // Getters
 
 private:

@@ -144,6 +144,7 @@
     <ClCompile Include="Chapter12Helper.cpp" />
     <ClCompile Include="Chapter13Helper.cpp" />
     <ClCompile Include="Chapter14Helper.cpp" />
+    <ClCompile Include="Chapter15Helper.cpp" />
     <ClCompile Include="Chapter1Helper.cpp" />
     <ClCompile Include="Chapter2Helper.cpp" />
     <ClCompile Include="Chapter3Helper.cpp" />
@@ -170,6 +171,8 @@
     <ClInclude Include="Chapter13Output.h" />
     <ClInclude Include="Chapter14Helper.h" />
     <ClInclude Include="Chapter14Output.h" />
+    <ClInclude Include="Chapter15Helper.h" />
+    <ClInclude Include="Chapter15Output.h" />
     <ClInclude Include="Chapter1Helper.h" />
     <ClInclude Include="Chapter2Helper.h" />
     <ClInclude Include="Chapter3Helper.h" />

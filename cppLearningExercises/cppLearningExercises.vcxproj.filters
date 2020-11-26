@@ -97,6 +97,12 @@
     <Filter Include="Header Files\Chapter 14">
       <UniqueIdentifier>{2a9d9085-8874-4eb8-814b-8273e73325ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Chapter 15">
+      <UniqueIdentifier>{7a301729-d226-4bcb-8347-8112598837bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chapter 15">
+      <UniqueIdentifier>{6ebc6470-6b16-4487-95fc-ac4ee711e31c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -155,6 +161,9 @@
     </ClCompile>
     <ClCompile Include="ComplexClass.cpp">
       <Filter>Source Files\Chapter 14</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter15Helper.cpp">
+      <Filter>Source Files\Chapter 15</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -244,6 +253,12 @@
     </ClInclude>
     <ClInclude Include="ComplexClass.h">
       <Filter>Header Files\Chapter 14</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter15Helper.h">
+      <Filter>Header Files\Chapter 15</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter15Output.h">
+      <Filter>Header Files\Chapter 15</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

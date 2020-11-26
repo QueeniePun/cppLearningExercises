@@ -2,13 +2,9 @@
 
 namespace CHAPTER12
 {
-    struct Exercise1Output_s
+    struct Exercise17Output_s
     {
-        int Actual;
+        // std::vector<std::string> Actual;
 
-        // Constructor
-        Exercise1Output_s() :
-            Actual(0)
-        {};
     };
 }
