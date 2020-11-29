@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Account.cpp" />
     <ClCompile Include="Chapter10Helper.cpp" />
     <ClCompile Include="Chapter11Helper.cpp" />
     <ClCompile Include="Chapter12Helper.cpp" />
@@ -154,13 +155,27 @@
     <ClCompile Include="Chapter7Helper.cpp" />
     <ClCompile Include="Chapter8Helper.cpp" />
     <ClCompile Include="Chapter9Helper.cpp" />
+    <ClCompile Include="Checking.cpp" />
     <ClCompile Include="Circle2.cpp" />
     <ClCompile Include="ComplexClass.cpp" />
+    <ClCompile Include="Employee.cpp" />
+    <ClCompile Include="Faculty.cpp" />
+    <ClCompile Include="GenericStack.cpp" />
+    <ClCompile Include="GeometricObject.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MyDate.cpp" />
+    <ClCompile Include="MyPoint.cpp" />
+    <ClCompile Include="Person.cpp" />
     <ClCompile Include="RationalClass.cpp" />
+    <ClCompile Include="Saving.cpp" />
     <ClCompile Include="StackOfIntegers.cpp" />
+    <ClCompile Include="Staff.cpp" />
+    <ClCompile Include="Student.cpp" />
+    <ClCompile Include="ThreeDPoint.cpp" />
+    <ClCompile Include="Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Account.h" />
     <ClInclude Include="Chapter10Helper.h" />
     <ClInclude Include="Chapter10Output.h" />
     <ClInclude Include="Chapter11Helper.h" />
@@ -188,10 +203,23 @@
     <ClInclude Include="Chapter8Output.h" />
     <ClInclude Include="Chapter9Helper.h" />
     <ClInclude Include="Chapter9Output.h" />
+    <ClInclude Include="Checking.h" />
     <ClInclude Include="Circle2.h" />
     <ClInclude Include="ComplexClass.h" />
+    <ClInclude Include="Employee.h" />
+    <ClInclude Include="Faculty.h" />
+    <ClInclude Include="GenericStack.h" />
+    <ClInclude Include="GeometricObject.h" />
+    <ClInclude Include="MyDate.h" />
+    <ClInclude Include="MyPoint.h" />
+    <ClInclude Include="Person.h" />
     <ClInclude Include="RationalClass.h" />
+    <ClInclude Include="Saving.h" />
     <ClInclude Include="StackOfIntegers.h" />
+    <ClInclude Include="Staff.h" />
+    <ClInclude Include="Student.h" />
+    <ClInclude Include="ThreeDPoint.h" />
+    <ClInclude Include="Triangle.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Chapter13_1.txt" />

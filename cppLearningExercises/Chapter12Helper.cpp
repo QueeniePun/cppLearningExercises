@@ -828,9 +828,6 @@ void Chapter12Helper::RunExercise17()
         int card = GetCard();
         cards[i] = showCardRank(card) + 1;
 
-        cout << "Card: " << card << endl;
-        cout << "Rank: " << showCardRank(card) << endl;
-
         // Display the card
         string suitString = showCardSuit(card);
         string rankString = ranks[showCardRank(card)];
@@ -841,15 +838,41 @@ void Chapter12Helper::RunExercise17()
     vector< vector<char> > operatorList = operatorCombos(); 
     vector< vector<int> > digitList = digitCombos(cards); 
 
-    /*string infixString; 
-    cout << "Enter an infix expression: ";
+    // Get user answer 
+    string infixString; 
+    cout << "Enter an expression: ";
     getline(cin, infixString);
     string postfixString = infixToPostfix(infixString);
-    cout << evaluatePostfix(postfixString);*/
-
+    int userAnswer = evaluatePostfix(postfixString);
+   
+    // check if solution exists 
     vector<string> expList = generateExpressions(operatorList, digitList);
-    testExpression(expList);
-    /*Exercise17Output.Actual = expList;*/
+    string solutionPostfix = testExpression(expList);
+    string solution = postfixToInfix(solutionPostfix);
+
+    bool solutionExists = true; 
+    if (solutionPostfix == "No solution")
+    {
+        solutionExists = false; 
+    }
+    
+    // validate user's answer 
+    if (userAnswer == 24)
+    {
+        cout << "Congratulations! You got it!";
+    }
+
+    if (userAnswer != 24 && solutionExists)
+    {
+        cout << "Wrong. A possible solution is: " << solution;
+    }
+
+    if (userAnswer == 0 && !solutionExists)
+    {
+        cout << "Correct, there is no solution.";
+    }
+    
+
 }
 
 vector< vector<int> > Chapter12Helper::digitCombos(vector<int> cards)
@@ -878,11 +901,9 @@ vector< vector<int> > Chapter12Helper::digitCombos(vector<int> cards)
         digitCombos[count][3] = intList[3];
         count++;
 
-        cout << intList[0] << ' ' << intList[1] << ' ' << intList[2] << ' '
-            << intList[3] << endl;
+        /*cout << intList[0] << ' ' << intList[1] << ' ' << intList[2] << ' '
+            << intList[3] << endl;*/
     } while (next_permutation(intList, intList + 4));
-
-    cout << count << endl;
 
     while (digitCombos.size() != count)
     {
@@ -1002,13 +1023,9 @@ string Chapter12Helper::testExpression(vector<string> expressions)
         {
             solution = expressions[i];
             double temp = evaluatePostfix(expressions[i]);
-            cout << setw(5) << setprecision(4) << expressions[i] << "=" <<  temp << endl;
             solutionFound = true;
         }
-        
     }
-
-    cout << solution << endl;
     return solution;
 }
 
@@ -1039,9 +1056,52 @@ int Chapter12Helper::showCardRank(int card)
     return rankNum;
 }
 
-bool Chapter12Helper::equalsTwentyFour(string& expression)
+string Chapter12Helper::postfixToInfix(string postfix)
 {
-    return true;
+    vector<string> infix; 
+    for (int i = 0; i < postfix.length(); i++)
+    {
+        if (postfix[i] == ' ')
+        {
+            continue;
+        }
+        // if it is a digit, push to the stack 
+        if (isdigit(postfix[i]))
+        {
+            int num = 0; 
+            while (isdigit(postfix[i]))
+            {
+                num = num * 10 + (postfix[i] - 48);
+                i++;
+            }
+            i--;
+            infix.push_back(to_string(num));
+        }
+        // if it is an operator, then pop off the two values 
+        if ((postfix[i] == '+' || postfix[i] == '-' ||
+            postfix[i] == '*' || postfix[i] == '/'))
+        {
+            string val1 = infix.back();
+            infix.pop_back();
+            string val2 = infix.back();
+            infix.pop_back();
+            switch (postfix[i])
+            {
+            case '+': infix.push_back("(" + val2 + "+" + val1 + ")"); break;
+            case '-': infix.push_back("(" + val2 + "-" + val1 + ")"); break;
+            case '*': infix.push_back("(" + val2 + "*" + val1 + ")"); break;
+            case '/': infix.push_back("(" + val2 + "/" + val1 + ")"); break;
+            }
+        }
+    }
+
+    string temp;
+    for (int i = 0; i < infix.size(); i++)
+    {
+        temp += infix[i];
+    }
+
+    return temp;
 }
 
 void Chapter12Helper::RunExercise18()
