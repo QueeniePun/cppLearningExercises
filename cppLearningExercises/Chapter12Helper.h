@@ -144,9 +144,9 @@ private:
     std::vector< std::vector<int> > digitCombos(std::vector<int> cards);
     std::string parsePosition(int position, std::vector<char> operatorList, std::vector<int> digitList, bool& isDigit);
     std::string testExpression(std::vector<std::string> expressions);
-    bool sanitizeExpression(std::string expression);
     int showCardRank(int card);
-    bool equalsTwentyFour(std::string& expression);
     bool compare_float(double x, double y, double epsilon = 0.01);
+    std::string postfixToInfix(std::string postfix);
+
 };
 

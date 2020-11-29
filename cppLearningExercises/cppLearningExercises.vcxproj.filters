@@ -103,6 +103,36 @@
     <Filter Include="Header Files\Chapter 15">
       <UniqueIdentifier>{6ebc6470-6b16-4487-95fc-ac4ee711e31c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Chapter 15\Exercise 2">
+      <UniqueIdentifier>{b04d33dc-c9c9-4465-8a3a-3ba195b21f08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chapter 15\Exercise 1">
+      <UniqueIdentifier>{63172a82-ee7e-4655-b489-4843b65d6e2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chapter 15\Exercise 3">
+      <UniqueIdentifier>{bd442317-5810-421f-939b-ff60c5ba53c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chapter 15\Exercise 2">
+      <UniqueIdentifier>{7f1e7922-72d6-4fc6-80fe-b2d8c6520885}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chapter 15\Exercise 1">
+      <UniqueIdentifier>{eed9653f-28a4-4242-bd64-896eefaac369}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chapter 15\Exercise 3">
+      <UniqueIdentifier>{d69f7def-cb7f-496c-84f4-2a0cf34bdb91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chapter 15\Exercise 4">
+      <UniqueIdentifier>{d2ae3f76-2617-4f04-894a-4b58841b5212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chapter 15\Exercise 4">
+      <UniqueIdentifier>{d332bf62-a0f1-4e7b-8bce-73c0b5d6574c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chapter 15\Exercise 5">
+      <UniqueIdentifier>{5eeb8954-03bc-49bc-8c09-25031195af1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chapter 15\Exercise 5">
+      <UniqueIdentifier>{12a052ce-9fa4-45bb-86fe-7ae31da2874c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -164,6 +194,48 @@
     </ClCompile>
     <ClCompile Include="Chapter15Helper.cpp">
       <Filter>Source Files\Chapter 15</Filter>
+    </ClCompile>
+    <ClCompile Include="Employee.cpp">
+      <Filter>Source Files\Chapter 15\Exercise 2</Filter>
+    </ClCompile>
+    <ClCompile Include="MyDate.cpp">
+      <Filter>Source Files\Chapter 15\Exercise 2</Filter>
+    </ClCompile>
+    <ClCompile Include="Person.cpp">
+      <Filter>Source Files\Chapter 15\Exercise 2</Filter>
+    </ClCompile>
+    <ClCompile Include="Student.cpp">
+      <Filter>Source Files\Chapter 15\Exercise 2</Filter>
+    </ClCompile>
+    <ClCompile Include="Faculty.cpp">
+      <Filter>Source Files\Chapter 15\Exercise 2</Filter>
+    </ClCompile>
+    <ClCompile Include="Staff.cpp">
+      <Filter>Source Files\Chapter 15\Exercise 2</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometricObject.cpp">
+      <Filter>Source Files\Chapter 15\Exercise 1</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>Source Files\Chapter 15\Exercise 1</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreeDPoint.cpp">
+      <Filter>Source Files\Chapter 15\Exercise 3</Filter>
+    </ClCompile>
+    <ClCompile Include="MyPoint.cpp">
+      <Filter>Source Files\Chapter 15\Exercise 3</Filter>
+    </ClCompile>
+    <ClCompile Include="Account.cpp">
+      <Filter>Source Files\Chapter 15\Exercise 4</Filter>
+    </ClCompile>
+    <ClCompile Include="Checking.cpp">
+      <Filter>Source Files\Chapter 15\Exercise 4</Filter>
+    </ClCompile>
+    <ClCompile Include="Saving.cpp">
+      <Filter>Source Files\Chapter 15\Exercise 4</Filter>
+    </ClCompile>
+    <ClCompile Include="GenericStack.cpp">
+      <Filter>Source Files\Chapter 15\Exercise 5</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +331,48 @@
     </ClInclude>
     <ClInclude Include="Chapter15Output.h">
       <Filter>Header Files\Chapter 15</Filter>
+    </ClInclude>
+    <ClInclude Include="Employee.h">
+      <Filter>Header Files\Chapter 15\Exercise 2</Filter>
+    </ClInclude>
+    <ClInclude Include="MyDate.h">
+      <Filter>Header Files\Chapter 15\Exercise 2</Filter>
+    </ClInclude>
+    <ClInclude Include="Person.h">
+      <Filter>Header Files\Chapter 15\Exercise 2</Filter>
+    </ClInclude>
+    <ClInclude Include="Student.h">
+      <Filter>Header Files\Chapter 15\Exercise 2</Filter>
+    </ClInclude>
+    <ClInclude Include="Faculty.h">
+      <Filter>Header Files\Chapter 15\Exercise 2</Filter>
+    </ClInclude>
+    <ClInclude Include="Staff.h">
+      <Filter>Header Files\Chapter 15\Exercise 2</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>Header Files\Chapter 15\Exercise 1</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometricObject.h">
+      <Filter>Header Files\Chapter 15\Exercise 1</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreeDPoint.h">
+      <Filter>Header Files\Chapter 15\Exercise 3</Filter>
+    </ClInclude>
+    <ClInclude Include="MyPoint.h">
+      <Filter>Header Files\Chapter 15\Exercise 3</Filter>
+    </ClInclude>
+    <ClInclude Include="Account.h">
+      <Filter>Header Files\Chapter 15\Exercise 4</Filter>
+    </ClInclude>
+    <ClInclude Include="Checking.h">
+      <Filter>Header Files\Chapter 15\Exercise 4</Filter>
+    </ClInclude>
+    <ClInclude Include="Saving.h">
+      <Filter>Header Files\Chapter 15\Exercise 4</Filter>
+    </ClInclude>
+    <ClInclude Include="GenericStack.h">
+      <Filter>Header Files\Chapter 15\Exercise 5</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
