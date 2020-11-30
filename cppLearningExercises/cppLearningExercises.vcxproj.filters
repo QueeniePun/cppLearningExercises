@@ -28,9 +28,6 @@
     <Filter Include="Source Files\Chapter 2">
       <UniqueIdentifier>{273c3747-1546-42c8-9463-fdfdd1a7223f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Chapter 3">
-      <UniqueIdentifier>{c404d843-0071-4301-896b-e0838723ddf1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Chapter 4">
       <UniqueIdentifier>{c322f622-1865-40d4-b015-5a753b039b40}</UniqueIdentifier>
     </Filter>
@@ -133,6 +130,15 @@
     <Filter Include="Header Files\Chapter 15\Exercise 5">
       <UniqueIdentifier>{12a052ce-9fa4-45bb-86fe-7ae31da2874c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Chapter 16">
+      <UniqueIdentifier>{eb290c87-52c2-46e5-a2d2-0df04e8725c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chapter 16">
+      <UniqueIdentifier>{a47c1216-ee7a-49cf-ae20-a9a5929c6c9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chapter 3">
+      <UniqueIdentifier>{c404d843-0071-4301-896b-e0838723ddf1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -234,8 +240,8 @@
     <ClCompile Include="Saving.cpp">
       <Filter>Source Files\Chapter 15\Exercise 4</Filter>
     </ClCompile>
-    <ClCompile Include="GenericStack.cpp">
-      <Filter>Source Files\Chapter 15\Exercise 5</Filter>
+    <ClCompile Include="Chapter16Helper.cpp">
+      <Filter>Source Files\Chapter 16</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -373,6 +379,24 @@
     </ClInclude>
     <ClInclude Include="GenericStack.h">
       <Filter>Header Files\Chapter 15\Exercise 5</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter16Helper.h">
+      <Filter>Header Files\Chapter 16</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter16Output.h">
+      <Filter>Header Files\Chapter 16</Filter>
+    </ClInclude>
+    <ClInclude Include="IllegalSubscriptException.h">
+      <Filter>Header Files\Chapter 16</Filter>
+    </ClInclude>
+    <ClInclude Include="EmptyStackException.h">
+      <Filter>Header Files\Chapter 16</Filter>
+    </ClInclude>
+    <ClInclude Include="HexFormatException.h">
+      <Filter>Header Files\Chapter 16</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryFormatException.h">
+      <Filter>Header Files\Chapter 16</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

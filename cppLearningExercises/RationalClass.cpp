@@ -168,7 +168,7 @@ int& Rational::operator[](int index)
     }
     else
     {
-        throw runtime_error("subscript out of range");
+        throw IllegalSubscriptException(index);
     }
 }
 

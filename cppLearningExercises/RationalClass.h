@@ -1,6 +1,6 @@
 #ifndef RATIONALCLASS_H
 #define RATIONALCLASS_H
-#pragma once
+#include "IllegalSubscriptException.h"
 #include <string>
 #include <iostream>
 

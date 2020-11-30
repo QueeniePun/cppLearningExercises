@@ -89,5 +89,14 @@ void Chapter15Helper::RunExercise4()
 void Chapter15Helper::RunExercise5()
 {
     // 15.5 Create a new stack class that extends vector. 
+    Stack<int> myStack;
+    myStack.push(1);
+    myStack.push(2);
+    myStack.push(3);
+
+    while (!myStack.empty())
+    {
+        cout << myStack.pop() << endl;
+    }
 
 }
