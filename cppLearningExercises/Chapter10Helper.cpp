@@ -506,7 +506,8 @@ int Chapter10Helper::IndexOf(const string& s1, const string& s2)
     {
         for (int j = 0; j <= s1.length(); j++)
         {
-            if (s2[i + j] != s1[j])
+            int h = i + j;
+            if (s2[h] != s1[j])
             {
                 break; // not found, keep search
             }
@@ -568,9 +569,25 @@ int Chapter10Helper::CountLetters(const string& s)
 void Chapter10Helper::RunExercise9()
 {
     // 10.9 Write a function that parses a hex num to decimal int
-    string s1 = "FAA";
-    cout << ParseHex(s1) << endl;
 
+    string s1;
+    cout << "Enter a hex number to parse to decimal: ";
+    cin >> s1;
+
+    try
+    {
+        cout << "The decimal value for the hex number " << s1 << " is: " << ParseHex(s1) << endl;
+    }
+    // For Exercise 16.1 
+//   catch (runtime_error& e)
+//   {
+//       cout << e.what() << endl;
+//   }
+    catch (HexFormatException& e)
+    {
+        cout << e.what() << endl;
+        cout << e.getInvalidHexString() << " is an invalid string." << endl;
+    }
 }
 
 int Chapter10Helper::ParseHex(const string& hexString)
@@ -579,6 +596,15 @@ int Chapter10Helper::ParseHex(const string& hexString)
 
     for (int i = 0; i < hexString.length(); i++)
     {
+        // Check for valid inputs
+        if (!((hexString[i] >= '0' && hexString[i] <= '9') || (hexString[i] >= 'A' && hexString[i] <= 'F')))
+        {
+            // 16.1 Version
+            // throw runtime_error("The entered value is not a hex string.");
+            throw HexFormatException(hexString);
+        }
+
+        // Convert hex to decimal
         if (hexString[i] == 'A')
         {
             decimal += (10 * pow(16, hexString.length() - i - 1));
@@ -606,7 +632,8 @@ int Chapter10Helper::ParseHex(const string& hexString)
         else
         {
             // hexstring[i] needs to be an integer 
-            decimal += ((hexString[i] - 48) * pow(16, hexString.length() - i - 1));
+            int hexToInt = hexString[i] - 48;
+            decimal += (hexToInt * pow(16, hexString.length() - i - 1));
         }
 
     }
@@ -617,8 +644,24 @@ int Chapter10Helper::ParseHex(const string& hexString)
 void Chapter10Helper::RunExercise10()
 {
     // 10.10 Write a function that parses a binary string to decimal int
-    string s1 = "10001";
-    cout << ParseBinary(s1) << endl;
+    string s1;
+    cout << "Enter a binary number to parse to decimal: ";
+    cin >> s1;
+
+    try
+    {
+        cout << "The decimal value of the binary number " << s1 << " is: " << ParseBinary(s1) << endl;
+    }
+    // Commented out exercise 16.2 for 16.6
+    //catch (runtime_error& e)
+    //{
+    //    cout << e.what() << endl;
+    //}
+    catch (BinaryFormatException& e)
+    {
+        cout << e.what() << endl;
+        cout << e.getInvalidBinaryString() << " is invalid." << endl;
+    }
 }
 
 int Chapter10Helper::ParseBinary(const string& binaryString)
@@ -627,7 +670,17 @@ int Chapter10Helper::ParseBinary(const string& binaryString)
 
     for (int i = 0; i < binaryString.length(); i++)
     {
-        decimal += ((binaryString[i] - 48) * pow(2, binaryString.length() - i - 1));
+        // Check if the string is binary 
+        if (!(binaryString[i] == '0' || binaryString[i] == '1'))
+        {
+            // commented out 16.2 to test 16.5
+            // throw runtime_error("The string is not binary.");
+            throw BinaryFormatException(binaryString);
+        }
+
+        // Convert binary to decimal
+        int binaryToInt = binaryString[i] - 48; 
+        decimal += (binaryToInt * pow(2, binaryString.length() - i - 1));
     }
 
     return decimal;
@@ -1248,7 +1301,13 @@ void Chapter10Helper::StackOfIntegers::push(int value)
 
 int Chapter10Helper::StackOfIntegers::pop()
 {
-    return elements[--size];
+    int popInt = elements[size];
+    size--; 
+    if (size < 0)
+    {
+        throw EmptyStackException(size);
+    }
+    return popInt;
 }
 int Chapter10Helper::StackOfIntegers::getSize() const
 {

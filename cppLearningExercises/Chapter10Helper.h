@@ -1,5 +1,8 @@
 #pragma once
 #include "Chapter10Output.h"
+#include "EmptyStackException.h"
+#include "HexFormatException.h"
+#include "BinaryFormatException.h"
 #include <string>
 #include <iostream>
 

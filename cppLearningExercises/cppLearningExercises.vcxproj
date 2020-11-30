@@ -146,6 +146,7 @@
     <ClCompile Include="Chapter13Helper.cpp" />
     <ClCompile Include="Chapter14Helper.cpp" />
     <ClCompile Include="Chapter15Helper.cpp" />
+    <ClCompile Include="Chapter16Helper.cpp" />
     <ClCompile Include="Chapter1Helper.cpp" />
     <ClCompile Include="Chapter2Helper.cpp" />
     <ClCompile Include="Chapter3Helper.cpp" />
@@ -160,7 +161,6 @@
     <ClCompile Include="ComplexClass.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="Faculty.cpp" />
-    <ClCompile Include="GenericStack.cpp" />
     <ClCompile Include="GeometricObject.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyDate.cpp" />
@@ -176,6 +176,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
+    <ClInclude Include="BinaryFormatException.h" />
+    <ClInclude Include="Chapter16Helper.h" />
     <ClInclude Include="Chapter10Helper.h" />
     <ClInclude Include="Chapter10Output.h" />
     <ClInclude Include="Chapter11Helper.h" />
@@ -188,6 +190,7 @@
     <ClInclude Include="Chapter14Output.h" />
     <ClInclude Include="Chapter15Helper.h" />
     <ClInclude Include="Chapter15Output.h" />
+    <ClInclude Include="Chapter16Output.h" />
     <ClInclude Include="Chapter1Helper.h" />
     <ClInclude Include="Chapter2Helper.h" />
     <ClInclude Include="Chapter3Helper.h" />
@@ -207,9 +210,12 @@
     <ClInclude Include="Circle2.h" />
     <ClInclude Include="ComplexClass.h" />
     <ClInclude Include="Employee.h" />
+    <ClInclude Include="EmptyStackException.h" />
     <ClInclude Include="Faculty.h" />
     <ClInclude Include="GenericStack.h" />
     <ClInclude Include="GeometricObject.h" />
+    <ClInclude Include="HexFormatException.h" />
+    <ClInclude Include="IllegalSubscriptException.h" />
     <ClInclude Include="MyDate.h" />
     <ClInclude Include="MyPoint.h" />
     <ClInclude Include="Person.h" />
