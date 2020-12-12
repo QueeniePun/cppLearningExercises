@@ -124,9 +124,6 @@
     <Filter Include="Source Files\Chapter 15\Exercise 4">
       <UniqueIdentifier>{d332bf62-a0f1-4e7b-8bce-73c0b5d6574c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Chapter 15\Exercise 5">
-      <UniqueIdentifier>{5eeb8954-03bc-49bc-8c09-25031195af1c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Chapter 15\Exercise 5">
       <UniqueIdentifier>{12a052ce-9fa4-45bb-86fe-7ae31da2874c}</UniqueIdentifier>
     </Filter>

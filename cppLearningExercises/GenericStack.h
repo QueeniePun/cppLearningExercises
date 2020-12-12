@@ -18,6 +18,8 @@ private:
     int size; 
 };
 
+// Note: The function definition for these cannot be split into a separate
+//       cpp file. 
 
 template<typename T>
 Stack<T>::Stack()
