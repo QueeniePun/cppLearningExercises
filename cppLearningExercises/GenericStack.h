@@ -18,6 +18,7 @@ private:
     int size; 
 };
 
+// Note: The function definitions for a template cannot be in a separate cpp file.
 
 template<typename T>
 Stack<T>::Stack()
