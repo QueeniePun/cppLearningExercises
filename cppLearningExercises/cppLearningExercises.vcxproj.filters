@@ -124,9 +124,6 @@
     <Filter Include="Source Files\Chapter 15\Exercise 4">
       <UniqueIdentifier>{d332bf62-a0f1-4e7b-8bce-73c0b5d6574c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Chapter 15\Exercise 5">
-      <UniqueIdentifier>{5eeb8954-03bc-49bc-8c09-25031195af1c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Chapter 15\Exercise 5">
       <UniqueIdentifier>{12a052ce-9fa4-45bb-86fe-7ae31da2874c}</UniqueIdentifier>
     </Filter>
@@ -138,6 +135,12 @@
     </Filter>
     <Filter Include="Source Files\Chapter 3">
       <UniqueIdentifier>{c404d843-0071-4301-896b-e0838723ddf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chapter 17">
+      <UniqueIdentifier>{67e13e2e-4580-4fb6-9ca6-0d10fbf88c8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chapter 17">
+      <UniqueIdentifier>{980e27f0-b28e-4174-932a-7f6d4d3c0302}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -242,6 +245,9 @@
     </ClCompile>
     <ClCompile Include="Chapter16Helper.cpp">
       <Filter>Source Files\Chapter 16</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter17Helper.cpp">
+      <Filter>Source Files\Chapter 17</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -397,6 +403,12 @@
     </ClInclude>
     <ClInclude Include="BinaryFormatException.h">
       <Filter>Header Files\Chapter 16</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter17Helper.h">
+      <Filter>Header Files\Chapter 17</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter17Output.h">
+      <Filter>Header Files\Chapter 17</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
