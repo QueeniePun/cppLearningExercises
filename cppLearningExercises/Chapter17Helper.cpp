@@ -274,3 +274,129 @@ void Chapter17Helper::reverseDisplay(const string& s, int high)
         reverseDisplay(s, high - 1);
     }
 }
+
+void Chapter17Helper::RunExercise13()
+{
+    // 17.13 Write a recursive function that returns the largest
+    //       integer in an array 
+    int arr[] = { 0, 1, 2, 13, 4, 5 ,6};
+    cout << maxArray(arr, 7);
+}
+
+int Chapter17Helper::maxArray(int arr[], int n)
+{
+    // base case: let user know array is empty 
+    if (n == 0)
+    {
+        cout << "array is empty" << endl;
+    }
+
+    // base case: array length of 1 -> return the only element arr[0]
+    if (n == 1)
+    {
+        return arr[0];
+    }
+    else
+    {
+        int temp = maxArray(arr, n - 1);
+        if (temp > arr[n])
+        {
+            return temp;
+        }
+        else
+        {
+            return arr[n];
+        }
+    }
+}
+
+void Chapter17Helper::RunExercise14()
+{
+    // 17.14 Write a recursive function to return the number of uppercase
+    //       letters in a string 
+    string s = "Queenie Pun";
+    cout << countUppercase(s);
+}
+
+int Chapter17Helper::countUppercase(const string& s)
+{
+    int counter = 0;
+
+    while (s.length() != 0)
+    {
+        if (s.back() > 64 && s.back() < 91)
+        {
+            counter++;
+        }
+        string b = s;
+        b.pop_back();
+        return counter + countUppercase(b);
+    }
+
+    return counter;
+}
+
+void Chapter17Helper::RunExercise15()
+{
+    // 17.15 Rewrite 17.10 using a helper function to pass a substring
+    //       high index to the function 
+    string s = "Welcome Queenie";
+    char a = 'e';
+    cout << count2(s, a);
+}
+
+int Chapter17Helper::count2(const string& s, char a)
+{
+    int counter = 0;
+    int high = s.length();
+
+    while (high > 0)
+    {
+        high--;
+        counter += count2(s, a, high);
+    }
+    return counter;
+}
+
+int Chapter17Helper::count2(const string& s, char a, int high)
+{
+    if (s[high] == a)
+    {
+        return 1; 
+    }
+    else
+    {
+        return 0; 
+    }
+}
+
+int g_moveDisksCount = 0; 
+
+void Chapter17Helper::RunExercise16()
+{
+    // 17.16 Modify Listing 17.7 TowersOfHanoi.cpp so that the 
+    //       program finds the num of moves needed to move n
+    //       disks from tower A to tower B. (Hint: Use a global
+    //       variable and increment it every time the fn is called)
+    moveDisks(3, 'A', 'B', 'C');
+    cout << g_moveDisksCount;
+}
+
+void Chapter17Helper::moveDisks(int n, char fromTower, char toTower, char auxTower)
+{
+    g_moveDisksCount++;
+
+    if (n == 1)
+    {
+        cout << "Move disk " << n << " from " << fromTower
+ << " to " << toTower << endl;
+    }
+    else
+    {
+        moveDisks(n - 1, fromTower, auxTower, toTower);
+        cout << "Move disk " << n << " from " << fromTower <<
+            " to " << toTower << endl;
+        moveDisks(n - 1, auxTower, toTower, fromTower);
+    }
+}
+

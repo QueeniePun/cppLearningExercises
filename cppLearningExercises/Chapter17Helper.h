@@ -54,4 +54,9 @@ private:
     int count(const std::string& s, char a);
     int sumDigits(long n);
     void reverseDisplay(const std::string& s, int high);
+    int maxArray(int arr[], int n);
+    int countUppercase(const std::string& s);
+    int count2(const std::string& s, char a);
+    int count2(const std::string& s, char a, int high);
+    void moveDisks(int n, char fromTower, char toTower, char auxTower);
 };
