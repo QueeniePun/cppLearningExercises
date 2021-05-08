@@ -22,7 +22,7 @@ void Chapter18Helper::RunExercise1()
 
 void Chapter18Helper::findMaxSortedSubstring(string str)
 {
-    string substr = str[0];
+    // string substr = str[0];
     for (int i = 0; i < str.length(); i++)
     {
 
