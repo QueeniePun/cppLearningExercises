@@ -148,6 +148,12 @@
     <Filter Include="Header Files\Chapter 18">
       <UniqueIdentifier>{ac630464-aaeb-47ee-b996-6e3294b3777f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Chapter 19">
+      <UniqueIdentifier>{8c28d749-82cb-4d3d-9d82-fcdffcacf849}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chapter 19">
+      <UniqueIdentifier>{a162a69f-ae5a-4e52-b491-91b9ca1741cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -257,6 +263,9 @@
     </ClCompile>
     <ClCompile Include="Chapter18Helper.cpp">
       <Filter>Source Files\Chapter 18</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter19Helper.cpp">
+      <Filter>Source Files\Chapter 19</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -424,6 +433,12 @@
     </ClInclude>
     <ClInclude Include="Chapter18Output.h">
       <Filter>Header Files\Chapter 18</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter19Helper.h">
+      <Filter>Header Files\Chapter 19</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter19Output.h">
+      <Filter>Header Files\Chapter 19</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
