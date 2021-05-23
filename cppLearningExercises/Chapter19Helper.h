@@ -29,7 +29,6 @@ public:
     void RunExercise7();
     void RunExercise8();
     void RunExercise9();
-    void RunExercise10();
 
     // Getters
 
@@ -47,4 +46,37 @@ private:
     template<typename T>
     void genericMergeSort(std::vector<T>& v, int p, int r);
 
+    template<typename T> 
+    void genericQuickSort(std::vector<T>& list, int listSize);
+    
+    template<typename T> 
+    void genericQuickSort(std::vector<T>& list, int first, int last);
+
+    template<typename T>
+    T partition(std::vector<T>& list, int first, int last);
+
+    template<typename T>
+    void improvedQuickSort(std::vector<T>& list, int listSize);
+
+    template<typename T>
+    void improvedQuickSort(std::vector<T>& list, int first, int last);
+    
+    template<typename T>
+    int improvedPartition(std::vector<T>& list, int first, int last);
+
+    template<typename T>
+    int findMedium(std::vector<T>& list, int first, int middle, int last);
+    
+    template<typename T> 
+    bool ascending(T list[], int size);
+   
+    template<typename T>
+    bool ordered(T list[], int size);
+    
+    template<typename T>
+    bool ordered(T list[], int size, bool ascending);
+ 
+    int *generateIntegers();
+
+    void radixSort(int list[], int size);
 };

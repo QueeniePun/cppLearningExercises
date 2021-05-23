@@ -44,7 +44,7 @@ int main()
     Chapter18Helper chapter18;
     Chapter19Helper chapter19;
 
-    chapter19.RunExercise2();
+    chapter19.RunExercise7();
 
 }
 
