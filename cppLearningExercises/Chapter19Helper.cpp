@@ -6,6 +6,7 @@
 #include <cmath>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -214,3 +215,338 @@ void Chapter19Helper::genericMergeSort(vector<T>& v, int p, int r)
     }
 }
 
+void Chapter19Helper::RunExercise3()
+{
+    // Write a generic function for quick sort 
+    
+    // Run example
+    vector<unsigned> input = { 45, 11, 50, 59, 60, 2, 4, 7, 10 };
+
+    printArray(input, input.size());
+    genericQuickSort(input, input.size());
+    printArray(input, input.size());
+}
+
+template<typename T>
+T Chapter19Helper::partition(vector<T>& list, int first, int last)
+{
+    int pivot = list[first];
+    int low = first + 1; 
+    int high = last; 
+
+    while (high > low)
+    {
+        // Search forward from left 
+        while (low <= high && list[low] <= pivot)
+        {
+            low++;
+        }
+
+        // Search backward from right
+        while (low <= high && list[high] > pivot)
+        {
+            high--;
+        }
+
+        // Swap two elements in the list 
+        if (high > low)
+        {
+            T temp = list[high];
+            list[high] = list[low];
+            list[low] = temp;
+
+        }
+    }
+
+    while (high > first && list[high] >= pivot)
+    {
+        high--;
+    }
+
+    // Swap pivot with list[high]
+    if (pivot > list[high])
+    {
+        list[first] = list[high];
+        list[high] = pivot;
+        return high; 
+    }
+    else
+    {
+        return first; 
+    }
+}
+
+template<typename T> 
+void Chapter19Helper::genericQuickSort(vector<T>& list, int listSize)
+{
+    genericQuickSort(list, 0, listSize - 1);
+}
+
+template<typename T> 
+void Chapter19Helper::genericQuickSort(vector<T>& list, int first, int last)
+{
+    if (last > first)
+    {
+        int pivotIndex = partition(list, first, last);
+        genericQuickSort(list, first, pivotIndex - 1);
+        genericQuickSort(list, pivotIndex + 1, last);
+    }
+}
+
+void Chapter19Helper::RunExercise4()
+{
+    // The quick sort algorithm presented in the book selects
+    // the first element in the list as the pivot. Revise it 
+    // by selecting the medium among the first, middle, and
+    // last elements in the last. 
+
+    // Example: {45, 11, 50, 59, 60, 2, 4, 7, 10}
+    // First is 45. Middle is 60. Last is 10. Medium is 10. Use 10 as pivot.
+        // Run example
+    vector<unsigned> input = { 45, 11, 50, 59, 60, 2, 4, 7, 10 };
+
+    printArray(input, input.size());
+    improvedQuickSort(input, input.size());
+    printArray(input, input.size());
+}
+
+template<typename T> 
+void Chapter19Helper::improvedQuickSort(vector<T>& list, int listSize)
+{
+    improvedQuickSort(list, 0, listSize - 1);
+}
+
+template<typename T> 
+void Chapter19Helper::improvedQuickSort(vector<T>& list, int first, int last)
+{
+    if (last > first)
+    {
+        int pivotIndex = improvedPartition(list, first, last);
+        improvedQuickSort(list, first, pivotIndex - 1);
+        improvedQuickSort(list, pivotIndex + 1, last);
+    }
+}
+
+
+// Return the index 
+template<typename T>
+int Chapter19Helper::improvedPartition(vector<T>& list, int first, int last)
+{
+
+    // Find the medium among the first, middle and last elements to use as pivot 
+    int middle = last / 2; 
+    int pivotIndex = findMedium(list, first, middle, last);
+    T pivot = list[pivotIndex];
+    int low = first + 1;
+    int high = last;
+
+    while (high > low)
+    {
+        // Search forward from left 
+        while (low <= high && list[low] <= pivot)
+        {
+            low++;
+        }
+
+        // Search backward from right
+        while (low <= high && list[high] > pivot)
+        {
+            high--;
+        }
+
+        // Swap two elements in the list 
+        if (high > low)
+        {
+            T temp = list[high];
+            list[high] = list[low];
+            list[low] = temp;
+
+        }
+    }
+
+    while (high > first && list[high] >= pivot)
+    {
+        high--;
+    }
+
+    // Swap pivot with list[high]
+    if (pivot > list[high])
+    {
+        list[first] = list[high];
+        list[high] = pivot;
+        return high;
+    }
+    else
+    {
+        return first;
+    }
+}
+
+template<typename T> 
+int Chapter19Helper::findMedium(vector<T>& list, int first, int middle, int last)
+{
+    // Returns the element that is the medium between the first, middle, and 
+    // last elements 
+
+    vector<T> temp = { list[first], list[middle], list[last] };
+    
+    // Dereference the values since max/min_element only returns iterators 
+    T max = *max_element(begin(temp), end(temp));
+    T min = *min_element(begin(temp), end(temp));
+    
+    if (list[first] != max || list[first] != min)
+    {
+        return first; 
+    }
+    if (list[middle] != max || list[middle] != min)
+    {
+        return middle;
+    }
+    if (list[last] != max || list[last] != min)
+    {
+        return last; 
+    }
+    
+}
+
+void Chapter19Helper::RunExercise5()
+{
+    // Write a test program that invokes the generic sort function to sort 
+    // and array of int values, and array of doubles values, and array of string 
+
+    // assuming heap sort 
+        // Run example
+    vector<unsigned> intTest = { 45, 11, 50, 59, 60, 2, 4, 7, 10 };
+    vector<double> doubleTest = { 4.5, 1.1, 5.0, 5.9, 6.0, .2, 4, 7, 1.0 };
+    vector<string> stringTest = { "hello", "this", "is", "a", "test", "Queenie", "zzz", "123", "yes" };
+
+    printArray(intTest, intTest.size());
+    improvedQuickSort(intTest, intTest.size());
+    printArray(intTest, intTest.size());
+
+    printArray(doubleTest, doubleTest.size());
+    improvedQuickSort(doubleTest, doubleTest.size());
+    printArray(doubleTest, doubleTest.size());
+
+    printArray(stringTest, stringTest.size());
+    improvedQuickSort(stringTest, stringTest.size());
+    printArray(stringTest, stringTest.size());
+}
+
+
+void Chapter19Helper::RunExercise6()
+{
+    // Write the following overloaded functions that check whether an array is 
+    // ordered in ascending order or descending order. By default, the function
+    // checks ascending order. To check descending order, pass false to the 
+    // ascending argument in the function 
+
+    // bool ordered(T list[], int size)
+    // bool ordered(T list[], int size, bool ascending)
+    int intTest[] = { 45, 11, 50, 59, 60, 2, 4, 7, 10 };
+    cout << ordered(intTest, 9) << endl;
+    
+    int intTest2[] = { 2, 4, 7, 10, 11, 45, 50, 59, 60 };
+    cout << ordered(intTest2, 9) << endl;
+
+    int intTest3[] = { 2, 4, 7, 10, 2, 45, 50, 59, 60 };
+    cout << ordered(intTest3, 9) << endl;
+    
+    int intTest4[] = { 60, 59 ,50, 45, 12, 10, 7, 4, 2 };
+    cout << ordered(intTest4, 9) << endl;
+}
+
+template<typename T> 
+bool Chapter19Helper::ascending(T list[], int size)
+{
+    // Checks whether an array is in ascending order 
+    // Assume the list is ascending
+    bool isAscending = true; 
+
+    // Compare if the current element is greater than the next element
+    // If it is, then isAscending is false
+    int i = 0;
+    while (i < size - 1 && isAscending)
+    {
+        // If the current is greater than the next element, it's not ascending
+        if (list[i] > list[i + 1])
+        {
+            isAscending = false;
+        }
+        i++;
+    }
+
+    // Return the value of isAscending
+    return isAscending;
+}
+
+template <typename T> 
+bool Chapter19Helper::ordered(T list[], int size)
+{
+    // Returns true if the array is ordered in ascending order
+    bool isAscending = ascending(list, size);
+    
+    if (isAscending)
+    {
+        return true; 
+    }
+    // If not ascending order, check if it is descending 
+    else
+    {
+        bool isDescending = ordered(list, size, false);
+        return isDescending; 
+    }
+
+}
+
+template <typename T>
+bool Chapter19Helper::ordered(T list[], int size, bool ascending)
+{
+    // Returns true if the array is ordered (checks for descending)
+    if (ascending)
+    {
+        return true;
+    }
+    else
+    {
+        // Check if list is descending 
+        bool isDescending = true; 
+        int i = 0; 
+        while (i < size - 1 && isDescending)
+        {
+            // If the current is less than the next element, it's not descending
+            if (list[i] < list[i + 1])
+            {
+                isDescending = false; 
+            }
+            i++;
+        }
+        return isDescending;
+    }
+}
+
+void Chapter19Helper::RunExercise7()
+{
+    // Write a program that randomly generates 1,000,000 interegers and sorts 
+    // using radix sort. 
+    generateIntegers();
+}
+
+int* Chapter19Helper::generateIntegers()
+{
+    srand(time(0));
+    int arr[100];
+    for (int i = 0; i < 100; i++)
+    {
+        int key = rand() % 9999 + 1;
+        cout << key << endl;
+        arr[i] = key;
+    }
+
+    return arr;
+}
+
+void Chapter19Helper::radixSort(int list[], int size)
+{
+
+}
