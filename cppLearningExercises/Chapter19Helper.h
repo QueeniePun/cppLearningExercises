@@ -38,7 +38,7 @@ private:
     void genericBubbleSort(T *items, int arraySize);
 
     template<typename T> 
-    void printArray(std::vector<T>& v, int size);
+    void printVector(std::vector<T>& v, int size);
     
     template<typename T>
     void genericMerge(std::vector<T>& v, int p, int q, int r);
@@ -78,5 +78,20 @@ private:
  
     int *generateIntegers();
 
-    void radixSort(int list[], int size);
+    int getMax(int arr[], int size);
+
+    void countSort(int arr[], int n, int exp);
+
+    void printArray(int arr[], int n);
+
+    void radixSort(int arr[], int size);
+
+    void printValue(int arraySize);
+
+    void selectionSort(int list[], int arraySize);
+
+    void quickSort(int list[], int arraySize);
+    void quickSort(int list[], int first, int last);
+    int partition(int list[], int first, int last);
+
 };

@@ -95,10 +95,10 @@ void Chapter19Helper::RunExercise2()
     vec.push_back(10);
     int size1 = vec.size();
     cout << "Entered array : ";
-    printArray(vec, size1);
+    printVector(vec, size1);
     cout << "Sorted array : ";
     genericMergeSort(vec, 0, size1 - 1);
-    printArray(vec, size1);
+    printVector(vec, size1);
     cout << "\n";
 
     vector<char> c;
@@ -110,10 +110,10 @@ void Chapter19Helper::RunExercise2()
     c.push_back('a');
     int size2 = c.size();
     cout << "Entered array : ";
-    printArray(c, size2);
+    printVector(c, size2);
     cout << "Sorted array : "; 
     genericMergeSort(c, 0, size2 - 1);
-    printArray(c, size2);
+    printVector(c, size2);
     
     vector<string> str; 
     str.push_back("car");
@@ -123,14 +123,14 @@ void Chapter19Helper::RunExercise2()
     str.push_back("tree");
     int size3 = str.size();
     cout << "Entered array : ";
-    printArray(str, size3);
+    printVector(str, size3);
     cout << "Sorted array : ";
     genericMergeSort(str, 0, size3 - 1);
-    printArray(str, size3);
+    printVector(str, size3);
 }
 
 template<typename T>
-void Chapter19Helper::printArray(vector<T>& v, int size)
+void Chapter19Helper::printVector(vector<T>& v, int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -222,9 +222,9 @@ void Chapter19Helper::RunExercise3()
     // Run example
     vector<unsigned> input = { 45, 11, 50, 59, 60, 2, 4, 7, 10 };
 
-    printArray(input, input.size());
+    printVector(input, input.size());
     genericQuickSort(input, input.size());
-    printArray(input, input.size());
+    printVector(input, input.size());
 }
 
 template<typename T>
@@ -305,9 +305,9 @@ void Chapter19Helper::RunExercise4()
         // Run example
     vector<unsigned> input = { 45, 11, 50, 59, 60, 2, 4, 7, 10 };
 
-    printArray(input, input.size());
+    printVector(input, input.size());
     improvedQuickSort(input, input.size());
-    printArray(input, input.size());
+    printVector(input, input.size());
 }
 
 template<typename T> 
@@ -420,17 +420,17 @@ void Chapter19Helper::RunExercise5()
     vector<double> doubleTest = { 4.5, 1.1, 5.0, 5.9, 6.0, .2, 4, 7, 1.0 };
     vector<string> stringTest = { "hello", "this", "is", "a", "test", "Queenie", "zzz", "123", "yes" };
 
-    printArray(intTest, intTest.size());
+    printVector(intTest, intTest.size());
     improvedQuickSort(intTest, intTest.size());
-    printArray(intTest, intTest.size());
+    printVector(intTest, intTest.size());
 
-    printArray(doubleTest, doubleTest.size());
+    printVector(doubleTest, doubleTest.size());
     improvedQuickSort(doubleTest, doubleTest.size());
-    printArray(doubleTest, doubleTest.size());
+    printVector(doubleTest, doubleTest.size());
 
-    printArray(stringTest, stringTest.size());
+    printVector(stringTest, stringTest.size());
     improvedQuickSort(stringTest, stringTest.size());
-    printArray(stringTest, stringTest.size());
+    printVector(stringTest, stringTest.size());
 }
 
 
@@ -527,18 +527,30 @@ bool Chapter19Helper::ordered(T list[], int size, bool ascending)
 
 void Chapter19Helper::RunExercise7()
 {
-    // Write a program that randomly generates 1,000,000 interegers and sorts 
+    // Write a program that randomly generates 1,000,000 integers and sorts 
     // using radix sort. 
-    generateIntegers();
+  /*  int *list = generateIntegers();
+    int n = 10;
+
+    for (int i = 0; i < 10; i++)
+    {
+        cout << list[i] << " ";
+    }
+    cout << "\n"; */
+    int arr[] = { 170, 45, 75, 90, 802, 24, 2, 66 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    radixSort(arr, n);
+    printArray(arr, n);
+ 
 }
 
 int* Chapter19Helper::generateIntegers()
 {
     srand(time(0));
-    int arr[100];
-    for (int i = 0; i < 100; i++)
+    int arr[10];
+    for (int i = 0; i < 10; i++)
     {
-        int key = rand() % 9999 + 1;
+        int key = rand() % 999 + 1;
         cout << key << endl;
         arr[i] = key;
     }
@@ -546,7 +558,230 @@ int* Chapter19Helper::generateIntegers()
     return arr;
 }
 
-void Chapter19Helper::radixSort(int list[], int size)
+// A utility function to get maximum value in arr[]
+int Chapter19Helper::getMax(int arr[], int size)
 {
+    int mx = arr[0];
+    for (int i = 1; i < size; i++)
+    {
+        if (arr[i] > mx)
+        {
+            mx = arr[i];
+
+        }
+    }
+    return mx;
+}
+
+// A function to do counting sort of arr[] according to
+// the digit represented by exp.
+void Chapter19Helper::countSort(int arr[], int n, int exp)
+{
+    // Create dynamic output array
+    int *output = new int[n]; 
+    int i, count[10] = { 0 };
+
+    // Store count of occurrences in count[]
+    for (i = 0; i < n; i++)
+    {
+        count[(arr[i] / exp) % 10]++;
+    }
+    // Change count[i] so that count[i] now contains actual
+    //  position of this digit in output[]
+    for (i = 1; i < 10; i++)
+    {
+        count[i] += count[i - 1];
+    }
+    // Build the output array
+    for (i = n - 1; i >= 0; i--)
+    {
+        output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+        count[(arr[i] / exp) % 10]--;
+    }
+
+    // Copy the output array to arr[], so that arr[] now
+    // contains sorted numbers according to current digit
+    for (i = 0; i < n; i++)
+    {
+        arr[i] = output[i];
+    }
+
+    delete[] output;
+}
+
+// A utility function to print an array
+void Chapter19Helper::printArray(int arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+}
+
+void Chapter19Helper::radixSort(int arr[], int n)
+{
+    // Find the maximum number to know number of digits
+    int m = getMax(arr, n);
+
+    // Do counting sort for every digit. Note that instead
+    // of passing digit number, exp is passed. exp is 10^i
+    // where i is current digit number
+    for (int exp = 1; m / exp > 0; exp *= 10)
+    {
+        countSort(arr, n, exp);
+    }
+} 
+
+void Chapter19Helper::RunExercise8()
+{
+    // Write a program that obtains the execution time of selection, 
+    // bubble, quick sort and merge for size inputs of 50k, 100k, 150k, 200k, 
+    // 250k, 300k.
+
+    cout << "Array Size    |Selection Sort| Bubble Sort  | Merge  Sort | Quick    Sort |" << endl;
+    for (int i = 50000; i <= 300000; i += 50000)
+    {
+        printValue(i);
+    }
+   
+}
+
+void Chapter19Helper::printValue(int arraySize)
+{
+    int strWidth = 14; 
+    int* list = new int[arraySize];
+
+    srand(time(0));
+
+    for (int i = 0; i < arraySize; i++)
+    {
+        list[i] = rand() % 999 + 1;
+    }
+    cout << "\n";
+
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < strWidth; j++)
+        {
+            cout << "-";
+        }
+        cout << "|";
+    }
+
+    printf("\n %-11d  |", arraySize);
+    
+    int* list2 = new int[arraySize];
+    list2 = list;
+    long startTime = time(0);
+    selectionSort(list2, arraySize);
+    long endTime = time(0);
+    long executionTime = endTime - startTime; 
+    printf("%-13d |", executionTime);
+
+    list2 = new int[arraySize];
+    list2 = list;
+    startTime = time(0);
+    genericBubbleSort(list2, arraySize);
+    endTime = time(0);
+    executionTime = endTime - startTime;
+    printf("%-13d |", executionTime);
+
+    list2 = new int[arraySize];
+    list2 = list;
+    vector<int> vec(list2, list2 + arraySize);
+    startTime = time(0);
+    genericMergeSort(vec, 0, arraySize-1);
+    endTime = time(0);
+    executionTime = endTime - startTime;
+    printf("%-13d |", executionTime);
+
+    //list2 = new int[arraySize];
+    //list2 = list;
+    //startTime = time(0);
+    //quickSort(list2, arraySize);
+    //endTime = time(0);
+    //executionTime = endTime - startTime;
+    //printf("%-13d |", executionTime);
+
 
 }
+
+void Chapter19Helper::selectionSort(int list[], int arraySize)
+{
+    for (int i = 0; i < arraySize -1; i++)
+    {
+        int currentMin = list[i];
+        int currentMinIndex = i;
+
+        for (int j = i + 1; j < arraySize; j++)
+        {
+            if (currentMin > list[j])
+            {
+                currentMin = list[j];
+                currentMinIndex = j; 
+            }
+        }
+        if (currentMinIndex != i)
+        {
+            list[currentMinIndex] = list[i];
+            list[i] = currentMin;
+        }
+    }
+}
+
+void Chapter19Helper::quickSort(int list[], int arraySize)
+{
+    quickSort(list, 0, arraySize - 1);
+}
+
+void Chapter19Helper::quickSort(int list[], int first, int last)
+{
+    if (last > first)
+    {
+        int pivotIndex = partition(list, first, last);
+        quickSort(list, first, pivotIndex - 1);
+        quickSort(list, pivotIndex + 1, last);
+    
+    }
+
+}
+
+int Chapter19Helper::partition(int list[], int first, int last)
+{
+    int pivot = list[first];
+    int low = first + 1; 
+    int high = last; 
+
+    while (high > low)
+    {
+        while (low <= high && list[low] <= pivot)
+        {
+            low++;
+        }
+        while (low <= high && list[high] > pivot)
+        {
+            high--; 
+        }
+        if (high > low)
+
+        {
+            int temp = list[high];
+            list[high] = list[low];
+            list[low] = temp;
+        }
+    }
+    
+    while (high > first && list[high] >= pivot)
+    {
+        high--; 
+    }
+
+    if (pivot > list[high])
+    {
+        list[first] = list[high];
+        list[high] = pivot; 
+        return high;
+    }
+    else
+    {
+        return first; 
+    }
+} 
