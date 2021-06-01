@@ -18,6 +18,8 @@
 #include "Chapter17Helper.h"
 #include "Chapter18Helper.h"
 #include "Chapter19Helper.h"
+#include "Chapter19Helper.h"
+#include "Chapter20Helper.h"
 
 using namespace std;
 
@@ -43,8 +45,9 @@ int main()
     Chapter17Helper chapter17;
     Chapter18Helper chapter18;
     Chapter19Helper chapter19;
+    Chapter20Helper chapter20;
 
-    chapter19.RunExercise8();
+    chapter20.RunExercise5();
 
 }
 

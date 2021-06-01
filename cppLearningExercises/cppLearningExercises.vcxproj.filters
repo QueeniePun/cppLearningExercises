@@ -154,6 +154,12 @@
     <Filter Include="Header Files\Chapter 19">
       <UniqueIdentifier>{a162a69f-ae5a-4e52-b491-91b9ca1741cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Chapter 20">
+      <UniqueIdentifier>{e59d69ce-fdb8-441a-8178-cc53813c6b23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chapter 20">
+      <UniqueIdentifier>{27f5341f-2367-4e1a-abcb-37137c539895}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -266,6 +272,9 @@
     </ClCompile>
     <ClCompile Include="Chapter19Helper.cpp">
       <Filter>Source Files\Chapter 19</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter20Helper.cpp">
+      <Filter>Source Files\Chapter 20</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -439,6 +448,15 @@
     </ClInclude>
     <ClInclude Include="Chapter19Output.h">
       <Filter>Header Files\Chapter 19</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter20Helper.h">
+      <Filter>Header Files\Chapter 20</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter20Output.h">
+      <Filter>Header Files\Chapter 20</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>Header Files\Chapter 20</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
