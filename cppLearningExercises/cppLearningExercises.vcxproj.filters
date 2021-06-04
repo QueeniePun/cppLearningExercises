@@ -458,6 +458,9 @@
     <ClInclude Include="LinkedList.h">
       <Filter>Header Files\Chapter 20</Filter>
     </ClInclude>
+    <ClInclude Include="DoublyLinkedList.h">
+      <Filter>Header Files\Chapter 20</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="test.txt">
