@@ -221,6 +221,7 @@
     <ClInclude Include="Checking.h" />
     <ClInclude Include="Circle2.h" />
     <ClInclude Include="ComplexClass.h" />
+    <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="EmptyStackException.h" />
     <ClInclude Include="Faculty.h" />

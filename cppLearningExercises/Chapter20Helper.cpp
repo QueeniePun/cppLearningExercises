@@ -1,5 +1,6 @@
 #include "Chapter20Helper.h"
 #include "LinkedList.h"
+#include "DoublyLinkedList.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -18,17 +19,40 @@ void Chapter20Helper::RunExercise1()
 
 void Chapter20Helper::RunExercise2()
 {
-    
+    // Implement lastIndexOf(T element)
 }
 
 void Chapter20Helper::RunExercise3()
 {
-    
+    // Implement contains(T element)
 }
 
 void Chapter20Helper::RunExercise4()
 {
-    
+    // Implement addAll(const LinkedList<T> &otherList)
+    // Implement removeAll(const LinkedList<T> &otherlist)
+    // Implement retainAll(const LinkedList<T> &otherlist)
+
+    LinkedList<string> list1;
+    list1.add("Beijing");
+    list1.add("Tokyo");
+    list1.add("New York");
+    list1.add("London");
+    list1.add("Paris");
+
+    for (int i = 0; i < list1.getSize(); i++)
+    {
+        cout << list1.get(i) << endl;
+    }
+
+
+    cout << "\n The element we want to remove is " << list1.get(1) << endl;
+    list1.removeAt(1);
+
+    for (int i = 0; i < list1.getSize(); i++)
+    {
+        cout << list1.get(i) << endl;
+    }
 }
 
 void Chapter20Helper::RunExercise5()
@@ -103,4 +127,50 @@ void Chapter20Helper::RunExercise5()
     {
         cout << list2.get(i) << endl;
     }
+}
+
+void Chapter20Helper::RunExercise6()
+{
+    // The LinkedList class is a singly linked list that enables one-way
+    // traversal of the list. Modify the Node class to add a new field
+    // previous to refer to the previous node. 
+    // Simplify the implementation of add(T element, int index) and 
+    // removeAt(int index) to take advantage of doubly-linked list.
+
+    DoublyLinkedList<string> list1;
+    list1.add("Beijing");
+    list1.add("Tokyo");
+    list1.add("New York");
+    list1.add("London");
+    list1.add("Paris");
+
+    for (int i = 0; i < list1.getSize(); i++)
+    {
+        cout << list1.get(i) << endl;
+    }
+
+
+    cout << "\n The element we want to remove is " << list1.get(1) << endl;
+    list1.removeAt(1);
+
+    for (int i = 0; i < list1.getSize(); i++)
+    {
+        cout << list1.get(i) << endl;
+    }
+}
+
+void Chapter20Helper::RunExercise7()
+{
+    // In Listing 12.7, ImprovedStack.h, Stack is implemented using composition. 
+    // Create a new stack class that extends LinkedList.
+
+    // Reference: https://www.geeksforgeeks.org/implement-a-stack-using-singly-linked-list/
+}
+
+void Chapter20Helper::RunExercise8()
+{
+    // In Listing 20.5 Queue.h, Queue is implemented using composition. Create 
+    // a new queue class that extends LinkedList. 
+
+    // Reference: https://www.geeksforgeeks.org/queue-linked-list-implementation/
 }
