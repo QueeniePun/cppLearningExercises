@@ -461,6 +461,12 @@
     <ClInclude Include="DoublyLinkedList.h">
       <Filter>Header Files\Chapter 20</Filter>
     </ClInclude>
+    <ClInclude Include="LinkedListStack.h">
+      <Filter>Header Files\Chapter 20</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedListQueue.h">
+      <Filter>Header Files\Chapter 20</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="test.txt">

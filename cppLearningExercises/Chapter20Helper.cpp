@@ -1,6 +1,9 @@
 #include "Chapter20Helper.h"
+#include "Chapter12Helper.h"
 #include "LinkedList.h"
 #include "DoublyLinkedList.h"
+#include "LinkedListStack.h"
+#include "LinkedListQueue.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -165,6 +168,37 @@ void Chapter20Helper::RunExercise7()
     // Create a new stack class that extends LinkedList.
 
     // Reference: https://www.geeksforgeeks.org/implement-a-stack-using-singly-linked-list/
+    // Reference: https://java2blog.com/implement-stack-using-linked-list-in-java/
+
+    // Note on template class inheritance: 
+    // https://stackoverflow.com/questions/6592512/templates-parent-class-member-variables-not-visible-in-inherited-class
+    /*
+       The template parent of a template class is not instantiated during the compilation 
+       pass that first examines the template. These names appear to be non-dependent on 
+       the particular template instantiation, and therefore the definitions need to be 
+       available. 
+       
+       You'll need to tell the compiler explicitly that the names are in fact dependent on
+       the instantiation of the parent.
+
+       One way, using this-> before all the inherited names: this->list, this->length.
+       Another way, using declarations: using baseClass<elemType>::length; etc 
+       (for example in the private section of the derived class).
+    */
+
+    LinkedListStack<int> list1; 
+    list1.push(1);
+    list1.push(2);
+    list1.push(3);
+    list1.push(4);
+    list1.push(5);
+
+    while (list1.getSize() > 0)
+    {
+        cout << list1.peek() << endl;
+        list1.pop();
+    }
+    
 }
 
 void Chapter20Helper::RunExercise8()
@@ -173,4 +207,16 @@ void Chapter20Helper::RunExercise8()
     // a new queue class that extends LinkedList. 
 
     // Reference: https://www.geeksforgeeks.org/queue-linked-list-implementation/
+
+    LinkedListQueue<int> list;
+    list.Enqueue(1);
+    list.Enqueue(2);
+    list.Enqueue(3);
+    list.Enqueue(4);
+    list.Enqueue(5);
+
+    while (list.GetSize() > 0)
+    {
+        cout << list.Dequeue() << endl;
+    }
 }
