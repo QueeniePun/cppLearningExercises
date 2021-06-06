@@ -63,9 +63,18 @@ template<typename T>
 class LinkedList
 {
 public:
+    // Constructors
     LinkedList();
     LinkedList(LinkedList<T>& list);
+
+    // Destructor 
     ~LinkedList();
+
+    // Getters
+
+    // Setters
+
+    // Methods
     void addFirst(T element);
     void addLast(T element);
     T getFirst() const;
@@ -90,33 +99,34 @@ public:
 
     Iterator<T> begin()
     {
-        return Iterator<T>(head);
+        return Iterator<T>(head_);
     };
 
     Iterator<T> end()
     {
-        return Iterator<T>(tail->next);
+        return Iterator<T>(tail_->next);
     };
 
-private:
-    Node<T>* head, * tail;
-    int size; 
+protected:
+    Node<T>* head_;
+    Node<T>* tail_;
+    int size_; 
 };
 
 template<typename T>
 LinkedList<T>::LinkedList()
 {
-    head = tail = NULL;
-    size = 0; 
+    head_ = tail_ = NULL;
+    size_ = 0; 
 }
 
 template<typename T> 
 LinkedList<T>::LinkedList(LinkedList<T>& list)
 {
-    head = tail = NULL;
-    size = 0;
+    head_ = tail_ = NULL;
+    size_ = 0;
 
-    Node<T>* current = list.head;
+    Node<T>* current = list.head_;
     while (current != NULL)
     {
         this->add(current->element);
@@ -134,73 +144,73 @@ template<typename T>
 void LinkedList<T>::addFirst(T element)
 {
     Node<T>* newNode = new Node<T>(element);
-    newNode->next = head;
-    head = newNode;
-    size++;
+    newNode->next = head_;
+    head_ = newNode;
+    size_++;
 
-    if (tail == NULL)
+    if (tail_ == NULL)
     {
-        tail = head; 
+        tail_ = head_; 
     }
 }
 
 template<typename T> 
 void LinkedList<T>::addLast(T element)
 {
-    if (tail == NULL)
+    if (tail_ == NULL)
     {
-        head = tail = new Node<T>(element);
+        head_ = tail_ = new Node<T>(element);
     }
     else
     {
-        tail->next = new Node<T>(element);
-        tail = tail->next; 
+        tail_->next = new Node<T>(element);
+        tail_ = tail_->next; 
     }
 
-    size++;
+    size_++;
 }
 
 template<typename T> 
 T LinkedList<T>::getFirst() const
 {
-    if (size == 0)
+    if (size_ == 0)
     {
         throw runtime_error("Index out of range");
     }
     else
     {
-        return head->element;
+        return head_->element;
     }
 }
 
 template<typename T>
 T LinkedList<T>::getLast() const
 {
-    if (size == 0)
+    if (size_ == 0)
     {
         throw runtime_error("Index out of range");
     }
     else
     {
-        return tail->element;
+        return tail_->element;
     }
 }
 
 template<typename T> 
 T LinkedList<T>::removeFirst() throw (runtime_error)
 {
-    if (size == 0)
+    if (size_ == 0)
     {
         throw runtime_error("No elements in the list");
     }
     else
     {
-        Node<T>* temp = head; 
-        head = head->next;
-        size--;
-        if (head == NULL)
+        Node<T>* temp = head_; 
+        head_ = head_->next;
+        size_--;
+        if (head_ == NULL)
         {
-            tail = NULL;
+            tail_ = NULL;
         }
         T element = temp->element;
         delete temp;
@@ -211,32 +221,32 @@ T LinkedList<T>::removeFirst() throw (runtime_error)
 template<typename T> 
 T LinkedList<T>::removeLast() throw (runtime_error)
 {
-    if (size == 0)
+    if (size_ == 0)
     {
         throw runtime_error("no elements in the list");
     }
-    else if( size == 1)
+    else if( size_ == 1)
     {
-        Node<T>* temp = head; 
-        head = tail = NULL;;
-        size = 0; 
+        Node<T>* temp = head_; 
+        head_ = tail_ = NULL;;
+        size_ = 0; 
         T element = temp->element;
         delete temp;
         return element; 
     }
     else
     {
-        Node<T>* current = head; 
+        Node<T>* current = head_; 
 
-        for (int i = 0; i < size - 2; i++)
+        for (int i = 0; i < size_ - 2; i++)
         {
             current = current->next; 
         }
 
-        Node<T>* temp = tail;
-        tail = current; 
-        tail->next = NULL;
-        size--; 
+        Node<T>* temp = tail_;
+        tail_ = current; 
+        tail_->next = NULL;
+        size_--; 
         T element = temp->element;
         delete temp;
         return element; 
@@ -256,13 +266,13 @@ void LinkedList<T>::add(int index, T element)
     {
         addFirst(element);
     }
-    else if (index >= size)
+    else if (index >= size_)
     {
         addLast(element);
     }
     else
     {
-        Node<T>* current = head; 
+        Node<T>* current = head_; 
 
         for (int i = 1; i < index; i++)
         {
@@ -272,31 +282,31 @@ void LinkedList<T>::add(int index, T element)
         Node<T>* temp = current->next; 
         current->next = new Node<T>(element);
         (current->next)->next = temp; 
-        size++;
+        size_++;
     }
 }
 
 template<typename T> 
 void LinkedList<T>::clear()
 {
-    while (head != NULL)
+    while (head_ != NULL)
     {
-        Node<T> *temp = head; 
-        head = head->next; 
+        Node<T> *temp = head_; 
+        head_ = head_->next; 
         delete temp;
     }
-    tail = NULL;
+    tail_ = NULL;
 }
 
 template<typename T> 
 T LinkedList<T>::get(int index) const
 {
-    if (index < 0 || index > size - 1)
+    if (index < 0 || index > size_ - 1)
     {
         throw runtime_error("Index out of range");
     }
 
-    Node<T>* current = head; 
+    Node<T>* current = head_; 
     for (int i = 0; i < index; i++)
     {
         current = current->next; 
@@ -308,8 +318,8 @@ T LinkedList<T>::get(int index) const
 template<typename T> 
 int LinkedList<T>::indexOf(T element) const
 {
-    Node<T>* current = head; 
-    for (int i = 0; i < size; i++)
+    Node<T>* current = head_; 
+    for (int i = 0; i < size_; i++)
     {
         if (current->element == element)
         {
@@ -323,22 +333,22 @@ int LinkedList<T>::indexOf(T element) const
 template<typename T> 
 bool LinkedList<T>::isEmpty() const
 {
-    return head == NULL;
+    return head_ == NULL;
 }
 
 template<typename T> 
 int LinkedList<T>::getSize() const
 {
-    return size; 
+    return size_; 
 }
 
 template<typename T> 
-T LinkedList<T>::removeAt(int index) throw (runtime_error)
+T LinkedList<T>::removeAt(int index) 
 {
     // Removes the element at the specified index and returns the 
     // removed element 
 
-    if (index < 0 || index >= size)
+    if (index < 0 || index >= size_)
     {
         throw runtime_error("Index out of range");
     }
@@ -346,13 +356,13 @@ T LinkedList<T>::removeAt(int index) throw (runtime_error)
     {
         return removeFirst();
     }
-    else if (index == size - 1)
+    else if (index == size_ - 1)
     {
         return removeLast();
     }
     else
     {
-        Node<T>* previous = head; 
+        Node<T>* previous = head_; 
         for (int i = 0; i < index - 1; i++)
         {
             previous = previous->next; 
@@ -360,7 +370,7 @@ T LinkedList<T>::removeAt(int index) throw (runtime_error)
         Node<T>* current = previous->next;
         Node<T>* newCurrent = current->next; 
         previous->next = newCurrent;
-        size--; 
+        size_--; 
         T element = current->element;
         delete current;
         return element; 
@@ -368,12 +378,12 @@ T LinkedList<T>::removeAt(int index) throw (runtime_error)
 }
 
 template<typename T>
-void LinkedList<T>::remove(T element) throw (runtime_error)
+void LinkedList<T>::remove(T element) 
 {  
     // Traverse through the list for the element
 
-    Node<T>* current = head; 
-    for (int i = 0; i < size; i++)
+    Node<T>* current = head_; 
+    for (int i = 0; i < size_; i++)
     {
         if (current->element == element)
         {
@@ -394,8 +404,8 @@ int LinkedList<T>::lastIndexOf(T element) const
     // Return -1 if the element does not exist 
 
     int lastIndex = -1; 
-    Node<T>* current = head; 
-    for (int i = 0; i < size; i++)
+    Node<T>* current = head_; 
+    for (int i = 0; i < size_; i++)
     {
         if (current->element == element)
         {
@@ -410,8 +420,8 @@ template<typename T>
 bool LinkedList<T>::contains(T element) const
 {
  
-    Node<T>* current = head;
-    for (int i = 0; i < size; i++)
+    Node<T>* current = head_;
+    for (int i = 0; i < size_; i++)
     {
         if (current->element == element)
         {
@@ -424,17 +434,17 @@ bool LinkedList<T>::contains(T element) const
 }
 
 template<typename T> 
-T LinkedList<T>::set(int index, T element) throw (runtime_error)
+T LinkedList<T>::set(int index, T element)
 {
     // Sets the element at the specified index and returns the element being replaced
-    if (index < 0 || index > size - 1)
+    if (index < 0 || index > size_ - 1)
     {
         throw runtime_error("Index out of range");
     }
 
     T replaced = get(index);
     
-    Node<T>* current = head; 
+    Node<T>* current = head_; 
     for (int i = 0; i < index-1; i++)
     {
         current = current->next; 
@@ -448,7 +458,7 @@ template<typename T>
 void LinkedList<T>::addAll(const LinkedList<T>& otherList)
 {
     // Traverse through otherList and add each element to the linked List
-    Node<T>* otherCurrent = otherList.head; 
+    Node<T>* otherCurrent = otherList.head_; 
     for (int i = 0; i < otherList.getSize(); i++)
     {
         this->add(otherCurrent->element);
@@ -461,11 +471,11 @@ void LinkedList<T>::removeAll(const LinkedList<T>& otherList)
 {
     // Remove all elements in otherList from this list
 
-    Node<T>* otherCurrent = otherList.head; 
+    Node<T>* otherCurrent = otherList.head_; 
     for (int i = 0; i < otherList.getSize(); i++)
     {
-        Node<T>* current = head; 
-        for (int j = 0; j < size; j++)
+        Node<T>* current = head_; 
+        for (int j = 0; j < size_; j++)
         {
             if (otherCurrent->element == current->element)
             {
@@ -490,8 +500,8 @@ void LinkedList<T>::retainAll(const LinkedList<T>& otherList)
     // Retain the elements in this list if they are also in otherList
 
     // If otherList does not contain elements from list, remove the element from list
-    Node<T>* current = head; 
-    for (int i = 0; i < size; i++)
+    Node<T>* current = head_; 
+    for (int i = 0; i < size_; i++)
     {
         if (!(otherList.contains(current->element)))
         {

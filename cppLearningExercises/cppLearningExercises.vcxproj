@@ -230,11 +230,13 @@
     <ClInclude Include="HexFormatException.h" />
     <ClInclude Include="IllegalSubscriptException.h" />
     <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="LinkedListQueue.h" />
     <ClInclude Include="MyDate.h" />
     <ClInclude Include="MyPoint.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="RationalClass.h" />
     <ClInclude Include="Saving.h" />
+    <ClInclude Include="LinkedListStack.h" />
     <ClInclude Include="StackOfIntegers.h" />
     <ClInclude Include="Staff.h" />
     <ClInclude Include="Student.h" />
